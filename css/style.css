@@ -74,3 +74,19 @@ body {
 }
 
 .text-light-blue { color: #bfdbfe; }
+
+
+/* Efek Hover untuk Klien di Portfolio */
+.border-bottom-hover {
+    border-bottom: 2px solid transparent;
+    transition: all 0.3s ease;
+}
+
+.border-bottom-hover:hover {
+    border-bottom: 2px solid #f97316; /* herzOrange */
+    color: #1e3a8a; /* herzBlue */
+}
+
+.client-box h5 {
+    transition: color 0.3s ease;
+}
