@@ -4,207 +4,136 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PT Herz Consultant Indonesia | Environmental Intelligence</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: { sans: ['Inter', 'sans-serif'] },
-                    colors: { herzBlue: '#1e3a8a', herzOrange: '#f97316' }
-                }
-            }
-        }
-    </script>
-    <style>
-        html { scroll-behavior: smooth; }
-        .hero-bg {
-            background-image: linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.7)), url('https://images.unsplash.com/photo-1532601224476-15c79f2f7a51?auto=format&fit=crop&q=80');
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
-        }
-        /* Class buat elemen pas pertama kali (Sembunyi & Turun) */
-.animate-on-scroll {
-    opacity: 0;
-    transform: translateY(40px);
-    transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-/* Class buat elemen pas udah keliatan di layar (Muncul & Naik ke posisi asli) */
-.is-visible {
-    opacity: 1;
-    transform: translateY(0);
-}
-        .service-card:hover { transform: translateY(-5px); box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1); }
-    </style>
+    <link rel="stylesheet" href="css/style.css">
 </head>
-<body class="bg-slate-50 text-slate-800 font-sans selection:bg-herzOrange selection:text-white">
+<body>
 
-    <nav class="fixed w-full z-50 bg-white border-b border-gray-200 shadow-sm">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between h-20 items-center">
-           <a href="index.html" class="flex-shrink-0 flex items-center group">
-    <img src="assets/logos/logo-herz.png" alt="Logo PT Herz Consultant" class="h-16 w-auto transform transition-all duration-300 ease-in-out group-hover:scale-105 group-hover:drop-shadow-lg filter drop-shadow-sm"></a>
-            <div class="hidden md:flex space-x-8">
-                <a href="about.html" class="font-semibold text-gray-600 hover:text-herzBlue transition">About</a>
-                <a href="services.html" class="font-semibold text-gray-600 hover:text-herzBlue transition">Services</a>
-                <a href="portfolio.html" class="font-semibold text-gray-600 hover:text-herzBlue transition">Portfolio</a>
-                <a href="#contact" class="font-semibold text-gray-600 hover:text-herzBlue transition">Contact</a>
+    <nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top border-bottom shadow-sm py-3">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <img src="assets/logos/logo-herz.png" alt="Logo PT Herz" class="brand-logo">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto align-items-center">
+                    <li class="nav-item"><a class="nav-link fw-semibold px-3" href="about.html">About</a></li>
+                    <li class="nav-item"><a class="nav-link fw-semibold px-3" href="services.html">Services</a></li>
+                    <li class="nav-item"><a class="nav-link fw-semibold px-3" href="portfolio.html">Portfolio</a></li>
+                    <li class="nav-item"><a class="nav-link fw-semibold px-3" href="#contact">Contact</a></li>
+                    <li class="nav-item ms-lg-3">
+                        <a href="mailto:info@herzindonesia.com" class="btn btn-herz-blue fw-bold px-4">Get in Touch</a>
+                    </li>
+                </ul>
             </div>
-            <a href="mailto:info@herzindonesia.com" class="hidden md:block bg-herzBlue text-white px-6 py-2.5 rounded-sm font-bold hover:bg-blue-900 transition">Get in Touch</a>
         </div>
     </nav>
 
-    <section id="home" class="hero-bg min-h-screen flex items-center pt-20">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
-            <div class="max-w-3xl">
-                <span class="text-herzBlue font-bold tracking-widest uppercase text-sm mb-4 block border-l-4 border-herzOrange pl-3">PT Herz Consultant Indonesia</span>
-                <h1 class="text-5xl md:text-7xl font-extrabold text-slate-900 leading-tight mb-6">
-                    Environmental Intelligence for a <span class="text-herzOrange">Sustainable Future</span>
-                </h1>
-                <p class="text-xl text-slate-700 mb-8 font-light leading-relaxed">
-                    Kami hadir untuk menjembatani kebutuhan industri dan laboratorium dalam memenuhi standar lingkungan, khususnya terkait emisi udara dari sumber tidak bergerak.
-                </p>
-                <div class="flex gap-4">
-                    <a href="#services" class="bg-herzOrange hover:bg-orange-600 text-white px-8 py-4 rounded-sm font-bold transition">Explore Services</a>
-                    <a href="#about" class="border-2 border-slate-900 text-slate-900 hover:bg-slate-900 hover:text-white px-8 py-4 rounded-sm font-bold transition">Our Philosophy</a>
+    <section id="home" class="hero-bg d-flex align-items-center">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8">
+                    <span class="hero-subtitle text-uppercase fw-bold mb-3 d-block">PT Herz Consultant Indonesia</span>
+                    <h1 class="display-3 fw-extrabold mb-4">
+                        Environmental Intelligence for a <span class="text-herz-orange">Sustainable Future</span>
+                    </h1>
+                    <p class="lead mb-5 text-secondary">
+                        Kami hadir untuk menjembatani kebutuhan industri dan laboratorium dalam memenuhi standar lingkungan, khususnya terkait emisi udara dari sumber tidak bergerak.
+                    </p>
+                    <div class="d-flex gap-3">
+                        <a href="#services" class="btn btn-herz-orange px-4 py-3 fw-bold text-white">Explore Services</a>
+                        <a href="#about" class="btn btn-outline-dark px-4 py-3 fw-bold">Our Philosophy</a>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="about" class="py-24 bg-white">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid md:grid-cols-2 gap-16 items-center">
-                
-                <div class="animate-on-scroll">
-                    <h2 class="text-4xl font-extrabold text-herzBlue mb-6">Mitra Strategis Terpercaya.</h2>
-                    <p class="text-gray-600 mb-4 leading-relaxed">
+    <section id="about" class="py-5 bg-white">
+        <div class="container py-5">
+            <div class="row align-items-center g-5">
+                <div class="col-md-6 animate-on-scroll">
+                    <h2 class="h1 fw-bold text-herz-blue mb-4">Mitra Strategis Terpercaya.</h2>
+                    <p class="text-muted mb-4">
                         Didukung oleh tim berpengalaman lebih dari 10 tahun dan tersertifikasi SKKNI, serta menggunakan peralatan berstandar SNI dan US EPA yang terkalibrasi.
                     </p>
-                    <p class="text-gray-600 leading-relaxed mb-6">
-                        Kami menyediakan layanan HSE dan lingkungan yang andal, akurat, dan sesuai regulasi nasional maupun internasional.
-                    </p>
-                    <ul class="space-y-3 font-semibold text-slate-800">
-                        <li class="flex items-center"><span class="text-herzOrange mr-2">✔</span> Kepatuhan sebagai Komitmen</li>
-                        <li class="flex items-center"><span class="text-herzOrange mr-2">✔</span> Kemitraan yang Kolaboratif</li>
-                        <li class="flex items-center"><span class="text-herzOrange mr-2">✔</span> Layanan Profesional & Handal</li>
+                    <ul class="list-unstyled fw-semibold text-dark">
+                        <li class="mb-2"><span class="text-herz-orange me-2">✔</span> Kepatuhan sebagai Komitmen</li>
+                        <li class="mb-2"><span class="text-herz-orange me-2">✔</span> Kemitraan yang Kolaboratif</li>
+                        <li class="mb-2"><span class="text-herz-orange me-2">✔</span> Layanan Profesional & Handal</li>
                     </ul>
                 </div>
-                
-                <div class="bg-gray-200 h-96 rounded-sm w-full bg-[url('assets/images/2.png')] bg-cover bg-center animate-on-scroll" style="transition-delay: 200ms;"></div>
-                
-            </div>
-        </div>
-    </section>
-
-    <section id="services" class="py-24 bg-slate-50 border-t border-gray-200">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center max-w-3xl mx-auto mb-16">
-                <h2 class="text-4xl font-extrabold text-slate-900 mb-4">Layanan Terintegrasi</h2>
-                <p class="text-gray-600">Solusi menyeluruh dari konsultasi teknis hingga perbaikan instrumen industri dan laboratorium.</p>
-            </div>
-            
-            <div class="grid md:grid-cols-3 gap-8">
-                <div class="service-card bg-white p-8 border border-gray-100 rounded-sm transition-all cursor-pointer">
-                    <div class="w-12 h-12 bg-blue-100 text-herzBlue flex items-center justify-center rounded-sm mb-6 font-bold text-xl">1</div>
-                    <h3 class="text-xl font-bold text-slate-900 mb-3">Audit & CEMS</h3>
-                    <p class="text-gray-600 text-sm mb-4">Layanan instalasi, kalibrasi, perbaikan, dan pengujian RATA / RCA untuk Continuous Emission Monitoring System .</p>
-                </div>
-
-                <div class="service-card bg-white p-8 border border-gray-100 rounded-sm transition-all cursor-pointer border-t-4 border-t-herzOrange shadow-md">
-                    <div class="w-12 h-12 bg-orange-100 text-herzOrange flex items-center justify-center rounded-sm mb-6 font-bold text-xl">2</div>
-                    <h3 class="text-xl font-bold text-slate-900 mb-3">ISO Management</h3>
-                    <p class="text-gray-600 text-sm mb-4">Konsultasi ISO 9001:2015 (Mutu), ISO 14001:2015 (Lingkungan), dan ISO 45001:2015 (K3) terintegrasi.</p>
-                </div>
-
-                <div class="service-card bg-white p-8 border border-gray-100 rounded-sm transition-all cursor-pointer">
-                    <div class="w-12 h-12 bg-blue-100 text-herzBlue flex items-center justify-center rounded-sm mb-6 font-bold text-xl">3</div>
-                    <h3 class="text-xl font-bold text-slate-900 mb-3">Kajian Teknis</h3>
-                    <p class="text-gray-600 text-sm mb-4">Mencakup emisi udara, kualitas air, limbah B3, efisiensi energi, hingga analisis risiko K3 .</p>
+                <div class="col-md-6 animate-on-scroll" style="transition-delay: 200ms;">
+                    <div class="about-img rounded shadow-sm"></div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="portfolio" class="py-24 bg-white border-t border-gray-200">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 class="text-3xl font-extrabold text-herzBlue mb-12 text-center">Dipercaya oleh Industri Terkemuka</h2>
-            
-            <div class="flex overflow-x-auto gap-6 pb-8 snap-x hide-scroll-bar">
-                
-                <div class="min-w-[320px] h-72 bg-slate-100 rounded-xl flex flex-col items-center justify-center snap-center hover:shadow-xl transition duration-300 border border-transparent hover:border-gray-300 group cursor-pointer">
-                    <img src="assets/logos/maspion.jpeg" alt="Maspion" class="h-24 w-auto object-contain grayscale group-hover:grayscale-0 transition-all duration-300">
-                    <p class="mt-6 text-sm font-semibold text-gray-500 opacity-0 group-hover:opacity-100 transition-opacity">Klien Setia Kami</p>
-                </div>
-
-                <div class="min-w-[320px] h-72 bg-slate-100 rounded-xl flex flex-col items-center justify-center snap-center hover:shadow-xl transition duration-300 border border-transparent hover:border-gray-300 group cursor-pointer">
-                    <img src="assets/logos/pln.png" alt="PLN" class="h-24 w-auto object-contain grayscale group-hover:grayscale-0 transition-all duration-300">
-                    <p class="mt-6 text-sm font-semibold text-gray-500 opacity-0 group-hover:opacity-100 transition-opacity">Klien Setia Kami</p>
-                </div>
-
-                <div class="min-w-[320px] h-72 bg-slate-100 rounded-xl flex flex-col items-center justify-center snap-center hover:shadow-xl transition duration-300 border border-transparent hover:border-gray-300 group cursor-pointer">
-                    <img src="assets/logos/dlh.jpeg" alt="DLH" class="h-24 w-auto object-contain grayscale group-hover:grayscale-0 transition-all duration-300">
-                    <p class="mt-6 text-sm font-semibold text-gray-500 opacity-0 group-hover:opacity-100 transition-opacity">Klien Setia Kami</p>
-                </div>
-
-                <div class="min-w-[320px] h-72 bg-slate-100 rounded-xl flex flex-col items-center justify-center snap-center hover:shadow-xl transition duration-300 border border-transparent hover:border-gray-300 group cursor-pointer">
-                    <img src="assets/logos/sucofindo.png" alt="Sucofindo" class="h-24 w-auto object-contain grayscale group-hover:grayscale-0 transition-all duration-300">
-                    <p class="mt-6 text-sm font-semibold text-gray-500 opacity-0 group-hover:opacity-100 transition-opacity">Klien Setia Kami</p>
-                </div>
-
+    <section id="services" class="py-5 bg-light border-top">
+        <div class="container py-5">
+            <div class="text-center mb-5">
+                <h2 class="fw-bold">Layanan Terintegrasi</h2>
+                <p class="text-muted">Solusi menyeluruh dari konsultasi teknis hingga perbaikan instrumen industri dan laboratorium.</p>
             </div>
-
-            <div class="mt-8 flex justify-center gap-4">
-                <button class="w-12 h-12 rounded-full border-2 border-slate-300 flex items-center justify-center hover:bg-slate-100 transition">
-                    <svg class="w-6 h-6 text-slate-700" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
-                </button>
-                <button class="w-12 h-12 rounded-full bg-slate-900 text-white flex items-center justify-center hover:bg-slate-800 transition shadow-lg">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
-                </button>
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="card h-100 p-4 border-0 shadow-sm service-card">
+                        <div class="icon-box mb-4">1</div>
+                        <h4 class="fw-bold">Audit & CEMS</h4>
+                        <p class="text-muted small">Layanan instalasi, kalibrasi, perbaikan, dan pengujian RATA / RCA untuk Continuous Emission Monitoring System.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card h-100 p-4 border-0 shadow-md service-card border-top-orange">
+                        <div class="icon-box-orange mb-4">2</div>
+                        <h4 class="fw-bold">ISO Management</h4>
+                        <p class="text-muted small">Konsultasi ISO 9001:2015 (Mutu), ISO 14001:2015 (Lingkungan), dan ISO 45001:2015 (K3) terintegrasi.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card h-100 p-4 border-0 shadow-sm service-card">
+                        <div class="icon-box mb-4">3</div>
+                        <h4 class="fw-bold">Kajian Teknis</h4>
+                        <p class="text-muted small">Mencakup emisi udara, kualitas air, limbah B3, efisiensi energi, hingga analisis risiko K3.</p>
+                    </div>
+                </div>
             </div>
-            
         </div>
     </section>
 
-    <footer id="contact" class="bg-herzBlue text-white py-16">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid md:grid-cols-3 gap-8">
-            <div>
-                <div class="text-2xl font-extrabold tracking-tighter mb-4">HERZ<span class="text-herzOrange">.</span></div>
-                <p class="text-blue-200 text-sm leading-relaxed">Environmental Intelligence for a Sustainable Future.</p>
-            </div>
-            <div>
-                <h4 class="font-bold mb-4 text-white uppercase text-sm tracking-wider">Kantor Pusat</h4>
-                <p class="text-blue-200 text-sm leading-relaxed">
-                    Jl. Babakan Sari VI No. 5 RT. 04/RW. 07<br>
-                    Bantarjati, Kec. Bogor Utara,<br>
-                    Kota Bogor, Jawa Barat 16153.
-                </p>
-            </div>
-            <div>
-                <h4 class="font-bold mb-4 text-white uppercase text-sm tracking-wider">Hubungi Kami</h4>
-               <a href=""> <p class="text-blue-200 text-sm mb-2">📞 0813-1415-825 </p></a>
-               <a href="https://companieshouse.id/herz-konsultan-indonesia"> <p class="text-blue-200 text-sm">✉️ info@herzindonesia.com </p></a>
-                <a href="https://www.linkedin.com/company/pt-herz-konsultan-indonesia/?originalSubdomain=id"><p class="text-blue-200 text-sm">💼 LinkedIn</p></a>    
+    <footer id="contact" class="bg-herz-blue text-white py-5 mt-5">
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="h3 fw-bold mb-3">HERZ<span class="text-herz-orange">.</span></div>
+                    <p class="text-light-blue small">Environmental Intelligence for a Sustainable Future.</p>
+                </div>
+                <div class="col-md-4">
+                    <h6 class="text-uppercase fw-bold mb-3">Kantor Pusat</h6>
+                    <p class="text-light-blue small">
+                        Jl. Babakan Sari VI No. 5 RT. 04/RW. 07<br>
+                        Bantarjati, Kec. Bogor Utara,<br>
+                        Kota Bogor, Jawa Barat 16153.
+                    </p>
+                </div>
+                <div class="col-md-4">
+                    <h6 class="text-uppercase fw-bold mb-3">Hubungi Kami</h6>
+                    <ul class="list-unstyled text-light-blue small">
+                        <li>📞 0813-1415-825</li>
+                        <li>✉️ info@herzindonesia.com</li>
+                        <li>💼 <a href="#" class="text-light-blue text-decoration-none">LinkedIn</a></li>
+                    </ul>
+                </div>
             </div>
         </div>
     </footer>
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach((entry) => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('is-visible');
-                    }
-                });
-            }, {
-                threshold: 0.1 
-            });
 
-            const hiddenElements = document.querySelectorAll('.animate-on-scroll');
-            hiddenElements.forEach((el) => observer.observe(el));
-        });
-    </script>
-
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/script.js"></script>
 </body>
 </html>

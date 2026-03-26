@@ -1,0 +1,76 @@
+/* General Setup */
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: #f8fafc;
+    color: #1e293b;
+}
+
+/* Custom Colors & Buttons */
+.btn-herz-blue {
+    background-color: #1e3a8a;
+    color: white;
+}
+.btn-herz-blue:hover { background-color: #172554; color: white; }
+
+.btn-herz-orange { background-color: #f97316; }
+.btn-herz-orange:hover { background-color: #ea580c; }
+
+.text-herz-blue { color: #1e3a8a; }
+.text-herz-orange { color: #f97316; }
+.bg-herz-blue { background-color: #1e3a8a; }
+
+/* Components */
+.brand-logo { height: 64px; transition: transform 0.3s ease; }
+.brand-logo:hover { transform: scale(1.05); }
+
+.hero-bg {
+    min-height: 100vh;
+    background-image: linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.7)), url('https://images.unsplash.com/photo-1532601224476-15c79f2f7a51?auto=format&fit=crop&q=80');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    padding-top: 80px;
+}
+
+.hero-subtitle {
+    border-left: 4px solid #f97316;
+    padding-left: 1rem;
+    color: #1e3a8a;
+}
+
+.about-img {
+    height: 400px;
+    background-image: url('../assets/images/2.png');
+    background-size: cover;
+    background-position: center;
+}
+
+/* Services */
+.service-card { transition: all 0.3s ease; cursor: pointer; }
+.service-card:hover { transform: translateY(-5px); box-shadow: 0 1rem 3rem rgba(0,0,0,0.1) !important; }
+.border-top-orange { border-top: 4px solid #f97316 !important; }
+
+.icon-box, .icon-box-orange {
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    border-radius: 4px;
+}
+.icon-box { background: #dbeafe; color: #1e3a8a; }
+.icon-box-orange { background: #ffedd5; color: #f97316; }
+
+/* Animation Classes */
+.animate-on-scroll {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.text-light-blue { color: #bfdbfe; }
