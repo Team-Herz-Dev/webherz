@@ -23,6 +23,8 @@ body {
 .brand-logo { height: 64px; transition: transform 0.3s ease; }
 .brand-logo:hover { transform: scale(1.05); }
 
+.border-bottom-herz-orange { border-bottom: 3px solid #f97316; }
+
 .hero-bg {
     min-height: 100vh;
     background-image: linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.7)), url('https://images.unsplash.com/photo-1532601224476-15c79f2f7a51?auto=format&fit=crop&q=80');
