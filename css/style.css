@@ -93,6 +93,9 @@ body {
     transition: color 0.3s ease;
 }
 
+
+/* ini yan css java biar gak bingung */
+
 /* Social Icons di footer */
 .social-icon {
     width: 45px;
@@ -112,3 +115,45 @@ body {
     background: rgba(255,255,255,0.35);
     transform: scale(1.1);
 }
+/* ukuran logo di portfolio */
+.client-logo {
+    height: 60px;
+    max-width: 120px;
+    object-fit: contain;
+}
+
+
+
+/* untuk ukuran foto di documentasi  */
+.case-img {
+    width: 100%;
+    height: 300px;       /* atur tinggi di sini */
+    object-fit: cover;   /* biar gak gepeng */
+    border-radius: 8px;
+}
+/* efek hover untuk card documentasi di portofolio  */
+
+.case-card {
+    transition: all 0.3s ease;
+}
+
+.case-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+}
+
+
+.case-img {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+    border-radius: 8px;
+    transition: 0.4s;
+}
+
+.case-img:hover {
+    transform: scale(1.05);
+}   
+
+
+
