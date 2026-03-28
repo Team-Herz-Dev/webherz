@@ -92,3 +92,28 @@ body {
 .client-box h5 {
     transition: color 0.3s ease;
 }
+
+/* Keadaan awal: tersembunyi dan di sebelah kiri */
+.reveal-left {
+    opacity: 0;
+    transform: translateX(-100px); /* Geser 100px ke kiri */
+    transition: all 1s cubic-bezier(0.17, 0.55, 0.55, 1); /* Durasi 1 detik */
+    visibility: hidden;
+}
+
+/* Keadaan setelah aktif: muncul dan balik ke posisi asli */
+.reveal-left.active {
+    opacity: 1;
+    transform: translateX(0);
+    visibility: visible;
+}
+
+/* (Opsional) Tambahan buat Hero Subtitle biar warnanya konsisten */
+.text-herz-orange {
+    color: #EA580C !important;
+}
+
+.btn-herz-orange {
+    background-color: #EA580C;
+    border-color: #EA580C;
+}
