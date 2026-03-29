@@ -390,21 +390,6 @@ section {
     backface-visibility: hidden;
 }
 
-/* Card 1: Langsung muncul */
-.col-md-4:nth-child(1) .animate-on-scroll {
-    transition-delay: 0.2s;
-}
-
-/* Card 2: Nunggu 0.3 detik */
-.col-md-4:nth-child(2) .animate-on-scroll {
-    transition-delay: 0.4s;
-}
-
-/* Card 3: Nunggu 0.5 detik */
-.col-md-4:nth-child(3) .animate-on-scroll {
-    transition-delay: 0.6s;
-}
-
 /* =========================================
    5. Footer & Portfolio Extra
    ========================================= */
@@ -457,56 +442,6 @@ section {
     display: block;
     margin-top: 1rem;
 }
-
-/* =========================================
-   7. Masonry Grid
-   ========================================= */
-.masonry-grid {
-    column-count: 2;
-    column-gap: 1rem;
-}
-
-@media (min-width: 576px) {
-    .masonry-grid {
-        column-count: 3;
-        column-gap: 1.25rem;
-    }
-}
-
-@media (min-width: 992px) {
-    .masonry-grid {
-        column-count: 4;
-        column-gap: 1.5rem;
-    }
-}
-
-.masonry-item {
-    break-inside: avoid;
-    margin-bottom: 1rem;
-    opacity: 0;
-    transform: translateY(40px);
-    transition: opacity 0.6s ease, transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.masonry-item.is-visible {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-.masonry-img {
-    width: 100%;
-    height: auto;
-    display: block;
-    border-radius: 8px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.masonry-img:hover {
-    transform: scale(1.05);
-    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.2);
-}
-
 
 /* =========================================
    8. Circular Testimonial

@@ -12,7 +12,7 @@
 
     const initHeroSlider = () => {
         const slides = document.querySelectorAll('.hero-slide');
-        
+
         if (slides.length === 0) return;
 
         let currentSlide = 0;
@@ -95,121 +95,64 @@
     // 4. Parallax Effect with requestAnimationFrame
     // =========================================
 
+    const initParallaxV2 = () => {
+        // Kita cari elemen yang punya salah satu atau kedua atribut ini
+        const parallaxElements = document.querySelectorAll('[data-parallax], [data-parallax-x]');
 
-const initParallaxV2 = () => {
-    // Kita cari elemen yang punya salah satu atau kedua atribut ini
-    const parallaxElements = document.querySelectorAll('[data-parallax], [data-parallax-x]');
-    
-    if (parallaxElements.length === 0) return;
+        if (parallaxElements.length === 0) return;
 
-    const updateParallax = () => {
-        const vh = window.innerHeight;
-        const scrollY = window.pageYOffset;
+        const updateParallax = () => {
+            const vh = window.innerHeight;
+            const scrollY = window.pageYOffset;
 
-        parallaxElements.forEach((el) => {
-            const rect = el.getBoundingClientRect();
-            
-            // Performa: Cek apakah elemen ada di area pandang
-            if (rect.top > vh + 100 || rect.bottom < -100) return;
+            parallaxElements.forEach((el) => {
+                const rect = el.getBoundingClientRect();
 
-            const elementCenter = (rect.top + scrollY) + rect.height / 2;
-            const viewportCenter = scrollY + vh / 2;
-            const distance = viewportCenter - elementCenter;
+                // Performa: Cek apakah elemen ada di area pandang
+                if (rect.top > vh + 100 || rect.bottom < -100) return;
 
-            // 1. Ambil Speed Vertikal (Y)
-            const speedY = parseFloat(el.getAttribute('data-parallax')) || 0;
-            const offsetY = distance * speedY;
-            el.style.setProperty('--parallax-offset-y', `${offsetY}px`);
+                const elementCenter = (rect.top + scrollY) + rect.height / 2;
+                const viewportCenter = scrollY + vh / 2;
+                const distance = viewportCenter - elementCenter;
 
-            // 2. Ambil Speed Horizontal (X) - BARU!
-            const speedX = parseFloat(el.getAttribute('data-parallax-x')) || 0;
-            const offsetX = distance * speedX;
-            el.style.setProperty('--parallax-offset-x', `${offsetX}px`);
-        });
+                // 1. Ambil Speed Vertikal (Y)
+                const speedY = parseFloat(el.getAttribute('data-parallax')) || 0;
+                const offsetY = distance * speedY;
+                el.style.setProperty('--parallax-offset-y', `${offsetY}px`);
+
+                // 2. Ambil Speed Horizontal (X) - BARU!
+                const speedX = parseFloat(el.getAttribute('data-parallax-x')) || 0;
+                const offsetX = distance * speedX;
+                el.style.setProperty('--parallax-offset-x', `${offsetX}px`);
+            });
+        };
+
+        window.addEventListener('scroll', () => {
+            window.requestAnimationFrame(updateParallax);
+        }, { passive: true });
+
+        updateParallax();
     };
 
-    window.addEventListener('scroll', () => {
-        window.requestAnimationFrame(updateParallax);
-    }, { passive: true });
-
-    updateParallax();
-};
-
-/**
- * Fade-In Animation Observer (Biar sinkron)
- */
-const initScrollReveal = () => {
-    const reveals = document.querySelectorAll('.animate-on-scroll');
-
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('is-visible');
-            }
-        });
-    }, { threshold: 0.1 });
-
-    reveals.forEach(el => observer.observe(el));
-};
-
-/**
- * Masonry Grid Cards Animation
- */
-const initMasonryCards = () => {
-    const masonryCards = document.querySelectorAll('.masonry-card');
-
-    if (masonryCards.length === 0) return;
-
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('is-visible');
-                observer.unobserve(entry.target);
-            }
-        });
-    }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
-
-    masonryCards.forEach(el => observer.observe(el));
-};
-
-document.addEventListener('DOMContentLoaded', () => {
-    initParallaxV2();
-    initScrollReveal();
-    initMasonryCards();
-});
     // =========================================
-    // 5. Header Scroll Toggle (Hide on Down, Show on Up)
+    // 5. Masonry Grid Cards Animation
     // =========================================
 
-    const initHeaderToggle = () => {
-        const header = document.querySelector('header, .header, .navbar');
+    const initMasonryCards = () => {
+        const masonryCards = document.querySelectorAll('.masonry-card');
 
-        if (!header) return;
+        if (masonryCards.length === 0) return;
 
-        let lastScrollY = window.pageYOffset;
-        let ticking = false;
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
 
-        const updateHeader = () => {
-            const currentScrollY = window.pageYOffset;
-
-            if (currentScrollY > lastScrollY && currentScrollY > 100) {
-                header.classList.add('header-hidden');
-            } else {
-                header.classList.remove('header-hidden');
-            }
-
-            lastScrollY = currentScrollY;
-            ticking = false;
-        };
-
-        const onScroll = () => {
-            if (!ticking) {
-                window.requestAnimationFrame(updateHeader);
-                ticking = true;
-            }
-        };
-
-        window.addEventListener('scroll', onScroll, { passive: true });
+        masonryCards.forEach(el => observer.observe(el));
     };
 
     // =========================================
@@ -239,8 +182,8 @@ document.addEventListener('DOMContentLoaded', () => {
         initHeroSlider();
         initScrollAnimations();
         initTypingAnimation();
-        initParallaxEffect();
-        initHeaderToggle();
+        initParallaxV2();
+        initMasonryCards();
         initScrollProgress();
     };
 
