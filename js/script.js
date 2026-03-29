@@ -95,35 +95,88 @@
     // 4. Parallax Effect with requestAnimationFrame
     // =========================================
 
-    const initParallaxEffect = () => {
-        const parallaxElements = document.querySelectorAll('[data-parallax]');
 
-        if (parallaxElements.length === 0) return;
+const initParallaxV2 = () => {
+    // Kita cari elemen yang punya salah satu atau kedua atribut ini
+    const parallaxElements = document.querySelectorAll('[data-parallax], [data-parallax-x]');
+    
+    if (parallaxElements.length === 0) return;
 
-        let currentScrollY = window.pageYOffset;
-        let ticking = false;
+    const updateParallax = () => {
+        const vh = window.innerHeight;
+        const scrollY = window.pageYOffset;
 
-        const updateParallax = () => {
-            parallaxElements.forEach((el) => {
-                const speed = parseFloat(el.getAttribute('data-parallax')) || 0.5;
-                const yPos = -(currentScrollY * speed);
-                el.style.transform = `translateY(${yPos}px)`;
-            });
-            ticking = false;
-        };
+        parallaxElements.forEach((el) => {
+            const rect = el.getBoundingClientRect();
+            
+            // Performa: Cek apakah elemen ada di area pandang
+            if (rect.top > vh + 100 || rect.bottom < -100) return;
 
-        const onScroll = () => {
-            currentScrollY = window.pageYOffset;
+            const elementCenter = (rect.top + scrollY) + rect.height / 2;
+            const viewportCenter = scrollY + vh / 2;
+            const distance = viewportCenter - elementCenter;
 
-            if (!ticking) {
-                window.requestAnimationFrame(updateParallax);
-                ticking = true;
-            }
-        };
+            // 1. Ambil Speed Vertikal (Y)
+            const speedY = parseFloat(el.getAttribute('data-parallax')) || 0;
+            const offsetY = distance * speedY;
+            el.style.setProperty('--parallax-offset-y', `${offsetY}px`);
 
-        window.addEventListener('scroll', onScroll, { passive: true });
+            // 2. Ambil Speed Horizontal (X) - BARU!
+            const speedX = parseFloat(el.getAttribute('data-parallax-x')) || 0;
+            const offsetX = distance * speedX;
+            el.style.setProperty('--parallax-offset-x', `${offsetX}px`);
+        });
     };
 
+    window.addEventListener('scroll', () => {
+        window.requestAnimationFrame(updateParallax);
+    }, { passive: true });
+
+    updateParallax();
+};
+
+/**
+ * Fade-In Animation Observer (Biar sinkron)
+ */
+const initScrollReveal = () => {
+    const reveals = document.querySelectorAll('.animate-on-scroll');
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('is-visible');
+            }
+        });
+    }, { threshold: 0.1 });
+
+    reveals.forEach(el => observer.observe(el));
+};
+
+/**
+ * Masonry Grid Cards Animation
+ */
+const initMasonryCards = () => {
+    const masonryCards = document.querySelectorAll('.masonry-card');
+
+    if (masonryCards.length === 0) return;
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('is-visible');
+                observer.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+    masonryCards.forEach(el => observer.observe(el));
+};
+
+document.addEventListener('DOMContentLoaded', () => {
+    initParallaxV2();
+    initScrollReveal();
+    initMasonryCards();
+});
     // =========================================
     // 5. Header Scroll Toggle (Hide on Down, Show on Up)
     // =========================================

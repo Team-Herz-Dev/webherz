@@ -7,10 +7,18 @@ body {
     color: #1e293b;
 }
 
+/* Rubik Font for Special Headings */
+.font-rubik {
+    font-family: 'Rubik', sans-serif;
+    font-weight: 900;
+    letter-spacing: -0.5px;
+}
+
 /* Standar Warna Herz (Pilih salah satu, di sini saya pakai #EA580C agar konsisten) */
 .text-herz-blue { color: #1e3a8a; }
 .text-herz-orange { color: #EA580C !important; }
-.text-herz-white { color: #ffffff ; }
+.text-herz-white { color: #ffffff !important; }
+.text-white { color: #ffffff !important; }
 .bg-herz-blue { background-color: #1e3a8a; }
 
 .btn-herz-blue {
@@ -85,7 +93,7 @@ body {
 
 .about-img {
     height: 400px;
-    background-image: url('../assets/images/2.png');
+    background-image: url('../assets/images/tentang_kami.png');
     background-size: cover;
     background-position: center;
 }
@@ -113,6 +121,155 @@ body {
     left: 0;
     z-index: -1; /* Gambar ditaruh di belakang konten teks */
 }
+
+/* Full-width Blue Section */
+.full-width-blue-section {
+    width: 100vw;
+  margin-left: calc(-50vw + 50%);
+  margin-right: calc(-50vw + 50%);
+  background-color: #1e3a8a;
+  
+  /* TAMBAHAN BIAR PANJANG KE BAWAH */
+  min-height: 600px; /* Atur angka ini sesuai selera lu */
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* Teks tetep di tengah meskipun section-nya tinggi */
+  padding: 80px 20px; /* Ruang napas buat mobile */
+}
+
+.full-width-blue-section h2 {
+    font-family: 'Rubik', sans-serif;
+    font-weight: 900;
+    letter-spacing: -1px;
+}
+
+/* =========================================
+   Masonry Grid Section (CSS Grid-based)
+   ========================================= */
+.masonry-grid-section {
+    width: 100vw;
+    margin-left: calc(-50vw + 50%);
+    margin-right: calc(-50vw + 50%);
+    background-color: #1e3a8a;
+    padding: 80px 20px;
+}
+
+.masonry-grid-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 16px;
+}
+
+.masonry-grid {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    grid-auto-rows: 200px;
+    gap: 16px;
+}
+
+@media (min-width: 576px) {
+    .masonry-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (min-width: 992px) {
+    .masonry-grid {
+        grid-template-columns: repeat(3, 1fr);
+        grid-auto-rows: 220px;
+    }
+}
+
+/* Card base styles */
+.masonry-card {
+    position: relative;
+    background: #ffffff;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    opacity: 0;
+    transform: translateY(40px);
+}
+
+.masonry-card.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity 0.6s ease, transform 0.6s cubic-bezier(0.4, 0, 0.2, 1),
+                box-shadow 0.3s ease;
+}
+
+.masonry-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.2);
+}
+
+/* Card sizes */
+.masonry-card-standard {
+    grid-column: span 1;
+    grid-row: span 1;
+}
+
+.masonry-card-wide {
+    grid-column: span 2;
+    grid-row: span 1;
+}
+
+.masonry-card-tall {
+    grid-column: span 1;
+    grid-row: span 2;
+}
+
+/* Card image */
+.masonry-card-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.4s ease;
+}
+
+.masonry-card:hover .masonry-card-img {
+    transform: scale(1.05);
+}
+
+/* Card content overlay */
+.masonry-card-body {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 20px;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.4), transparent);
+    color: #ffffff;
+}
+
+.masonry-card-title {
+    font-size: 1.125rem;
+    font-weight: 700;
+    margin-bottom: 8px;
+    color: #ffffff;
+}
+
+.masonry-card-text {
+    font-size: 0.875rem;
+    line-height: 1.5;
+    color: rgba(255, 255, 255, 0.85);
+    margin: 0;
+}
+
+/* Responsive: single column on mobile */
+@media (max-width: 575px) {
+    .masonry-card-wide,
+    .masonry-card-tall {
+        grid-column: span 1;
+        grid-row: span 1;
+    }
+    
+    .masonry-grid {
+        grid-auto-rows: 250px;
+    }
+}
 /* =========================================
    3. Services & Cards
    ========================================= */
@@ -136,19 +293,30 @@ body {
    4. Scroll-Driven Animations
    ========================================= */
 
-/* Fade In Up Animation */
 .animate-on-scroll {
     opacity: 0;
-    transform: translateY(40px);
+    transform: translateY(40px); /* Posisi awal fade-up */
     transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1),
                 transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    will-change: transform, opacity;
 }
 
 .animate-on-scroll.is-visible {
     opacity: 1;
-    transform: translateY(0);
+    /* Kuncinya di sini:
+       X ambil dari --parallax-offset-x
+       Y ambil dari 0px (reset fade-up) + --parallax-offset-y
+    */
+    transform: translate(
+        var(--parallax-offset-x, 0px), 
+        calc(0px + var(--parallax-offset-y, 0px))
+    );
 }
 
+/* WAJIB: Biar gak ada scrollbar horizontal liar */
+section {
+    overflow-x: hidden;
+}
 /* Reveal Left Animation */
 .reveal-left {
     opacity: 0;
@@ -176,26 +344,23 @@ body {
 }
 
 /* =========================================
-   5. Header Scroll Toggle
+   5. Fixed Navbar
    ========================================= */
 
-.header,
-header,
 .navbar {
-    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1),
-                background-color 0.3s ease,
+    position: fixed !important;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1030;
+    transition: background-color 0.3s ease,
                 box-shadow 0.3s ease;
-    will-change: transform;
     background-color: transparent !important;
     border-bottom: none !important;
     box-shadow: none !important;
 }
 
-.header-hidden {
-    transform: translateY(-100%);
-}
-
-.header.scrolled {
+.navbar.scrolled {
     background-color: rgba(255, 255, 255, 0.98) !important;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
