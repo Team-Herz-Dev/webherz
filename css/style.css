@@ -1,29 +1,72 @@
-/* General Setup */
+/* =========================================
+   1. General Setup & Colors
+   ========================================= */
 body {
     font-family: 'Inter', sans-serif;
     background-color: #f8fafc;
     color: #1e293b;
 }
 
-/* Custom Colors & Buttons */
+/* Standar Warna Herz (Pilih salah satu, di sini saya pakai #EA580C agar konsisten) */
+.text-herz-blue { color: #1e3a8a; }
+.text-herz-orange { color: #EA580C !important; }
+.text-herz-white { color: #ffffff ; }
+.bg-herz-blue { background-color: #1e3a8a; }
+
 .btn-herz-blue {
     background-color: #1e3a8a;
     color: white;
 }
 .btn-herz-blue:hover { background-color: #172554; color: white; }
 
-.btn-herz-orange { background-color: #f97316; }
-.btn-herz-orange:hover { background-color: #ea580c; }
+.btn-herz-orange { 
+    background-color: #EA580C; 
+    border-color: #EA580C;
+    color: white; 
+}
+.btn-herz-orange:hover { background-color: #d14d0a; }
 
-.text-herz-blue { color: #1e3a8a; }
-.text-herz-orange { color: #f97316; }
-.bg-herz-blue { background-color: #1e3a8a; }
-
-/* Components */
+/* =========================================
+   2. Components
+   ========================================= */
 .brand-logo { height: 64px; transition: transform 0.3s ease; }
 .brand-logo:hover { transform: scale(1.05); }
 
-.border-bottom-herz-orange { border-bottom: 3px solid #f97316; }
+.border-bottom-herz-orange { border-bottom: 3px solid #EA580C; }
+
+/* =========================================
+   Hero Slider (Background Image Carousel)
+   ========================================= */
+.hero-slider {
+    position: relative;
+    min-height: 100vh;
+    overflow: hidden;
+}
+
+.hero-slides {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -2;
+}
+
+.hero-slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    opacity: 0;
+    transition: opacity 1.5s ease-in-out;
+}
+
+.hero-slide.active {
+    opacity: 1;
+}
 
 .hero-bg {
     min-height: 100vh;
@@ -35,7 +78,7 @@ body {
 }
 
 .hero-subtitle {
-    border-left: 4px solid #f97316;
+    border-left: 4px solid #EA580C;
     padding-left: 1rem;
     color: #1e3a8a;
 }
@@ -47,10 +90,35 @@ body {
     background-position: center;
 }
 
-/* Services */
+/*hero image*/
+
+/* Kita bikin section-nya span full width */
+.full-width-hero {
+    width: 100vw; /* Viewport Width (lebar layar) murni */
+    min-height: 80vh; /* Tinggi section minimal 80% dari tinggi layar */
+    margin-left: calc(-50vw + 50%); /* Trik TI buat override margin container */
+    margin-right: calc(-50vw + 50%);
+    position: relative;
+    overflow: hidden; /* Biar nggak ada scrollbar horizontal */
+}
+
+/* Kita atur gambarnya di dalem section */
+.full-width-hero img {
+    width: 100%; /* Lebar gambar full mengikuti section pembungkus */
+    height: 100%; /* Tinggi gambar full mengikuti section */
+    object-fit: cover; /* Trik TI: Gambar nggak bakal distorsi, dia bakal di-crop */
+    object-position: center; /* Fokus crop di tengah */
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1; /* Gambar ditaruh di belakang konten teks */
+}
+/* =========================================
+   3. Services & Cards
+   ========================================= */
 .service-card { transition: all 0.3s ease; cursor: pointer; }
 .service-card:hover { transform: translateY(-5px); box-shadow: 0 1rem 3rem rgba(0,0,0,0.1) !important; }
-.border-top-orange { border-top: 4px solid #f97316 !important; }
+.border-top-orange { border-top: 4px solid #EA580C !important; }
 
 .icon-box, .icon-box-orange {
     width: 48px;
@@ -62,67 +130,119 @@ body {
     border-radius: 4px;
 }
 .icon-box { background: #dbeafe; color: #1e3a8a; }
-.icon-box-orange { background: #ffedd5; color: #f97316; }
+.icon-box-orange { background: #ffedd5; color: #EA580C; }
 
-/* Animation Classes */
+/* =========================================
+   4. Scroll-Driven Animations
+   ========================================= */
+
+/* Fade In Up Animation */
 .animate-on-scroll {
     opacity: 0;
     transform: translateY(40px);
-    transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1),
+                transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
 }
-.is-visible {
+
+.animate-on-scroll.is-visible {
     opacity: 1;
     transform: translateY(0);
 }
 
-.text-light-blue { color: #bfdbfe; }
-
-
-/* Efek Hover untuk Klien di Portfolio */
-.border-bottom-hover {
-    border-bottom: 2px solid transparent;
-    transition: all 0.3s ease;
-}
-
-.border-bottom-hover:hover {
-    border-bottom: 2px solid #f97316; /* herzOrange */
-    color: #1e3a8a; /* herzBlue */
-}
-
-.client-box h5 {
-    transition: color 0.3s ease;
-}
-
-HEAD
-/* Keadaan awal: tersembunyi dan di sebelah kiri */
+/* Reveal Left Animation */
 .reveal-left {
     opacity: 0;
-    transform: translateX(-100px); /* Geser 100px ke kiri */
-    transition: all 1s cubic-bezier(0.17, 0.55, 0.55, 1); /* Durasi 1 detik */
-    visibility: hidden;
+    transform: translateX(-100px);
+    transition: opacity 1s cubic-bezier(0.17, 0.55, 0.55, 1),
+                transform 1s cubic-bezier(0.17, 0.55, 0.55, 1);
 }
 
-/* Keadaan setelah aktif: muncul dan balik ke posisi asli */
-.reveal-left.active {
+.reveal-left.is-visible {
     opacity: 1;
     transform: translateX(0);
-    visibility: visible;
 }
 
-/* (Opsional) Tambahan buat Hero Subtitle biar warnanya konsisten */
-.text-herz-orange {
-    color: #EA580C !important;
+/* Staggered Delays for Cards */
+.col-md-4:nth-child(1) .animate-on-scroll {
+    transition-delay: 0.2s;
 }
 
-.btn-herz-orange {
-    background-color: #EA580C;
-    border-color: #EA580C;
+.col-md-4:nth-child(2) .animate-on-scroll {
+    transition-delay: 0.4s;
 }
 
+.col-md-4:nth-child(3) .animate-on-scroll {
+    transition-delay: 0.6s;
+}
 
-/* ini yan css java biar gak bingung */
+/* =========================================
+   5. Header Scroll Toggle
+   ========================================= */
 
-/* Social Icons di footer */
+.header,
+header,
+.navbar {
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+                background-color 0.3s ease,
+                box-shadow 0.3s ease;
+    will-change: transform;
+    background-color: transparent !important;
+    border-bottom: none !important;
+    box-shadow: none !important;
+}
+
+.header-hidden {
+    transform: translateY(-100%);
+}
+
+.header.scrolled {
+    background-color: rgba(255, 255, 255, 0.98) !important;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* =========================================
+   6. Scroll Progress Bar
+   ========================================= */
+
+.scroll-progress-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 4px;
+    width: 0%;
+    background: linear-gradient(90deg, #1e3a8a, #EA580C);
+    z-index: 9999;
+    transition: width 0.1s ease-out;
+}
+
+/* =========================================
+   7. Parallax Effect Helper
+   ========================================= */
+
+[data-parallax] {
+    will-change: transform;
+    transform: translateZ(0);
+    backface-visibility: hidden;
+}
+
+/* Card 1: Langsung muncul */
+.col-md-4:nth-child(1) .animate-on-scroll {
+    transition-delay: 0.2s;
+}
+
+/* Card 2: Nunggu 0.3 detik */
+.col-md-4:nth-child(2) .animate-on-scroll {
+    transition-delay: 0.4s;
+}
+
+/* Card 3: Nunggu 0.5 detik */
+.col-md-4:nth-child(3) .animate-on-scroll {
+    transition-delay: 0.6s;
+}
+
+/* =========================================
+   5. Footer & Portfolio Extra
+   ========================================= */
 .social-icon {
     width: 45px;
     height: 45px;
@@ -136,38 +256,12 @@ HEAD
     text-decoration: none;
     transition: 0.3s;
 }
+.social-icon:hover { background: rgba(255,255,255,0.35); transform: scale(1.1); }
 
-.social-icon:hover {
-    background: rgba(255,255,255,0.35);
-    transform: scale(1.1);
-}
-/* ukuran logo di portfolio */
-.client-logo {
-    height: 60px;
-    max-width: 120px;
-    object-fit: contain;
-}
+.client-logo { height: 60px; max-width: 120px; object-fit: contain; }
 
-
-
-/* untuk ukuran foto di documentasi  */
-.case-img {
-    width: 100%;
-    height: 300px;       /* atur tinggi di sini */
-    object-fit: cover;   /* biar gak gepeng */
-    border-radius: 8px;
-}
-/* efek hover untuk card documentasi di portofolio  */
-
-.case-card {
-    transition: all 0.3s ease;
-}
-
-.case-card:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 15px 30px rgba(0,0,0,0.1);
-}
-
+.case-card { transition: all 0.3s ease; }
+.case-card:hover { transform: translateY(-8px); box-shadow: 0 15px 30px rgba(0,0,0,0.1); }
 
 .case-img {
     width: 100%;
@@ -176,11 +270,111 @@ HEAD
     border-radius: 8px;
     transition: 0.4s;
 }
+.case-img:hover { transform: scale(1.05); }
 
-.case-img:hover {
+.border-bottom-hover {
+    border-bottom: 2px solid transparent;
+    transition: all 0.3s ease;
+}
+.border-bottom-hover:hover {
+    border-bottom: 2px solid #EA580C;
+    color: #1e3a8a;
+}
+
+/* =========================================
+   6. Typing Animation
+   ========================================= */
+.typing-title {
+    display: block;
+}
+
+.typing-subtitle {
+    display: block;
+    margin-top: 1rem;
+}
+
+/* =========================================
+   7. Masonry Grid
+   ========================================= */
+.masonry-grid {
+    column-count: 2;
+    column-gap: 1rem;
+}
+
+@media (min-width: 576px) {
+    .masonry-grid {
+        column-count: 3;
+        column-gap: 1.25rem;
+    }
+}
+
+@media (min-width: 992px) {
+    .masonry-grid {
+        column-count: 4;
+        column-gap: 1.5rem;
+    }
+}
+
+.masonry-item {
+    break-inside: avoid;
+    margin-bottom: 1rem;
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.6s ease, transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.masonry-item.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.masonry-img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.masonry-img:hover {
     transform: scale(1.05);
-}   
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.2);
+}
 
 
+/* =========================================
+   8. Circular Testimonial
+   ========================================= */
 
+.testimonial-img-container img {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+}
 
+.testimonial-item {
+    animation: fadeIn 0.8s ease-in-out;
+}
+
+.nav-testi {
+    width: 45px;
+    height: 45px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: 0.3s;
+}
+
+.nav-testi:hover {
+    transform: scale(1.1);
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.bg-herz-dark {
+    background-color: #060507;
+}

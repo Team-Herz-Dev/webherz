@@ -7,7 +7,8 @@
     
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
-    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">    
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet"> 
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />   
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -34,7 +35,13 @@
         </div>
     </nav>
 
-    <section id="home" class="hero-bg d-flex align-items-center">
+    <section id="home" class="hero-slider d-flex align-items-center">
+        <div class="hero-slides">
+            <div class="hero-slide active" style="background-image: url('assets/images/2.png');"></div>
+            <div class="hero-slide" style="background-image: url('assets/images/tentang_kami.png');"></div>
+            <div class="hero-slide" style="background-image: url('assets/images/IMG-20251026-WA0031.jpg');"></div>
+            <div class="hero-slide" style="background-image: url('assets/images/IMG-20251026-WA0032.jpg');"></div>
+        </div>
         <div class="container">
             <div class="row">
                 <div class="col-lg-8 reveal-left">
@@ -75,37 +82,60 @@
         </div>
     </section>
 
+
     <section id="services" class="py-5 bg-light border-top">
         <div class="container py-5">
             <div class="text-center mb-5">
-                <h2 class="fw-bold">Layanan Terintegrasi</h2>
-                <p class="text-muted">Solusi menyeluruh dari konsultasi teknis hingga perbaikan instrumen industri dan laboratorium.</p>
+                <h2 class="fw-bold typing-title" data-text="Layanan Terintegrasi">Layanan Terintegrasi</h2>
+                <p class="text-muted typing-subtitle" data-text="Solusi menyeluruh dari konsultasi teknis hingga perbaikan instrumen industri dan laboratorium.">Solusi menyeluruh dari konsultasi teknis hingga perbaikan instrumen industri dan laboratorium.</p>
             </div>
             <div class="row g-4">
-                <div class="col-md-4">
-                    <div class="card h-100 p-4 border-0 shadow-sm service-card">
-                        <div class="icon-box mb-4">1</div>
-                        <h4 class="fw-bold">Audit & CEMS</h4>
-                        <p class="text-muted small">Layanan instalasi, kalibrasi, perbaikan, dan pengujian RATA / RCA untuk Continuous Emission Monitoring System.</p>
-                    </div>
+                <div class="row g-4">
+         <div class="col-md-4">
+                <div class="card h-100 p-4 border-0 shadow-md service-card border-top-orange animate-on-scroll">
+                <div class="icon-box mb-4">1</div>
+                 <h4 class="fw-bold">Audit & CEMS</h4>
+                 <p class="text-muted small">Layanan instalasi, kalibrasi, perbaikan, dan pengujian RATA / RCA untuk Continuous Emission Monitoring System.</p>
+                 </div>
+             </div>
+
+            <div class="col-md-4">
+                <div class="card h-100 p-4 border-0 shadow-md service-card border-top-orange animate-on-scroll">
+                    <div class="icon-box-orange mb-4">2</div>
+                    <h4 class="fw-bold">ISO Management</h4>
+                    <p class="text-muted small">Konsultasi ISO 9001:2015 (Mutu), ISO 14001:2015 (Lingkungan), dan ISO 45001:2015 (K3) terintegrasi.</p>
                 </div>
-                <div class="col-md-4">
-                    <div class="card h-100 p-4 border-0 shadow-md service-card border-top-orange">
-                        <div class="icon-box-orange mb-4">2</div>
-                        <h4 class="fw-bold">ISO Management</h4>
-                        <p class="text-muted small">Konsultasi ISO 9001:2015 (Mutu), ISO 14001:2015 (Lingkungan), dan ISO 45001:2015 (K3) terintegrasi.</p>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="card h-100 p-4 border-0 shadow-sm service-card">
-                        <div class="icon-box mb-4">3</div>
-                        <h4 class="fw-bold">Kajian Teknis</h4>
-                        <p class="text-muted small">Mencakup emisi udara, kualitas air, limbah B3, efisiensi energi, hingga analisis risiko K3.</p>
-                    </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="card h-100 p-4 border-0 shadow-md border-top-orange service-card animate-on-scroll">
+                    <div class="icon-box mb-4">3</div>
+                    <h4 class="fw-bold">Kajian Teknis</h4>
+                    <p class="text-muted small">Mencakup emisi udara, kualitas air, limbah B3, efisiensi energi, hingga analisis risiko K3.</p>
+             </div>
+            </div>
+        </div>
+        </div>
+    </section>
+
+    <section class="full-width-hero">
+    
+    <img src="assets/images/tentang_kami.png" alt="Tentang Herz Indonesia">
+
+    <div class="container h-100 d-flex align-items-center">
+        <div class="row">
+            <div class="col-lg-6 reveal-left">
+                <h1 class="display-3 fw-bold text-herz-blue">Tentang Kami</h1>
+                <p class="lead text-secondary tex">
+                    Lebih dari enam dekade menyediakan solusi lingkungan teknis...
+                </p>
+                <div class="d-flex gap-3 mt-4">
+                    <a href="#" class="btn btn-herz-orange text-white px-4 py-3 fw-bold">Selengkapnya</a>
                 </div>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
     <footer id="contact" class="bg-herz-blue text-white py-5 mt-5">
         <div class="container">
@@ -132,16 +162,12 @@
                                  <i class='bx bxs-phone'></i>
                              </a>
                          
-                             <a href="mailto:info@herzindonesia.com" class="social-icon">
+                             <a href="https://mail.google.com/mail/?view=cm&fs=1&to=info@herzindonesia.com" class="social-icon">
                                  <i class='bx bxs-envelope'></i>
                              </a>
                          
                              <a href="#" class="social-icon">
                                  <i class='bx bxl-instagram'></i>
-                             </a>
-                         
-                             <a href="#" class="social-icon">
-                                 <i class='bx bxl-youtube'></i>
                              </a>
                          
                              <a href="#" class="social-icon">
