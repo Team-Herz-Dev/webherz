@@ -97,7 +97,7 @@
 
     const initParallaxV2 = () => {
         // Kita cari elemen yang punya salah satu atau kedua atribut ini
-        const parallaxElements = document.querySelectorAll('[data-parallax], [data-parallax-x]');
+        const parallaxElements = document.querySelectorAll('[data-parallax], [data-parallax-x], [data-parallax-y]');
 
         if (parallaxElements.length === 0) return;
 
@@ -115,8 +115,8 @@
                 const viewportCenter = scrollY + vh / 2;
                 const distance = viewportCenter - elementCenter;
 
-                // 1. Ambil Speed Vertikal (Y)
-                const speedY = parseFloat(el.getAttribute('data-parallax')) || 0;
+                // 1. Ambil Speed Vertikal (Y) - support both data-parallax and data-parallax-y
+                const speedY = parseFloat(el.getAttribute('data-parallax-y')) || parseFloat(el.getAttribute('data-parallax')) || 0;
                 const offsetY = distance * speedY;
                 el.style.setProperty('--parallax-offset-y', `${offsetY}px`);
 

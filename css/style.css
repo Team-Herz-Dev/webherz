@@ -5,6 +5,173 @@ body {
     font-family: 'Inter', sans-serif;
     background-color: #f8fafc;
     color: #1e293b;
+    min-height: 100vh;
+}
+
+/* =========================================
+   About Us - Asymmetric Section
+   ========================================= */
+.about-section {
+    background-color: #FDF2E2;
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+}
+
+.about-content {
+    padding-right: 2rem;
+}
+
+.about-content h1 {
+    font-size: 2.75rem;
+    line-height: 1.2;
+    letter-spacing: -0.5px;
+}
+
+.about-content h2 {
+    font-size: 1.5rem;
+    line-height: 1.4;
+}
+
+.about-content p {
+    font-size: 1.05rem;
+    line-height: 1.8;
+}
+
+/* Stat Cards */
+.stat-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.stat-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15) !important;
+}
+
+/* Images Wrapper */
+.about-images-wrapper {
+    position: relative;
+    min-height: 520px;
+    padding: 30px 0;
+}
+
+/* Top Image */
+.about-image-top {
+    position: relative;
+    z-index: 1;
+}
+
+.about-img-top {
+    width: 100%;
+    max-width: 480px;
+    height: auto;
+    aspect-ratio: 4/3;
+    object-fit: cover;
+    border-radius: 20px;
+    display: block;
+    margin-left: auto;
+    box-shadow: 0 15px 50px rgba(0, 0, 0, 0.12);
+}
+
+/* Bottom Image (Overlapping) */
+.about-image-bottom {
+    position: absolute;
+    bottom: 20px;
+    left: 0;
+    z-index: 2;
+}
+
+.about-img-bottom {
+    width: 100%;
+    max-width: 400px;
+    height: auto;
+    aspect-ratio: 4/3;
+    object-fit: cover;
+    border-radius: 20px;
+    display: block;
+    margin-left: 60px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.18);
+}
+
+/* Responsive - Tablet & Mobile */
+@media (max-width: 991px) {
+    .about-content {
+        padding-right: 0;
+        text-align: center;
+        margin-bottom: 3rem;
+    }
+    
+    .about-content h1 {
+        font-size: 2.25rem;
+    }
+    
+    .about-content h2 {
+        font-size: 1.25rem;
+    }
+    
+    .about-images-wrapper {
+        min-height: auto;
+        padding: 0;
+    }
+    
+    .about-image-top {
+        position: relative !important;
+        margin-bottom: 0;
+    }
+    
+    .about-img-top {
+        max-width: 100%;
+        margin-left: auto !important;
+        margin-right: auto;
+    }
+    
+    /* Overlap effect tetap terjaga di mobile */
+    .about-image-bottom {
+        position: relative !important;
+        bottom: auto;
+        left: auto;
+        margin-top: -80px;
+        margin-left: auto !important;
+        margin-right: auto;
+        display: table;
+    }
+    
+    .about-img-bottom {
+        max-width: 85%;
+        margin-left: auto !important;
+        margin-right: auto;
+    }
+}
+
+@media (max-width: 767px) {
+    .about-section {
+        padding-top: 2rem !important;
+        padding-bottom: 2rem !important;
+    }
+    
+    .about-content h1 {
+        font-size: 1.875rem;
+    }
+    
+    .about-content h2 {
+        font-size: 1.125rem;
+    }
+    
+    .stat-card .p-3 {
+        padding: 0.75rem !important;
+    }
+    
+    .stat-card h3 {
+        font-size: 1.25rem !important;
+    }
+    
+    .stat-card small {
+        font-size: 0.75rem !important;
+    }
+    
+    .about-img-bottom {
+        max-width: 90%;
+    }
 }
 
 /* Rubik Font for Special Headings */
