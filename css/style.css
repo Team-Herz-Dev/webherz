@@ -675,6 +675,364 @@ section {
 }
 
 
+/* =========================================
+   Slider Logo Klien (Infinite Marquee)
+   ========================================= */
 
+.logo-slider-track {
+    display: flex;
+    align-items: center;
+    width: max-content;
+    animation: slideContinuous 20s linear infinite;
+}
 
-/* service */
+.logo-slider-track:hover {
+    animation-play-state: paused;
+}
+
+.client-slide-box {
+    width: 200px;
+    flex-shrink: 0;
+    filter: grayscale(100%);
+    transition: filter 0.3s ease, transform 0.3s ease;
+    cursor: pointer;
+}
+
+.client-slide-box:hover {
+    filter: grayscale(0%);
+    transform: scale(1.1);
+}
+
+.client-logo {
+    height: 60px;
+    max-width: 120px;
+    object-fit: contain;
+}
+
+@keyframes slideContinuous {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-50%);
+    }
+}
+
+/* =========================================
+   Services Page Styles
+   ========================================= */
+
+/* Hero Section untuk Services */
+.services-hero {
+    background: linear-gradient(135deg, #0f2b4d 0%, #1e3a8a 100%);
+    padding: 140px 0 80px;
+    position: relative;
+    overflow: hidden;
+}
+
+.services-hero::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 200" opacity="0.08"><path fill="white" d="M0,64L80,69.3C160,75,320,85,480,80C640,75,800,53,960,48C1120,43,1280,53,1360,58.7L1440,64L1440,200L1360,200C1280,200,1120,200,960,200C800,200,640,200,480,200C320,200,160,200,80,200L0,200Z"/></svg>');
+    background-repeat: no-repeat;
+    background-position: bottom;
+    background-size: cover;
+    pointer-events: none;
+}
+
+.services-hero h1 {
+    font-family: 'Rubik', sans-serif;
+    font-weight: 800;
+    letter-spacing: -1px;
+}
+
+.hero-badge {
+    display: inline-flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-top: 24px;
+}
+
+.hero-badge span {
+    background: rgba(255,255,255,0.15);
+    backdrop-filter: blur(4px);
+    padding: 8px 20px;
+    border-radius: 40px;
+    font-size: 0.85rem;
+    font-weight: 500;
+}
+
+/* Service Cards */
+.service-card {
+    background: white;
+    border-radius: 24px;
+    transition: all 0.3s ease;
+    overflow: hidden;
+    height: 100%;
+    border: 1px solid #eef2f8;
+}
+
+.service-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+    border-color: #EA580C;
+}
+
+.service-card-header {
+    padding: 28px 28px 20px;
+    border-bottom: 2px solid #f0f4fa;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.service-icon {
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(135deg, #dbeafe 0%, #eff6ff 100%);
+    border-radius: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 28px;
+    color: #1e3a8a;
+}
+
+.service-card-header h3 {
+    font-family: 'Rubik', sans-serif;
+    font-weight: 700;
+    font-size: 1.5rem;
+    margin: 0;
+    color: #0f2b4d;
+}
+
+.service-card-body {
+    padding: 24px 28px 28px;
+}
+
+.service-list {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 24px 0;
+}
+
+.service-list li {
+    margin-bottom: 14px;
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    color: #334155;
+    font-weight: 500;
+}
+
+.service-list li i {
+    color: #EA580C;
+    font-size: 1.1rem;
+    margin-top: 2px;
+    min-width: 20px;
+}
+
+.tech-stack {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin: 20px 0 24px;
+}
+
+.tech-stack span {
+    background: #f1f5f9;
+    padding: 5px 14px;
+    border-radius: 30px;
+    font-size: 0.7rem;
+    font-weight: 600;
+    color: #1e3a8a;
+}
+
+.service-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: #EA580C;
+    text-decoration: none;
+    font-weight: 600;
+    transition: gap 0.3s ease;
+}
+
+.service-link:hover {
+    gap: 12px;
+    color: #1e3a8a;
+}
+
+/* Tabel Kalibrasi */
+.calibration-section {
+    margin: 60px 0;
+}
+
+.section-title {
+    font-family: 'Rubik', sans-serif;
+    font-weight: 700;
+    color: #0f2b4d;
+    margin-bottom: 12px;
+}
+
+.calibration-table-wrapper {
+    background: white;
+    border-radius: 24px;
+    overflow-x: auto;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+    border: 1px solid #eef2f8;
+}
+
+.calibration-table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 600px;
+}
+
+.calibration-table th {
+    background: #f8fafc;
+    padding: 18px 24px;
+    font-weight: 700;
+    color: #1e3a8a;
+    border-bottom: 2px solid #e2e8f0;
+    text-align: left;
+}
+
+.calibration-table td {
+    padding: 16px 24px;
+    border-bottom: 1px solid #eef2f8;
+    color: #334155;
+}
+
+.calibration-table tr:last-child td {
+    border-bottom: none;
+}
+
+.badge-kan {
+    background: #e6f7e6;
+    color: #2e7d32;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.7rem;
+    font-weight: 700;
+    display: inline-block;
+}
+
+/* CTA Section */
+.cta-section {
+    background: linear-gradient(135deg, #1e3a8a 0%, #0f2b4d 100%);
+    border-radius: 28px;
+    padding: 48px 40px;
+    margin: 48px 0;
+    text-align: center;
+}
+
+.cta-section h3 {
+    font-family: 'Rubik', sans-serif;
+    font-weight: 700;
+    margin-bottom: 16px;
+}
+
+/* Clients Section */
+.clients-section {
+    padding: 40px 0;
+    border-top: 1px solid #e2e8f0;
+    margin-top: 40px;
+}
+
+.client-logos {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 40px;
+    align-items: center;
+}
+
+.client-logos span {
+    font-weight: 700;
+    color: #475569;
+    font-size: 1rem;
+    letter-spacing: 0.5px;
+}
+
+/* Button Styles */
+.btn-herz-blue {
+    background-color: #1e3a8a;
+    color: white;
+    transition: all 0.3s ease;
+}
+
+.btn-herz-blue:hover {
+    background-color: #172554;
+    color: white;
+    transform: translateY(-2px);
+}
+
+.btn-herz-orange {
+    background-color: #EA580C;
+    border-color: #EA580C;
+    color: white;
+    transition: all 0.3s ease;
+}
+
+.btn-herz-orange:hover {
+    background-color: #d14d0a;
+    color: white;
+    transform: translateY(-2px);
+}
+
+.btn-outline-herz-blue {
+    border: 2px solid #1e3a8a;
+    color: #1e3a8a;
+    background: transparent;
+    transition: all 0.3s ease;
+}
+
+.btn-outline-herz-blue:hover {
+    background: #1e3a8a;
+    color: white;
+    transform: translateY(-2px);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .services-hero {
+        padding: 120px 0 60px;
+    }
+    .services-hero h1 {
+        font-size: 2rem;
+    }
+    .service-card-header h3 {
+        font-size: 1.25rem;
+    }
+    .service-icon {
+        width: 50px;
+        height: 50px;
+        font-size: 24px;
+    }
+    .cta-section {
+        padding: 32px 24px;
+    }
+    .cta-section h3 {
+        font-size: 1.3rem;
+    }
+    .client-logos {
+        gap: 24px;
+    }
+    .client-logos span {
+        font-size: 0.8rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .service-card-header {
+        padding: 20px;
+    }
+    .service-card-body {
+        padding: 20px;
+    }
+}
