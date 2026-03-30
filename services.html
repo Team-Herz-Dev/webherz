@@ -6,11 +6,364 @@
     <title>Services | PT Herz Consultant Indonesia</title>
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&family=Rubik:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="css/style.css">
-</head>
-<body class="bg-light">
+    <style>
+        /* =========================================
+           1. General Setup & Colors
+        ========================================= */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc;
+            color: #1e293b;
+            overflow-x: hidden;
+        }
 
+        /* Standar Warna Herz */
+        .text-herz-blue { color: #1e3a8a; }
+        .text-herz-orange { color: #EA580C; }
+        .bg-herz-blue { background-color: #1e3a8a; }
+        .bg-herz-orange { background-color: #EA580C; }
+        .bg-herz-light { background-color: #f1f5f9; }
+        
+        .btn-herz-blue {
+            background-color: #1e3a8a;
+            color: white;
+            transition: all 0.3s ease;
+        }
+        .btn-herz-blue:hover { 
+            background-color: #172554; 
+            color: white; 
+            transform: translateY(-2px);
+        }
+        
+        .btn-herz-orange { 
+            background-color: #EA580C; 
+            border-color: #EA580C;
+            color: white; 
+            transition: all 0.3s ease;
+        }
+        .btn-herz-orange:hover { 
+            background-color: #d14d0a; 
+            color: white;
+            transform: translateY(-2px);
+        }
+        
+        .btn-outline-herz-blue {
+            border: 2px solid #1e3a8a;
+            color: #1e3a8a;
+            background: transparent;
+            transition: all 0.3s ease;
+        }
+        .btn-outline-herz-blue:hover {
+            background: #1e3a8a;
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        /* =========================================
+           2. Services Page Specific Styles
+        ========================================= */
+        
+        /* Hero Section untuk Services */
+        .services-hero {
+            background: linear-gradient(135deg, #0f2b4d 0%, #1e3a8a 100%);
+            padding: 140px 0 80px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .services-hero::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 200" opacity="0.08"><path fill="white" d="M0,64L80,69.3C160,75,320,85,480,80C640,75,800,53,960,48C1120,43,1280,53,1360,58.7L1440,64L1440,200L1360,200C1280,200,1120,200,960,200C800,200,640,200,480,200C320,200,160,200,80,200L0,200Z"/></svg>');
+            background-repeat: no-repeat;
+            background-position: bottom;
+            background-size: cover;
+            pointer-events: none;
+        }
+        
+        .services-hero h1 {
+            font-family: 'Rubik', sans-serif;
+            font-weight: 800;
+            letter-spacing: -1px;
+        }
+        
+        .hero-badge {
+            display: inline-flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-top: 24px;
+        }
+        
+        .hero-badge span {
+            background: rgba(255,255,255,0.15);
+            backdrop-filter: blur(4px);
+            padding: 8px 20px;
+            border-radius: 40px;
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+        
+        /* Service Cards */
+        .service-card {
+            background: white;
+            border-radius: 24px;
+            transition: all 0.3s ease;
+            overflow: hidden;
+            height: 100%;
+            border: 1px solid #eef2f8;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            border-color: #EA580C;
+        }
+        
+        .service-card-header {
+            padding: 28px 28px 20px;
+            border-bottom: 2px solid #f0f4fa;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+        
+        .service-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #dbeafe 0%, #eff6ff 100%);
+            border-radius: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            color: #1e3a8a;
+        }
+        
+        .service-card-header h3 {
+            font-family: 'Rubik', sans-serif;
+            font-weight: 700;
+            font-size: 1.5rem;
+            margin: 0;
+            color: #0f2b4d;
+        }
+        
+        .service-card-body {
+            padding: 24px 28px 28px;
+        }
+        
+        .service-list {
+            list-style: none;
+            padding: 0;
+            margin: 0 0 24px 0;
+        }
+        
+        .service-list li {
+            margin-bottom: 14px;
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            color: #334155;
+            font-weight: 500;
+        }
+        
+        .service-list li i {
+            color: #EA580C;
+            font-size: 1.1rem;
+            margin-top: 2px;
+            min-width: 20px;
+        }
+        
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin: 20px 0 24px;
+        }
+        
+        .tech-stack span {
+            background: #f1f5f9;
+            padding: 5px 14px;
+            border-radius: 30px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            color: #1e3a8a;
+        }
+        
+        .service-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: #EA580C;
+            text-decoration: none;
+            font-weight: 600;
+            transition: gap 0.3s ease;
+        }
+        
+        .service-link:hover {
+            gap: 12px;
+            color: #1e3a8a;
+        }
+        
+        /* Tabel Kalibrasi */
+        .calibration-section {
+            margin: 60px 0;
+        }
+        
+        .section-title {
+            font-family: 'Rubik', sans-serif;
+            font-weight: 700;
+            color: #0f2b4d;
+            margin-bottom: 12px;
+        }
+        
+        .calibration-table-wrapper {
+            background: white;
+            border-radius: 24px;
+            overflow-x: auto;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+            border: 1px solid #eef2f8;
+        }
+        
+        .calibration-table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 600px;
+        }
+        
+        .calibration-table th {
+            background: #f8fafc;
+            padding: 18px 24px;
+            font-weight: 700;
+            color: #1e3a8a;
+            border-bottom: 2px solid #e2e8f0;
+            text-align: left;
+        }
+        
+        .calibration-table td {
+            padding: 16px 24px;
+            border-bottom: 1px solid #eef2f8;
+            color: #334155;
+        }
+        
+        .calibration-table tr:last-child td {
+            border-bottom: none;
+        }
+        
+        .badge-kan {
+            background: #e6f7e6;
+            color: #2e7d32;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.7rem;
+            font-weight: 700;
+            display: inline-block;
+        }
+        
+        /* CTA Section */
+        .cta-section {
+            background: linear-gradient(135deg, #1e3a8a 0%, #0f2b4d 100%);
+            border-radius: 28px;
+            padding: 48px 40px;
+            margin: 48px 0;
+            text-align: center;
+        }
+        
+        .cta-section h3 {
+            font-family: 'Rubik', sans-serif;
+            font-weight: 700;
+            margin-bottom: 16px;
+        }
+        
+        /* Clients Section */
+        .clients-section {
+            padding: 40px 0;
+            border-top: 1px solid #e2e8f0;
+            margin-top: 40px;
+        }
+        
+        .client-logos {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 40px;
+            align-items: center;
+        }
+        
+        .client-logos span {
+            font-weight: 700;
+            color: #475569;
+            font-size: 1rem;
+            letter-spacing: 0.5px;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: #0f2b4d;
+        }
+        
+        /* Animations */
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1),
+                        transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .animate-on-scroll.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .services-hero {
+                padding: 120px 0 60px;
+            }
+            .services-hero h1 {
+                font-size: 2rem;
+            }
+            .service-card-header h3 {
+                font-size: 1.25rem;
+            }
+            .service-icon {
+                width: 50px;
+                height: 50px;
+                font-size: 24px;
+            }
+            .cta-section {
+                padding: 32px 24px;
+            }
+            .cta-section h3 {
+                font-size: 1.3rem;
+            }
+            .client-logos {
+                gap: 24px;
+            }
+            .client-logos span {
+                font-size: 0.8rem;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .service-card-header {
+                padding: 20px;
+            }
+            .service-card-body {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top border-bottom shadow-sm py-3">
         <div class="container">
             <a class="navbar-brand" href="index.html">
@@ -34,35 +387,200 @@
         </div>
     </nav>
 
-    <main class="container py-5 mt-5 min-vh-100">
-        <div class="text-center mb-5 pt-5 animate-on-scroll">
-            <h1 class="display-4 fw-extrabold text-herz-blue mb-3">Layanan Kami</h1>
-            <p class="text-muted mx-auto" style="max-width: 700px;">
-                Detail solusi komprehensif untuk industri dan laboratorium Anda.
-            </p>
-        </div>
-
-        <div class="row g-4 animate-on-scroll">
-            <div class="col-md-6">
-                <div class="bg-white p-4 p-md-5 rounded shadow-sm border border-top-orange h-100">
-                    <h2 class="h3 fw-bold text-dark mb-4">Pengadaan &amp; Perbaikan CEMS</h2>
-                    <ul class="list-unstyled text-secondary">
-                        <li class="mb-3">? Penyediaan Gas Analyzer &amp; Dust Monitor</li>
-                        <li class="mb-3">? Instalasi sistem CEMS sesuai standar</li>
-                        <li class="mb-3">? Pengujian RATA dan RCA CEMS</li>
-                    </ul>
+    <!-- Hero Section -->
+    <section class="services-hero">
+        <div class="container">
+            <div class="row justify-content-center text-center">
+                <div class="col-lg-8">
+                    <div class="animate-on-scroll">
+                        <span class="text-white d-inline-block mb-3" style="background: rgba(255,255,255,0.2); padding: 5px 16px; border-radius: 30px; font-size: 0.8rem;">
+                            <i class="fas fa-cog me-2"></i>Solusi Terintegrasi
+                        </span>
+                        <h1 class="display-4 fw-bold text-white mb-3">Layanan Kami</h1>
+                        <p class="lead text-white-50 mb-4">
+                            Detail solusi komprehensif untuk industri dan laboratorium Anda
+                        </p>
+                        <div class="hero-badge justify-content-center">
+                            <span><i class="fas fa-certificate me-2"></i>Terakreditasi KAN</span>
+                            <span><i class="fas fa-microchip me-2"></i>Teknologi Terkini</span>
+                            <span><i class="fas fa-chart-line me-2"></i>Support 24/7</span>
+                        </div>
+                    </div>
                 </div>
             </div>
+        </div>
+    </section>
 
-            <div class="col-md-6">
-                <div class="bg-white p-4 p-md-5 rounded shadow-sm border h-100">
-                    <h2 class="h3 fw-bold text-dark mb-4">Kalibrasi Alat</h2>
-                    <ul class="list-unstyled text-secondary">
-                        <li class="mb-3">? Kalibrasi Gas Analyzer &amp; Particulate</li>
-                        <li class="mb-3">? Kalibrasi Flow Meter &amp; Pressure Gauge</li>
-                        <li class="mb-3">? Kalibrasi Sound Level Meter &amp; Lux Meter</li>
-                    </ul>
+    <!-- Main Content -->
+    <main class="container py-5">
+        
+        <!-- Service Cards Grid -->
+        <div class="row g-4">
+            <!-- CEMS Card -->
+            <div class="col-lg-6 animate-on-scroll">
+                <div class="service-card">
+                    <div class="service-card-header">
+                        <div class="service-icon">
+                            <i class="fas fa-industry"></i>
+                        </div>
+                        <h3>Pengadaan & Perbaikan CEMS</h3>
+                    </div>
+                    <div class="service-card-body">
+                        <ul class="service-list">
+                            <li><i class="fas fa-check-circle"></i> Penyediaan Gas Analyzer & Dust Monitor</li>
+                            <li><i class="fas fa-check-circle"></i> Instalasi sistem CEMS sesuai standar (KLHK/EPA)</li>
+                            <li><i class="fas fa-check-circle"></i> Pengujian RATA dan RCA CEMS</li>
+                            <li><i class="fas fa-check-circle"></i> Perbaikan & penggantian spare part resmi</li>
+                        </ul>
+                        <div class="tech-stack">
+                            <span>NDIR Technology</span>
+                            <span>UV-DOAS</span>
+                            <span>Laser Analyzer</span>
+                            <span>Extractive System</span>
+                        </div>
+                        <a href="#" class="service-link">
+                            Detail Layanan CEMS <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
                 </div>
+            </div>
+            
+            <!-- Kalibrasi Card -->
+            <div class="col-lg-6 animate-on-scroll">
+                <div class="service-card">
+                    <div class="service-card-header">
+                        <div class="service-icon">
+                            <i class="fas fa-microscope"></i>
+                        </div>
+                        <h3>Kalibrasi Alat</h3>
+                    </div>
+                    <div class="service-card-body">
+                        <ul class="service-list">
+                            <li><i class="fas fa-check-circle"></i> Kalibrasi Gas Analyzer & Particulate</li>
+                            <li><i class="fas fa-check-circle"></i> Kalibrasi Flow Meter & Pressure Gauge</li>
+                            <li><i class="fas fa-check-circle"></i> Kalibrasi Sound Level Meter & Lux Meter</li>
+                            <li><i class="fas fa-check-circle"></i> Kalibrasi Suhu, Kelembaban & Parameter Lingkungan</li>
+                        </ul>
+                        <div class="tech-stack">
+                            <span>ISO 17025</span>
+                            <span>Traceable SNI</span>
+                            <span>On-site Service</span>
+                            <span>Lab Terakreditasi</span>
+                        </div>
+                        <a href="#" class="service-link">
+                            Jadwalkan Kalibrasi <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Layanan Tambahan (Konsultasi) -->
+        <div class="row mt-4 g-4">
+            <div class="col-12 animate-on-scroll">
+                <div class="service-card">
+                    <div class="service-card-header">
+                        <div class="service-icon">
+                            <i class="fas fa-chalkboard-user"></i>
+                        </div>
+                        <h3>Konsultasi & Sertifikasi Lingkungan</h3>
+                    </div>
+                    <div class="service-card-body">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <ul class="service-list">
+                                    <li><i class="fas fa-clipboard-list"></i> Persiapan dokumen lingkungan & PROPER</li>
+                                    <li><i class="fas fa-chart-simple"></i> Evaluasi kinerja CEMS & validasi data emisi</li>
+                                </ul>
+                            </div>
+                            <div class="col-md-6">
+                                <ul class="service-list">
+                                    <li><i class="fas fa-user-graduate"></i> Pelatihan operator & maintenance</li>
+                                    <li><i class="fas fa-file-signature"></i> Dukungan audit Kementerian LH</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="tech-stack">
+                            <span>AMDAL/UKL-UPL</span>
+                            <span>PROPER</span>
+                            <span>Audit Lingkungan</span>
+                        </div>
+                        <a href="#" class="service-link">
+                            Hubungi Konsultan <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Tabel Kalibrasi -->
+        <div class="calibration-section animate-on-scroll">
+            <div class="text-center mb-4">
+                <h2 class="section-title display-6">Lingkup Kalibrasi Terakreditasi</h2>
+                <p class="text-muted">Seluruh proses kalibrasi mengacu pada standar nasional dan internasional</p>
+            </div>
+            <div class="calibration-table-wrapper">
+                <table class="calibration-table">
+                    <thead>
+                        <tr>
+                            <th>Jenis Alat</th>
+                            <th>Rentang Ukur</th>
+                            <th>Akreditasi / Metode</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Gas Analyzer</strong> (CO, CO₂, SO₂, NOx, O₂)</td>
+                            <td>0-1000 ppm / 0-25%</td>
+                            <td><span class="badge-kan">KAN 17025</span> | Gas Standard</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Dust Monitor</strong> / Particulate</td>
+                            <td>0-100 mg/m³</td>
+                            <td><span class="badge-kan">ISO 9096</span> | Metode Isokinetik</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Flow Meter</strong> (Stack & Duct)</td>
+                            <td>0-40 m/s</td>
+                            <td><span class="badge-kan">ISO 10780</span> | Pitot Tube</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Sound Level Meter</strong></td>
+                            <td>30 - 130 dB</td>
+                            <td><span class="badge-kan">IEC 61672</span> | Akustik</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Pressure Gauge</strong> & Manometer</td>
+                            <td>-1 hingga 60 bar</td>
+                            <td><span class="badge-kan">ISO 17025</span> | Traceable</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        
+        <!-- CTA Section -->
+        <div class="cta-section animate-on-scroll">
+            <h3 class="text-white mb-3">Siap Memulai Proyek Anda?</h3>
+            <p class="text-white-50 mb-4">Hubungi tim ahli kami untuk konsultasi gratis dan penawaran terbaik</p>
+            <a href="contact.html" class="btn btn-herz-orange btn-lg px-5">
+                <i class="fas fa-envelope me-2"></i>Kontak Kami Sekarang
+            </a>
+        </div>
+        
+        <!-- Clients Section -->
+        <div class="clients-section animate-on-scroll">
+            <div class="text-center mb-4">
+                <h3 class="section-title">Dipercaya Oleh Industri Terdepan</h3>
+                <p class="text-muted">Bergabunglah dengan ratusan perusahaan yang telah mempercayai layanan kami</p>
+            </div>
+            <div class="client-logos">
+                <span>Pertamina</span>
+                <span>PLN Indonesia Power</span>
+                <span>Krakatau Posco</span>
+                <span>Siloam Hospitals</span>
+                <span>Sucofindo</span>
+                <span>Dan Lainnya</span>
             </div>
         </div>
     </main>
@@ -77,6 +595,26 @@
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="js/script.js"></script>
+    <script>
+        // Scroll Animation Observer
+        const animateElements = document.querySelectorAll('.animate-on-scroll');
+        
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+        
+        animateElements.forEach(el => observer.observe(el));
+    </script>
 </body>
 </html>
 
