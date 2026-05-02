@@ -707,30 +707,21 @@ section {
 
 /* Hero Section untuk Services */
 .services-hero {
-    background: linear-gradient(135deg, #0f2b4d 0%, #1e3a8a 100%);
-    padding: 140px 0 80px;
-    position: relative;
-    overflow: hidden;
-}
-
-.services-hero::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 200" opacity="0.08"><path fill="white" d="M0,64L80,69.3C160,75,320,85,480,80C640,75,800,53,960,48C1120,43,1280,53,1360,58.7L1440,64L1440,200L1360,200C1280,200,1120,200,960,200C800,200,640,200,480,200C320,200,160,200,80,200L0,200Z"/></svg>');
-    background-repeat: no-repeat;
-    background-position: bottom;
-    background-size: cover;
-    pointer-events: none;
+    background: #f8fafc;
+    padding: 120px 0 60px;
+    min-height: 50vh;
+    display: flex;
+    align-items: center;
 }
 
 .services-hero h1 {
     font-family: 'Rubik', sans-serif;
     font-weight: 800;
     letter-spacing: -1px;
+}
+
+.services-hero .lead {
+    color: #64748b;
 }
 
 .hero-badge {
@@ -741,12 +732,12 @@ section {
 }
 
 .hero-badge span {
-    background: rgba(255,255,255,0.15);
-    backdrop-filter: blur(4px);
+    background: #e2e8f0;
     padding: 8px 20px;
     border-radius: 40px;
     font-size: 0.85rem;
     font-weight: 500;
+    color: #475569;
 }
 
 /* Service Cards */
