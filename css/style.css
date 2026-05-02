@@ -486,14 +486,7 @@ body {
 
 .animate-on-scroll.is-visible {
     opacity: 1;
-    /* Kuncinya di sini:
-       X ambil dari --parallax-offset-x
-       Y ambil dari 0px (reset fade-up) + --parallax-offset-y
-    */
-    transform: translate(
-        var(--parallax-offset-x, 0px), 
-        calc(0px + var(--parallax-offset-y, 0px))
-    );
+    transform: translateY(0);
 }
 
 /* WAJIB: Biar gak ada scrollbar horizontal liar */
@@ -564,17 +557,7 @@ section {
 }
 
 /* =========================================
-   7. Parallax Effect Helper
-   ========================================= */
-
-[data-parallax] {
-    will-change: transform;
-    transform: translateZ(0);
-    backface-visibility: hidden;
-}
-
-/* =========================================
-   5. Footer & Portfolio Extra
+   7. Footer & Portfolio Extra
    ========================================= */
 .social-icon {
     width: 45px;

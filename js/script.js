@@ -92,50 +92,7 @@
     };
 
     // =========================================
-    // 4. Parallax Effect with requestAnimationFrame
-    // =========================================
-
-    const initParallaxV2 = () => {
-        // Kita cari elemen yang punya salah satu atau kedua atribut ini
-        const parallaxElements = document.querySelectorAll('[data-parallax], [data-parallax-x], [data-parallax-y]');
-
-        if (parallaxElements.length === 0) return;
-
-        const updateParallax = () => {
-            const vh = window.innerHeight;
-            const scrollY = window.pageYOffset;
-
-            parallaxElements.forEach((el) => {
-                const rect = el.getBoundingClientRect();
-
-                // Performa: Cek apakah elemen ada di area pandang
-                if (rect.top > vh + 100 || rect.bottom < -100) return;
-
-                const elementCenter = (rect.top + scrollY) + rect.height / 2;
-                const viewportCenter = scrollY + vh / 2;
-                const distance = viewportCenter - elementCenter;
-
-                // 1. Ambil Speed Vertikal (Y) - support both data-parallax and data-parallax-y
-                const speedY = parseFloat(el.getAttribute('data-parallax-y')) || parseFloat(el.getAttribute('data-parallax')) || 0;
-                const offsetY = distance * speedY;
-                el.style.setProperty('--parallax-offset-y', `${offsetY}px`);
-
-                // 2. Ambil Speed Horizontal (X) - BARU!
-                const speedX = parseFloat(el.getAttribute('data-parallax-x')) || 0;
-                const offsetX = distance * speedX;
-                el.style.setProperty('--parallax-offset-x', `${offsetX}px`);
-            });
-        };
-
-        window.addEventListener('scroll', () => {
-            window.requestAnimationFrame(updateParallax);
-        }, { passive: true });
-
-        updateParallax();
-    };
-
-    // =========================================
-    // 5. Masonry Grid Cards Animation
+    // 4. Masonry Grid Cards Animation
     // =========================================
 
     const initMasonryCards = () => {
@@ -182,7 +139,6 @@
         initHeroSlider();
         initScrollAnimations();
         initTypingAnimation();
-        initParallaxV2();
         initMasonryCards();
         initScrollProgress();
     };
