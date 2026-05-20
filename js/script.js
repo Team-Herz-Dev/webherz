@@ -1,153 +1,157 @@
 /**
- * Scroll-Driven Animations Module
- * Clean, modular, and production-ready implementation
+ * PT Herz Consultant Indonesia - Main Script
+ * Handles general functionality and Bootstrap interactions
  */
 
 (function() {
     'use strict';
 
     // =========================================
-    // 1. Hero Slider - Auto Background Image Changer
+    // 1. Current Year in Footer
     // =========================================
-
-    const initHeroSlider = () => {
-        const slides = document.querySelectorAll('.hero-slide');
-
-        if (slides.length === 0) return;
-
-        let currentSlide = 0;
-        const slideInterval = 5000; // 5 seconds per slide
-
-        const nextSlide = () => {
-            slides[currentSlide].classList.remove('active');
-            currentSlide = (currentSlide + 1) % slides.length;
-            slides[currentSlide].classList.add('active');
-        };
-
-        // Start auto-slide
-        setInterval(nextSlide, slideInterval);
+    const setCurrentYear = () => {
+        const yearElement = document.getElementById('current-year');
+        if (yearElement) {
+            yearElement.textContent = new Date().getFullYear();
+        }
     };
 
     // =========================================
-    // 2. Intersection Observer for Fade-In & Reveal Animations
+    // 2. Bootstrap Navbar Collapse on Link Click (Mobile)
     // =========================================
+    const initNavbarCollapse = () => {
+        const navLinks = document.querySelectorAll('.navbar-nav-modern .nav-link-modern');
+        const navbarCollapse = document.querySelector('.navbar-collapse-modern');
 
-    const initScrollAnimations = () => {
-        const animationElements = document.querySelectorAll('.animate-on-scroll, .reveal-left');
-
-        if (animationElements.length === 0) return;
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach((entry) => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('is-visible');
-                    observer.unobserve(entry.target);
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                if (navbarCollapse.classList.contains('show')) {
+                    const bsCollapse = bootstrap.Collapse.getInstance(navbarCollapse);
+                    if (bsCollapse) {
+                        bsCollapse.hide();
+                    }
                 }
             });
-        }, {
-            threshold: 0.15,
-            rootMargin: '0px 0px -50px 0px'
         });
-
-        animationElements.forEach((el) => observer.observe(el));
     };
 
     // =========================================
-    // 3. Typing Animation with Intersection Observer
+    // 3. Smooth Scroll for Anchor Links (Fallback)
     // =========================================
+    const initFallbackScroll = () => {
+        // This is handled by animations.js, but as a fallback
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
 
-    const initTypingAnimation = () => {
-        const typingElements = document.querySelectorAll('.typing-title, .typing-subtitle');
+                const target = document.querySelector(targetId);
+                if (target) {
+                    e.preventDefault();
+                    const offset = 80;
+                    const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - offset;
 
-        if (typingElements.length === 0) return;
-
-        const typingObserver = new IntersectionObserver((entries) => {
-            entries.forEach((entry) => {
-                if (entry.isIntersecting && !entry.target.classList.contains('typed')) {
-                    const element = entry.target;
-                    const text = element.getAttribute('data-text');
-                    const speed = element.classList.contains('typing-title') ? 100 : 50;
-
-                    if (!text) return;
-
-                    element.classList.add('typed');
-                    element.textContent = '';
-
-                    let charIndex = 0;
-                    const typeWriter = () => {
-                        if (charIndex < text.length) {
-                            element.textContent += text.charAt(charIndex);
-                            charIndex++;
-                            setTimeout(typeWriter, speed);
-                        }
-                    };
-
-                    typeWriter();
-                    typingObserver.unobserve(element);
+                    window.scrollTo({
+                        top: targetPosition,
+                        behavior: 'smooth'
+                    });
                 }
             });
-        }, { threshold: 0.5 });
-
-        typingElements.forEach((el) => typingObserver.observe(el));
+        });
     };
 
     // =========================================
-    // 4. Masonry Grid Cards Animation
+    // 4. Active Nav Link on Scroll
     // =========================================
+    const initActiveNavOnScroll = () => {
+        const sections = document.querySelectorAll('section[id]');
+        const navLinks = document.querySelectorAll('.navbar-nav-modern .nav-link-modern');
 
-    const initMasonryCards = () => {
-        const masonryCards = document.querySelectorAll('.masonry-card');
+        const setActiveLink = () => {
+            let current = '';
 
-        if (masonryCards.length === 0) return;
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop - 100;
+                const sectionHeight = section.offsetHeight;
 
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('is-visible');
-                    observer.unobserve(entry.target);
+                if (window.pageYOffset >= sectionTop && window.pageYOffset < sectionTop + sectionHeight) {
+                    current = section.getAttribute('id');
                 }
             });
-        }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
 
-        masonryCards.forEach(el => observer.observe(el));
-    };
-
-    // =========================================
-    // 6. Scroll Progress Indicator
-    // =========================================
-
-    const initScrollProgress = () => {
-        const progressBar = document.querySelector('.scroll-progress-bar');
-
-        if (!progressBar) return;
-
-        const updateProgress = () => {
-            const scrollTop = window.pageYOffset;
-            const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-            const scrollPercent = (scrollTop / docHeight) * 100;
-            progressBar.style.width = `${scrollPercent}%`;
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${current}`) {
+                    link.classList.add('active');
+                }
+            });
         };
 
-        window.addEventListener('scroll', updateProgress, { passive: true });
+        window.addEventListener('scroll', setActiveLink, { passive: true });
+        setActiveLink();
     };
 
     // =========================================
-    // Initialize All Modules
+    // 5. Lazy Load Images
     // =========================================
+    const initLazyLoad = () => {
+        if ('loading' in HTMLImageElement.prototype) {
+            // Native lazy loading supported
+            document.querySelectorAll('img[loading="lazy"]').forEach(img => {
+                img.src = img.dataset.src || img.src;
+            });
+        } else {
+            // Fallback for browsers without native support
+            const lazyImages = document.querySelectorAll('img[loading="lazy"]');
 
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const img = entry.target;
+                        img.src = img.dataset.src || img.src;
+                        observer.unobserve(img);
+                    }
+                });
+            });
+
+            lazyImages.forEach(img => observer.observe(img));
+        }
+    };
+
+    // =========================================
+    // 6. Handle External Links
+    // =========================================
+    const handleExternalLinks = () => {
+        document.querySelectorAll('a[target="_blank"]').forEach(link => {
+            link.setAttribute('rel', 'noopener noreferrer');
+        });
+    };
+
+    // =========================================
+    // 7. Console Log Branding
+    // =========================================
+    const consoleBranding = () => {
+        console.log('%c PT Herz Consultant Indonesia ', 'background: #FF6B35; color: white; font-size: 16px; padding: 10px 20px; border-radius: 4px;');
+        console.log('%c Environmental Intelligence for a Sustainable Future ', 'color: #0A1628; font-size: 12px;');
+        console.log('%c Website: https://herzindonesia.com ', 'color: #64748B; font-size: 11px;');
+    };
+
+    // =========================================
+    // Initialize
+    // =========================================
     const init = () => {
-        initHeroSlider();
-        initScrollAnimations();
-        initTypingAnimation();
-        initMasonryCards();
-        initScrollProgress();
+        setCurrentYear();
+        initNavbarCollapse();
+        initActiveNavOnScroll();
+        initLazyLoad();
+        handleExternalLinks();
+        consoleBranding();
     };
 
+    // Initialize when DOM is ready
     if (document.readyState === 'loading') {
         document.addEventListener('DOMContentLoaded', init);
     } else {
         init();
     }
 })();
-
-

@@ -1,15 +1,1456 @@
 /* =========================================
-   1. General Setup & Colors
+   PT Herz Consultant Indonesia - Redesigned
+   Industrial Refinement Theme + GSAP
    ========================================= */
-body {
-    font-family: 'Inter', sans-serif;
-    background-color: #f8fafc;
-    color: #1e293b;
-    min-height: 100vh;
+
+/* =========================================
+   1. CSS Variables & Color System
+   ========================================= */
+:root {
+    --herz-navy: #0A1628;
+    --herz-navy-light: #1E3A5F;
+    --herz-charcoal: #1E293B;
+    --herz-orange: #FF6B35;
+    --herz-orange-dark: #E55A2B;
+    --herz-amber: #F59E0B;
+    --herz-slate: #64748B;
+    --herz-light: #F8FAFC;
+    --herz-white: #FFFFFF;
+    
+    --gradient-hero: linear-gradient(135deg, rgba(10,22,40,0.92) 0%, rgba(30,41,59,0.85) 100%);
+    --gradient-overlay: linear-gradient(to top, rgba(10,22,40,0.95) 0%, rgba(10,22,40,0.4) 50%, transparent 100%);
+    --gradient-blue: linear-gradient(135deg, var(--herz-navy) 0%, var(--herz-navy-light) 100%);
+    --gradient-orange: linear-gradient(135deg, var(--herz-orange) 0%, var(--herz-orange-dark) 100%);
+    
+    --shadow-sm: 0 2px 8px rgba(0,0,0,0.08);
+    --shadow-md: 0 4px 16px rgba(0,0,0,0.12);
+    --shadow-lg: 0 8px 32px rgba(0,0,0,0.18);
+    --shadow-xl: 0 16px 48px rgba(0,0,0,0.25);
+    
+    --z-navbar: 100;
+    --z-overlay: 200;
+    --z-hero: 10;
+    --z-section: 5;
+    --z-tooltip: 1000;
 }
 
 /* =========================================
-   About Section Glassmorphism
+   2. Global Reset & Smooth Scroll
+   ========================================= */
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Source Sans Pro', sans-serif;
+    background-color: var(--herz-light);
+    color: var(--herz-charcoal);
+    line-height: 1.6;
+    min-height: 100dvh;
+    overflow-x: hidden;
+}
+
+/* =========================================
+   2b. Skip to Content Link (Accessibility)
+   ========================================= */
+.skip-link {
+    position: absolute;
+    top: -100%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--herz-orange);
+    color: var(--herz-white);
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-weight: 700;
+    text-decoration: none;
+    z-index: var(--z-tooltip);
+    transition: top 0.2s ease;
+}
+
+.skip-link:focus {
+    top: 12px;
+    outline: 3px solid var(--herz-white);
+    outline-offset: 2px;
+}
+
+/* =========================================
+   2c. Global Focus-Visible States
+   ========================================= */
+*:focus-visible {
+    outline: 3px solid var(--herz-orange);
+    outline-offset: 2px;
+}
+
+a:focus-visible,
+button:focus-visible {
+    outline: 3px solid var(--herz-orange);
+    outline-offset: 2px;
+    border-radius: 4px;
+}
+
+.nav-link:focus-visible {
+    outline: 2px solid var(--herz-orange);
+    outline-offset: 4px;
+    border-radius: 2px;
+}
+
+.social-icon:focus-visible {
+    outline: 3px solid var(--herz-white);
+    outline-offset: 2px;
+}
+
+.btn:focus-visible {
+    outline: 3px solid var(--herz-white);
+    outline-offset: 2px;
+    box-shadow: 0 0 0 5px rgba(255,107,53,0.4);
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Oswald', sans-serif;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+    line-height: 1.2;
+    text-transform: uppercase;
+}
+
+.display-1, .display-2, .display-3, .display-4 {
+    font-family: 'Oswald', sans-serif;
+    font-weight: 700;
+    letter-spacing: -1px;
+}
+
+/* =========================================
+   3. Color Utilities
+   ========================================= */
+.text-herz-blue { color: var(--herz-navy); }
+.text-herz-orange { color: var(--herz-orange) !important; }
+.text-herz-white { color: var(--herz-white) !important; }
+.text-white { color: var(--herz-white) !important; }
+.text-white-80 { color: rgba(255,255,255,0.85) !important; }
+.bg-herz-blue { background-color: var(--herz-navy); }
+.text-muted { color: var(--herz-slate) !important; }
+.text-light-blue { color: #BFDBFE !important; }
+
+/* =========================================
+   4. Button System
+   ========================================= */
+.btn-herz-blue {
+    background: var(--gradient-blue);
+    color: var(--herz-white);
+    border: none;
+    padding: 14px 32px;
+    border-radius: 8px;
+    font-family: 'Source Sans Pro', sans-serif;
+    font-weight: 700;
+    font-size: 1rem;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(10,22,40,0.3);
+    touch-action: manipulation;
+    cursor: pointer;
+}
+
+.btn-herz-blue:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 24px rgba(10,22,40,0.4);
+    color: var(--herz-white);
+}
+
+.btn-herz-blue:active {
+    transform: translateY(0) scale(0.98);
+    box-shadow: 0 2px 8px rgba(10,22,40,0.3);
+}
+
+.btn-herz-orange {
+    background: var(--gradient-orange);
+    border: none;
+    color: var(--herz-white);
+    padding: 14px 32px;
+    border-radius: 8px;
+    font-family: 'Source Sans Pro', sans-serif;
+    font-weight: 700;
+    font-size: 1rem;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(255,107,53,0.3);
+    touch-action: manipulation;
+    cursor: pointer;
+}
+
+.btn-herz-orange:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 24px rgba(255,107,53,0.4);
+    color: var(--herz-white);
+}
+
+.btn-herz-orange:active {
+    transform: translateY(0) scale(0.98);
+    box-shadow: 0 2px 8px rgba(255,107,53,0.3);
+}
+
+.btn-outline-herz-blue {
+    border: 2px solid var(--herz-white);
+    color: var(--herz-white);
+    background: transparent;
+    transition: all 0.3s ease;
+}
+
+.btn-outline-herz-blue:hover {
+    background: var(--herz-white);
+    color: var(--herz-navy);
+    transform: translateY(-2px);
+}
+
+/* =========================================
+   5. Navbar - Legacy Styles Removed
+   ========================================= */
+/* Old navbar styles removed to use navbar-modern from animations.css */
+
+/* =========================================
+   6. Hero Slider
+   ========================================= */
+.hero-slider {
+    position: relative;
+    min-height: 100dvh;
+    overflow: visible;
+    padding-top: 80px;
+    display: flex;
+    align-items: center;
+}
+
+.hero-slider::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--gradient-hero);
+    z-index: 1;
+}
+
+.hero-slider::after {
+    content: '';
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    width: 100%;
+    height: 80px;
+    background: var(--herz-white);
+    clip-path: polygon(0 100%, 100% 0, 100% 100%);
+    z-index: 2;
+}
+
+.hero-slides {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+}
+
+.hero-slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    opacity: 0;
+}
+
+.hero-slide.active {
+    opacity: 1;
+}
+
+.hero-slider .container {
+    position: relative;
+    z-index: var(--z-hero);
+}
+
+.hero-subtitle {
+    border-left: 4px solid var(--herz-orange);
+    padding-left: 1rem;
+    color: var(--herz-white);
+    font-family: 'Source Sans Pro', sans-serif;
+    font-weight: 600;
+    letter-spacing: 2px;
+}
+
+.hero-slider h1 {
+    color: var(--herz-white);
+    text-shadow: 0 2px 20px rgba(0,0,0,0.3);
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    max-width: 800px;
+}
+
+.hero-slider .lead {
+    color: rgba(255,255,255,0.9);
+    text-shadow: 0 1px 10px rgba(0,0,0,0.2);
+    font-size: clamp(1rem, 2vw, 1.25rem);
+    max-width: 650px;
+}
+
+.hero-slider .d-flex {
+    flex-wrap: wrap;
+    gap: 16px !important;
+}
+
+/* =========================================
+   6b. Section Label
+   ========================================= */
+.section-label {
+    border-left: 4px solid var(--herz-orange);
+    padding-left: 1rem;
+    color: var(--herz-slate);
+    font-family: 'Source Sans Pro', sans-serif;
+    font-weight: 600;
+    letter-spacing: 2px;
+}
+
+.section-label-orange {
+    color: var(--herz-orange);
+}
+
+/* =========================================
+   6c. About Preview Section
+   ========================================= */
+.about-preview-section {
+    background: var(--herz-white);
+    position: relative;
+    z-index: var(--z-section);
+}
+
+.about-preview-section::before {
+    content: '';
+    position: absolute;
+    top: -1px;
+    left: 0;
+    width: 100%;
+    height: 80px;
+    background: var(--herz-navy);
+    clip-path: polygon(0 100%, 100% 0, 100% 100%);
+    z-index: 1;
+}
+
+.about-preview-section .container {
+    position: relative;
+    z-index: 2;
+}
+
+.about-preview-section .about-img {
+    min-height: 400px;
+}
+
+@media (max-width: 991px) {
+    .about-preview-section::before {
+        height: 60px;
+    }
+
+    .about-preview-section .about-img {
+        min-height: 300px;
+        margin-bottom: 2rem;
+    }
+}
+
+/* =========================================
+   6d. Service Card Icon
+   ========================================= */
+.service-card-icon {
+    width: 64px;
+    height: 64px;
+    background: linear-gradient(135deg, #DBEAFE 0%, #EFF6FF 100%);
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 28px;
+    color: var(--herz-navy);
+    transition: all 0.3s ease;
+}
+
+.service-card-icon-orange {
+    background: linear-gradient(135deg, #FFEDD5 0%, #FFF7ED 100%);
+    color: var(--herz-orange);
+}
+
+.service-card:hover .service-card-icon {
+    transform: scale(1.1) rotate(5deg);
+}
+
+.service-card:hover .service-card-icon-orange {
+    transform: scale(1.1) rotate(-5deg);
+}
+
+/* =========================================
+   6e. Section Transitions
+   ========================================= */
+.services-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 60px;
+    background: var(--herz-white);
+    clip-path: polygon(0 0, 100% 100%, 0 100%);
+    z-index: 1;
+}
+
+.services-section .container {
+    position: relative;
+    z-index: var(--z-section);
+}
+
+.full-width-blue-section::before {
+    content: '';
+    position: absolute;
+    top: -1px;
+    left: 0;
+    width: 100%;
+    height: 80px;
+    background: var(--herz-light);
+    clip-path: polygon(0 100%, 100% 0, 100% 100%);
+    z-index: 1;
+}
+
+.full-width-blue-section .container {
+    position: relative;
+    z-index: 2;
+}
+
+.why-choose-section::before {
+    content: '';
+    position: absolute;
+    top: -1px;
+    left: 0;
+    width: 100%;
+    height: 80px;
+    background: var(--herz-navy);
+    clip-path: polygon(0 0, 100% 100%, 0 100%);
+    z-index: 1;
+}
+
+.masonry-grid-section::before {
+    content: '';
+    position: absolute;
+    top: -1px;
+    left: 0;
+    width: 100%;
+    height: 80px;
+    background: var(--herz-charcoal);
+    clip-path: polygon(0 100%, 100% 0, 100% 100%);
+    z-index: 1;
+}
+
+.masonry-grid-section .container {
+    position: relative;
+    z-index: 2;
+}
+
+/* =========================================
+   7. Why Choose Herz Section
+   ========================================= */
+.why-choose-section {
+    background: linear-gradient(135deg, var(--herz-navy) 0%, var(--herz-charcoal) 100%);
+    padding: 100px 0;
+    position: relative;
+    z-index: var(--z-section);
+}
+
+.stat-box {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 12px;
+    padding: 32px 20px;
+    transition: all 0.3s ease;
+}
+
+.stat-number {
+    font-family: 'Oswald', sans-serif;
+    font-size: 3rem;
+    font-weight: 700;
+    color: var(--herz-orange);
+    margin-bottom: 8px;
+}
+
+.stat-label {
+    color: rgba(255,255,255,0.8);
+    font-size: 0.95rem;
+    font-weight: 600;
+}
+
+.feature-card {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 16px;
+    padding: 32px 24px;
+    text-align: center;
+    transition: all 0.3s ease;
+    height: 100%;
+}
+
+.feature-card:hover {
+    background: rgba(255,255,255,0.08);
+    border-color: rgba(255,107,53,0.3);
+    transform: translateY(-8px);
+}
+
+.feature-card:hover .feature-icon {
+    transform: scale(1.1) rotate(5deg);
+}
+
+.feature-icon {
+    width: 64px;
+    height: 64px;
+    background: linear-gradient(135deg, var(--herz-orange) 0%, var(--herz-amber) 100%);
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 20px;
+    font-size: 28px;
+    color: white;
+}
+
+.feature-title {
+    font-family: 'Oswald', sans-serif;
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: white;
+    margin-bottom: 12px;
+    text-transform: uppercase;
+}
+
+.feature-text {
+    color: rgba(255,255,255,0.7);
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin: 0;
+}
+
+/* =========================================
+   8. Full-Width Blue Section
+   ========================================= */
+.full-width-blue-section {
+    width: 100vw;
+    margin-left: calc(-50vw + 50%);
+    margin-right: calc(-50vw + 50%);
+    background: var(--gradient-blue);
+    min-height: 400px;
+    padding: 80px 20px;
+    display: flex;
+    align-items: center;
+    position: relative;
+    overflow: visible;
+    z-index: var(--z-section);
+}
+
+.full-width-blue-section::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -20%;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(255,107,53,0.15) 0%, transparent 70%);
+    border-radius: 50%;
+}
+
+.full-width-blue-section h2 {
+    font-family: 'Oswald', sans-serif;
+    font-weight: 700;
+    letter-spacing: -1px;
+    text-transform: uppercase;
+    position: relative;
+    z-index: 1;
+    font-size: clamp(2rem, 4vw, 3.5rem);
+}
+
+.full-width-blue-section .lead {
+    position: relative;
+    z-index: 1;
+    max-width: 800px;
+    margin: 0 auto;
+    font-size: 1.15rem;
+}
+
+/* =========================================
+   9. Masonry Grid Section
+   ========================================= */
+.masonry-grid-section {
+    width: 100vw;
+    margin-left: calc(-50vw + 50%);
+    margin-right: calc(-50vw + 50%);
+    background: linear-gradient(135deg, var(--herz-navy) 0%, var(--herz-charcoal) 100%);
+    padding: 100px 20px;
+    position: relative;
+    overflow: visible;
+    z-index: var(--z-section);
+}
+
+.masonry-grid-section-pattern {
+    background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    opacity: 0.2;
+}
+
+.masonry-grid-section-pattern {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+}
+
+.masonry-grid-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 24px;
+    position: relative;
+    z-index: 1;
+}
+
+.masonry-grid {
+    display: grid;
+    grid-auto-rows: minmax(220px, auto);
+    gap: 20px;
+    max-width: 100%;
+}
+
+@media (min-width: 576px) {
+    .masonry-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (min-width: 992px) {
+    .masonry-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+}
+
+.masonry-item {
+    border-radius: 10px;
+    overflow: hidden;
+    background-color: var(--herz-slate);
+    aspect-ratio: 16 / 10;
+    max-height: 220px;
+}
+
+.masonry-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.masonry-card {
+    position: relative;
+    background: var(--herz-white);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: var(--shadow-md);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    min-height: 220px;
+}
+
+.masonry-card:hover {
+    transform: translateY(-12px) scale(1.02);
+    box-shadow: var(--shadow-xl);
+}
+
+.masonry-card-standard {
+    grid-column: span 1;
+    grid-row: span 1;
+}
+
+.masonry-card-wide {
+    grid-column: span 2;
+    grid-row: span 1;
+    min-height: 220px;
+}
+
+.masonry-card-tall {
+    grid-column: span 1;
+    grid-row: span 2;
+    min-height: 460px;
+}
+
+.masonry-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to top, rgba(10, 22, 40, 0.9) 0%, rgba(10, 22, 40, 0.4) 50%, transparent 100%);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 2rem;
+    opacity: 0;
+    transition: all 0.4s ease;
+    z-index: 2;
+}
+
+.masonry-card:hover .masonry-overlay {
+    opacity: 1;
+}
+
+.masonry-content {
+    transform: translateY(20px);
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.masonry-card:hover .masonry-content {
+    transform: translateY(0);
+}
+
+.masonry-content h4 {
+    margin-bottom: 0.5rem;
+    font-size: 1.25rem;
+}
+
+.masonry-content p {
+    font-size: 0.9rem;
+    line-height: 1.4;
+}
+
+.masonry-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.6s ease;
+}
+
+.masonry-card:hover .masonry-img {
+    transform: scale(1.1);
+}
+
+.masonry-card-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.4s ease;
+}
+
+.masonry-card:hover .masonry-card-img {
+    transform: scale(1.05);
+}
+
+.masonry-card-body {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 24px;
+    background: linear-gradient(
+        to top,
+        rgba(10,22,40,0.95) 0%,
+        rgba(10,22,40,0.7) 40%,
+        rgba(10,22,40,0.3) 70%,
+        transparent 100%
+    );
+    color: var(--herz-white);
+}
+
+.masonry-card-title {
+    font-family: 'Oswald', sans-serif;
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: var(--herz-white);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.masonry-card-text {
+    font-size: 0.875rem;
+    line-height: 1.5;
+    color: rgba(255,255,255,0.85);
+    margin: 0;
+}
+
+@media (max-width: 767px) {
+    .masonry-grid {
+        grid-template-columns: 1fr;
+        grid-auto-rows: auto;
+    }
+    
+    .masonry-card,
+    .masonry-card-wide,
+    .masonry-card-tall {
+        grid-column: span 1;
+        grid-row: span 1;
+        min-height: 200px;
+    }
+    
+    .masonry-grid-section::after {
+        height: 60px;
+    }
+}
+
+/* =========================================
+   10. About Preview Section
+   ========================================= */
+.about-preview-section {
+    padding: 100px 0;
+    position: relative;
+    overflow: visible;
+    background: var(--herz-white);
+    z-index: var(--z-section);
+}
+
+.about-preview-section .container {
+    padding: 0 24px;
+}
+
+.about-preview-section .about-img {
+    height: 450px;
+    position: relative;
+    border-radius: 16px;
+    overflow: hidden;
+    background-image: url('assets/images/tentang_kami.png');
+    background-size: cover;
+    background-position: center;
+    box-shadow: var(--shadow-lg);
+}
+
+.about-preview-section .about-img::before {
+    content: '';
+    position: absolute;
+    top: -15px;
+    right: -15px;
+    width: 100%;
+    height: 100%;
+    border: 3px solid var(--herz-orange);
+    border-radius: 16px;
+    z-index: -1;
+}
+
+.about-preview-section .about-img::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 40%;
+    background: linear-gradient(to top, rgba(10,22,40,0.3), transparent);
+}
+
+@media (max-width: 991px) {
+    .about-preview-section {
+        padding: 60px 0;
+    }
+
+    .about-preview-section .about-img {
+        height: 350px;
+        margin-bottom: 2rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .about-preview-section .about-img {
+        height: 280px;
+    }
+}
+
+/* =========================================
+   11. Services Section
+   ========================================= */
+#services {
+    padding: 100px 0;
+    background: var(--herz-light);
+    position: relative;
+    overflow: visible;
+    z-index: var(--z-section);
+}
+
+#services .container > .text-center {
+    margin-bottom: 60px;
+}
+
+#services .container > .text-center h2 {
+    font-size: clamp(2rem, 4vw, 3rem);
+    margin-bottom: 16px;
+}
+
+#services .container > .text-center .text-muted {
+    max-width: 700px;
+    margin: 0 auto;
+    font-size: 1.1rem;
+}
+
+.service-card {
+    background: var(--herz-white);
+    border-radius: 16px;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    overflow: hidden;
+    height: 100%;
+    border: 1px solid rgba(0,0,0,0.06);
+    box-shadow: var(--shadow-sm);
+    position: relative;
+    padding: 32px 28px;
+    display: flex;
+    flex-direction: column;
+}
+
+.service-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: linear-gradient(90deg, var(--herz-orange) 0%, var(--herz-amber) 100%);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.4s ease;
+}
+
+.service-card:hover::before {
+    transform: scaleX(1);
+}
+
+.service-card:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--shadow-lg);
+}
+
+.service-card h4 {
+    font-family: 'Oswald', sans-serif;
+    font-size: 1.25rem;
+    margin-bottom: 12px;
+    line-height: 1.3;
+}
+
+.service-card .text-muted {
+    flex-grow: 1;
+    line-height: 1.6;
+}
+
+/* Service Card Icon Styles (merged - see section 6d) */
+
+.border-top-orange {
+    border-top: none !important;
+}
+
+.icon-box, .icon-box-orange {
+    width: 56px;
+    height: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    border-radius: 12px;
+    font-family: 'Oswald', sans-serif;
+    font-size: 1.5rem;
+    transition: all 0.3s ease;
+}
+
+.icon-box {
+    background: linear-gradient(135deg, #DBEAFE 0%, #EFF6FF 100%);
+    color: var(--herz-navy);
+}
+
+.icon-box-orange {
+    background: linear-gradient(135deg, #FFEDD5 0%, #FFF7ED 100%);
+    color: var(--herz-orange);
+}
+
+/* =========================================
+   12. Scroll Animations (GSAP handles these now)
+   ========================================= */
+section {
+    overflow-x: hidden;
+}
+
+/* Initial hidden state for animated elements (GSAP will show them) */
+.animate-on-scroll {
+    opacity: 0;
+    transform: translateY(50px);
+}
+
+.reveal-left {
+    opacity: 0;
+    transform: translateX(-80px);
+}
+
+.section-label {
+    opacity: 0;
+    transform: translateX(-30px);
+}
+
+.service-card {
+    opacity: 0;
+    transform: translateY(60px);
+}
+
+.masonry-card {
+    opacity: 0;
+    transform: translateY(60px);
+}
+
+.stat-box {
+    opacity: 0;
+    transform: translateY(40px) scale(0.9);
+}
+
+.feature-card {
+    opacity: 0;
+    transform: translateY(60px);
+}
+
+#about ul li {
+    opacity: 0;
+    transform: translateX(-30px);
+}
+
+.about-preview-section .about-img {
+    opacity: 0;
+    transform: translateX(80px);
+}
+
+.full-width-blue-section h2,
+.full-width-blue-section p,
+.full-width-blue-section .btn {
+    opacity: 0;
+}
+
+.why-choose-section h2,
+.why-choose-section .lead {
+    opacity: 0;
+    transform: translateY(30px);
+}
+
+/* Hero elements - initial state for entrance animation */
+.hero-subtitle {
+    opacity: 0;
+    transform: translateX(-60px);
+}
+
+.hero-slider h1 {
+    opacity: 0;
+    transform: translateY(50px);
+}
+
+.hero-slider .lead {
+    opacity: 0;
+    transform: translateY(40px);
+}
+
+.hero-slider .d-flex .btn {
+    opacity: 0;
+    transform: translateY(30px);
+}
+
+/* =========================================
+   12b. Reduced Motion Support
+   ========================================= */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+
+    .hero-slider {
+        overflow: hidden;
+    }
+    
+    .hero-slide {
+        opacity: 0 !important;
+        transition: none !important;
+    }
+    
+    .hero-slide.active {
+        opacity: 1 !important;
+    }
+    
+    .hero-slide:not(.active) {
+        display: none;
+    }
+    
+    .logo-slider-wrapper {
+        padding: 1.5rem 0;
+    }
+    
+    .logo-slider-wrapper::before,
+    .logo-slider-wrapper::after {
+        width: 50px;
+    }
+    
+    .logo-slider-track {
+        animation: none !important;
+        transform: translateX(0) !important;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 12px;
+    }
+    
+    .client-slide-box:nth-child(n+10) {
+        display: none;
+    }
+    
+    .animate-on-scroll,
+    .reveal-left,
+    .masonry-card,
+    .service-card {
+        opacity: 1 !important;
+        transform: none !important;
+    }
+    
+    .service-card,
+    .stat-box,
+    .feature-card,
+    .stat-card,
+    .case-card,
+    .masonry-card {
+        transition: none !important;
+    }
+    
+    .service-card:hover,
+    .masonry-card:hover,
+    .stat-box:hover,
+    .feature-card:hover {
+        transform: none !important;
+    }
+    
+    .brand-logo,
+    .masonry-card-img,
+    .case-img,
+    .client-slide-box {
+        transition: none !important;
+    }
+    
+    .client-slide-box:hover {
+        transform: none !important;
+        filter: none !important;
+    }
+}
+
+/* =========================================
+   13. Footer
+   ========================================= */
+footer.bg-herz-blue {
+    background: linear-gradient(135deg, var(--herz-navy) 0%, #0D1B2A 100%);
+    position: relative;
+    overflow: hidden;
+}
+
+footer.bg-herz-blue::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3z' fill='%23ffffff' fill-opacity='0.02' fill-rule='evenodd'/%3E%3C/svg%3E");
+    opacity: 0.15;
+}
+
+.social-icon {
+    width: 48px;
+    height: 48px;
+    background: rgba(255,255,255,0.1);
+    border: 1px solid rgba(255,255,255,0.2);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--herz-white);
+    font-size: 20px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(8px);
+    touch-action: manipulation;
+    cursor: pointer;
+}
+
+.social-icon:hover {
+    background: var(--herz-orange);
+    border-color: var(--herz-orange);
+    transform: translateY(-4px) scale(1.1);
+    box-shadow: 0 8px 20px rgba(255,107,53,0.4);
+}
+
+/* =========================================
+   14. Portfolio & Client Logos
+   ========================================= */
+.client-logo {
+    height: 60px;
+    max-width: 120px;
+    object-fit: contain;
+}
+
+.case-card {
+    transition: all 0.3s ease;
+}
+
+.case-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+}
+
+.case-img {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+    border-radius: 8px;
+    transition: 0.4s;
+}
+
+.case-img:hover {
+    transform: scale(1.05);
+}
+
+.border-bottom-hover {
+    border-bottom: 2px solid transparent;
+    transition: all 0.3s ease;
+}
+
+.border-bottom-hover:hover {
+    border-bottom: 2px solid var(--herz-orange);
+    color: var(--herz-navy);
+}
+
+/* =========================================
+   15. Logo Slider (Infinite Marquee)
+   ========================================= */
+.logo-slider-wrapper {
+    overflow: hidden;
+    position: relative;
+    background: white;
+    border-radius: 0.5rem;
+    box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+    padding: 2rem 0;
+    border: 1px solid rgba(0, 0, 0, 0.125);
+}
+
+.logo-slider-wrapper::before,
+.logo-slider-wrapper::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 100px;
+    z-index: 2;
+    pointer-events: none;
+}
+
+.logo-slider-wrapper::before {
+    left: 0;
+    background: linear-gradient(to right, white, transparent);
+}
+
+.logo-slider-wrapper::after {
+    right: 0;
+    background: linear-gradient(to left, white, transparent);
+}
+
+.logo-slider-track {
+    display: flex;
+    align-items: center;
+    width: max-content;
+    animation: slideContinuous 40s linear infinite;
+    will-change: transform;
+}
+
+.logo-slider-track:hover {
+    animation-play-state: paused;
+}
+
+.client-slide-box {
+    width: 200px;
+    flex-shrink: 0;
+    padding: 0 1rem;
+    filter: grayscale(100%);
+    opacity: 0.7;
+    transition: filter 0.3s ease, transform 0.3s ease, opacity 0.3s ease;
+    cursor: pointer;
+}
+
+.client-slide-box:hover {
+    filter: grayscale(0%);
+    transform: scale(1.1);
+    opacity: 1;
+}
+
+@keyframes slideContinuous {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-50%);
+    }
+}
+
+/* =========================================
+   16. Portfolio Hero Section
+   ========================================= */
+.hero-portfolio {
+    background-color: var(--herz-navy);
+}
+
+.hero-bg-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    transform: scale(1.1);
+    animation: slowZoom 20s ease infinite alternate;
+}
+
+.hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, rgba(10, 22, 40, 0.8), rgba(10, 22, 40, 0.6));
+}
+
+@keyframes slowZoom {
+    from { transform: scale(1); }
+    to { transform: scale(1.1); }
+}
+
+.scroll-down-indicator {
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    z-index: 10;
+}
+
+.mouse {
+    width: 26px;
+    height: 44px;
+    border: 2px solid white;
+    border-radius: 20px;
+    position: relative;
+    margin-bottom: 10px;
+}
+
+.wheel {
+    width: 4px;
+    height: 8px;
+    background: white;
+    border-radius: 2px;
+    position: absolute;
+    top: 8px;
+    left: 50%;
+    transform: translateX(-50%);
+    animation: scrollWheel 2s ease infinite;
+}
+
+@keyframes scrollWheel {
+    0% { opacity: 0; transform: translate(-50%, 0); }
+    30% { opacity: 1; transform: translate(-50%, 10px); }
+    100% { opacity: 0; transform: translate(-50%, 15px); }
+}
+
+.arrows span {
+    display: block;
+    width: 10px;
+    height: 10px;
+    border-bottom: 2px solid white;
+    border-right: 2px solid white;
+    transform: rotate(45deg);
+    margin: -5px;
+    animation: animateArrows 2s infinite;
+}
+
+.arrows span:nth-child(2) { animation-delay: -0.2s; }
+.arrows span:nth-child(3) { animation-delay: -0.4s; }
+
+@keyframes animateArrows {
+    0% { opacity: 0; transform: rotate(45deg) translate(-10px, -10px); }
+    50% { opacity: 1; }
+    100% { opacity: 0; transform: rotate(45deg) translate(10px, 10px); }
+}
+
+/* Documentation Section */
+.documentation-section {
+    padding: 3rem 0;
+}
+
+/* =========================================
+   16. Typing Animation
+   ========================================= */
+.typing-title, .typing-subtitle {
+    display: block;
+}
+
+.typing-subtitle {
+    margin-top: 1rem;
+}
+
+/* =========================================
+   17. Testimonial Section
+   ========================================= */
+.testimonial-img-container img {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+}
+
+.testimonial-item {
+    animation: fadeIn 0.8s ease-in-out;
+}
+
+.nav-testi {
+    width: 45px;
+    height: 45px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: 0.3s;
+}
+
+.nav-testi:hover {
+    transform: scale(1.1);
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.bg-herz-dark {
+    background-color: #060507;
+}
+
+/* =========================================
+   18. Contact Section
+   ========================================= */
+.contact-icon {
+    width: 64px;
+    height: 64px;
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* =========================================
+   19. Glassmorphism Section
    ========================================= */
 .glass-section {
     background: rgba(255, 255, 255, 0.7);
@@ -26,7 +1467,7 @@ body {
 }
 
 /* =========================================
-   About Us - Asymmetric Section
+   20. About Section - Asymmetric (about.html)
    ========================================= */
 .about-section {
     background-color: #FDF2E2;
@@ -55,7 +1496,6 @@ body {
     line-height: 1.8;
 }
 
-/* Stat Cards */
 .stat-card {
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
@@ -65,14 +1505,12 @@ body {
     box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15) !important;
 }
 
-/* Images Wrapper */
 .about-images-wrapper {
     position: relative;
     min-height: 520px;
     padding: 30px 0;
 }
 
-/* Top Image */
 .about-image-top {
     position: relative;
     z-index: 1;
@@ -90,7 +1528,6 @@ body {
     box-shadow: 0 15px 50px rgba(0, 0, 0, 0.12);
 }
 
-/* Bottom Image (Overlapping) */
 .about-image-bottom {
     position: absolute;
     bottom: 20px;
@@ -110,7 +1547,6 @@ body {
     box-shadow: 0 20px 60px rgba(0, 0, 0, 0.18);
 }
 
-/* Responsive - Tablet & Mobile */
 @media (max-width: 991px) {
     .about-content {
         padding-right: 0;
@@ -142,7 +1578,6 @@ body {
         margin-right: auto;
     }
     
-    /* Overlap effect tetap terjaga di mobile */
     .about-image-bottom {
         position: relative !important;
         bottom: auto;
@@ -191,554 +1626,11 @@ body {
     }
 }
 
-/* Rubik Font for Special Headings */
-.font-rubik {
-    font-family: 'Rubik', sans-serif;
-    font-weight: 900;
-    letter-spacing: -0.5px;
-}
-
-/* Standar Warna Herz (Pilih salah satu, di sini saya pakai #EA580C agar konsisten) */
-.text-herz-blue { color: #1e3a8a; }
-.text-herz-orange { color: #EA580C !important; }
-.text-herz-white { color: #ffffff !important; }
-.text-white { color: #ffffff !important; }
-.bg-herz-blue { background-color: #1e3a8a; }
-
-.btn-herz-blue {
-    background-color: #1e3a8a;
-    color: white;
-}
-.btn-herz-blue:hover { background-color: #172554; color: white; }
-
-.btn-herz-orange { 
-    background-color: #EA580C; 
-    border-color: #EA580C;
-    color: white; 
-}
-.btn-herz-orange:hover { background-color: #d14d0a; }
-
 /* =========================================
-   2. Components
+   21. Services Page Styles (services.html)
    ========================================= */
-/* REVISI 2026-05-07: Perbesar logo agar lebih jelas */
-.brand-logo { height: 80px; transition: transform 0.3s ease; }
-.brand-logo:hover { transform: scale(1.05); }
-
-.border-bottom-herz-orange { border-bottom: 3px solid #EA580C; }
-
-/* REVISI 2026-05-07: Perjelas kontras font */
-.text-muted { color: #4b5563 !important; } /* Lebih gelap dari default bootstrap muted */
-.text-light-blue { color: #dbeafe !important; }
-
-/* =========================================
-   Hero Slider (Background Image Carousel)
-   ========================================= */
-.hero-slider {
-    position: relative;
-    min-height: 100vh;
-    overflow: hidden;
-}
-
-.hero-slides {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: -2;
-}
-
-.hero-slide {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-size: cover;
-    background-position: center;
-    opacity: 0;
-    transition: opacity 1.5s ease-in-out;
-}
-
-.hero-slide.active {
-    opacity: 1;
-}
-
-.hero-bg {
-    min-height: 100vh;
-    background-image: linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.7)), url('https://images.unsplash.com/photo-1532601224476-15c79f2f7a51?auto=format&fit=crop&q=80');
-    background-size: cover;
-    background-position: center;
-    background-attachment: fixed;
-    padding-top: 80px;
-}
-
-.hero-subtitle {
-    border-left: 4px solid #EA580C;
-    padding-left: 1rem;
-    color: #1e3a8a;
-}
-
-.about-img {
-    height: 400px;
-    background-image: url('../assets/images/tentang_kami.png');
-    background-size: cover;
-    background-position: center;
-}
-
-/*hero image*/
-
-/* Kita bikin section-nya span full width */
-.full-width-hero {
-    width: 100vw; /* Viewport Width (lebar layar) murni */
-    min-height: 80vh; /* Tinggi section minimal 80% dari tinggi layar */
-    margin-left: calc(-50vw + 50%); /* Trik TI buat override margin container */
-    margin-right: calc(-50vw + 50%);
-    position: relative;
-    overflow: hidden; /* Biar nggak ada scrollbar horizontal */
-}
-
-/* Kita atur gambarnya di dalem section */
-.full-width-hero img {
-    width: 100%; /* Lebar gambar full mengikuti section pembungkus */
-    height: 100%; /* Tinggi gambar full mengikuti section */
-    object-fit: cover; /* Trik TI: Gambar nggak bakal distorsi, dia bakal di-crop */
-    object-position: center; /* Fokus crop di tengah */
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: -1; /* Gambar ditaruh di belakang konten teks */
-}
-
-/* Full-width Blue Section */
-.full-width-blue-section {
-    width: 100vw;
-  margin-left: calc(-50vw + 50%);
-  margin-right: calc(-50vw + 50%);
-  background-color: #1e3a8a;
-  
-  /* TAMBAHAN BIAR PANJANG KE BAWAH */
-  min-height: 600px; /* Atur angka ini sesuai selera lu */
-  display: flex;
-  flex-direction: column;
-  justify-content: center; /* Teks tetep di tengah meskipun section-nya tinggi */
-  padding: 80px 20px; /* Ruang napas buat mobile */
-}
-
-.full-width-blue-section h2 {
-    font-family: 'Rubik', sans-serif;
-    font-weight: 900;
-    letter-spacing: -1px;
-}
-
-/* =========================================
-   Masonry Grid Section (CSS Grid-based)
-   ========================================= */
-.masonry-grid-section {
-    width: 100vw;
-    margin-left: calc(-50vw + 50%);
-    margin-right: calc(-50vw + 50%);
-    background-color: #1e3a8a;
-    padding: 80px 20px;
-}
-
-.masonry-grid-container {
-    max-width: 1400px;
-    margin: 0 auto;
-    padding: 0 16px;
-}
-
-.masonry-grid {
-    display: grid;
-    grid-template-columns: repeat(1, minmax(0, 1fr));
-    gap: 14px;
-    max-width: 1080px;
-    margin: 0 auto;
-}
-
-@media (min-width: 576px) {
-    .masonry-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
-}
-
-@media (min-width: 992px) {
-    .masonry-grid {
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-    }
-}
-
-/* Portfolio documentation images (uniform size) */
-.masonry-item {
-    border-radius: 10px;
-    overflow: hidden;
-    background-color: #e2e8f0;
-    aspect-ratio: 16 / 10;
-    max-height: 220px;
-}
-
-.masonry-img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-}
-
-/* Card base styles */
-.masonry-card {
-    position: relative;
-    background: #ffffff;
-    border-radius: 16px;
-    overflow: hidden;
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    opacity: 0;
-    transform: translateY(40px);
-}
-
-.masonry-card.is-visible {
-    opacity: 1;
-    transform: translateY(0);
-    transition: opacity 0.6s ease, transform 0.6s cubic-bezier(0.4, 0, 0.2, 1),
-                box-shadow 0.3s ease;
-}
-
-.masonry-card:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.2);
-}
-
-/* Card sizes */
-.masonry-card-standard {
-    grid-column: span 1;
-    grid-row: span 1;
-}
-
-.masonry-card-wide {
-    grid-column: span 2;
-    grid-row: span 1;
-}
-
-.masonry-card-tall {
-    grid-column: span 1;
-    grid-row: span 2;
-}
-
-/* Card image */
-.masonry-card-img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-    transition: transform 0.4s ease;
-}
-
-.masonry-card:hover .masonry-card-img {
-    transform: scale(1.05);
-}
-
-/* Card content overlay */
-.masonry-card-body {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    padding: 20px;
-    background: linear-gradient(to top, rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.4), transparent);
-    color: #ffffff;
-}
-
-.masonry-card-title {
-    font-size: 1.125rem;
-    font-weight: 700;
-    margin-bottom: 8px;
-    color: #ffffff;
-}
-
-.masonry-card-text {
-    font-size: 0.875rem;
-    line-height: 1.5;
-    color: rgba(255, 255, 255, 0.85);
-    margin: 0;
-}
-
-/* Responsive: single column on mobile */
-@media (max-width: 575px) {
-    .masonry-card-wide,
-    .masonry-card-tall {
-        grid-column: span 1;
-        grid-row: span 1;
-    }
-    
-    .masonry-item {
-        max-height: 180px;
-    }
-}
-/* =========================================
-   3. Services & Cards
-   ========================================= */
-.service-card { transition: all 0.3s ease; cursor: pointer; }
-.service-card:hover { transform: translateY(-5px); box-shadow: 0 1rem 3rem rgba(0,0,0,0.1) !important; }
-.border-top-orange { border-top: 4px solid #EA580C !important; }
-
-.icon-box, .icon-box-orange {
-    width: 48px;
-    height: 48px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-weight: bold;
-    border-radius: 4px;
-}
-.icon-box { background: #dbeafe; color: #1e3a8a; }
-.icon-box-orange { background: #ffedd5; color: #EA580C; }
-
-/* =========================================
-   4. Scroll-Driven Animations
-   ========================================= */
-
-.animate-on-scroll {
-    opacity: 0;
-    transform: translateY(40px); /* Posisi awal fade-up */
-    transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1),
-                transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-    will-change: transform, opacity;
-}
-
-.animate-on-scroll.is-visible {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-/* WAJIB: Biar gak ada scrollbar horizontal liar */
-section {
-    overflow-x: hidden;
-}
-/* Reveal Left Animation */
-.reveal-left {
-    opacity: 0;
-    transform: translateX(-100px);
-    transition: opacity 1s cubic-bezier(0.17, 0.55, 0.55, 1),
-                transform 1s cubic-bezier(0.17, 0.55, 0.55, 1);
-}
-
-.reveal-left.is-visible {
-    opacity: 1;
-    transform: translateX(0);
-}
-
-/* Staggered Delays for Cards */
-.col-md-4:nth-child(1) .animate-on-scroll {
-    transition-delay: 0.2s;
-}
-
-.col-md-4:nth-child(2) .animate-on-scroll {
-    transition-delay: 0.4s;
-}
-
-.col-md-4:nth-child(3) .animate-on-scroll {
-    transition-delay: 0.6s;
-}
-
-/* =========================================
-   5. Fixed Navbar
-   ========================================= */
-
-.navbar {
-    position: fixed !important;
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: 1030;
-    transition: background-color 0.3s ease,
-                box-shadow 0.3s ease;
-    /* REVISI 2026-05-07: Beri background semi-transparan agar logo & menu kontras */
-    background-color: rgba(255, 255, 255, 0.95) !important;
-    border-bottom: 1px solid rgba(0,0,0,0.05) !important;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.05) !important;
-}
-
-/* REVISI 2026-05-07: Pastikan link navbar terbaca jelas */
-.nav-link {
-    color: #1e3a8a !important; /* Biru Herz */
-}
-.nav-link:hover {
-    color: #EA580C !important; /* Orange Herz */
-}
-
-.navbar.scrolled {
-    background-color: rgba(255, 255, 255, 0.98) !important;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-}
-
-/* =========================================
-   6. Scroll Progress Bar
-   ========================================= */
-
-.scroll-progress-bar {
-    position: fixed;
-    top: 0;
-    left: 0;
-    height: 4px;
-    width: 0%;
-    background: linear-gradient(90deg, #1e3a8a, #EA580C);
-    z-index: 9999;
-    transition: width 0.1s ease-out;
-}
-
-/* =========================================
-   7. Footer & Portfolio Extra
-   ========================================= */
-.social-icon {
-    width: 45px;
-    height: 45px;
-    background: rgba(255,255,255,0.15);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: white;
-    font-size: 20px;
-    text-decoration: none;
-    transition: 0.3s;
-}
-.social-icon:hover { background: rgba(255,255,255,0.35); transform: scale(1.1); }
-
-.client-logo { height: 60px; max-width: 120px; object-fit: contain; }
-
-.case-card { transition: all 0.3s ease; }
-.case-card:hover { transform: translateY(-8px); box-shadow: 0 15px 30px rgba(0,0,0,0.1); }
-
-.case-img {
-    width: 100%;
-    height: 300px;
-    object-fit: cover;
-    border-radius: 8px;
-    transition: 0.4s;
-}
-.case-img:hover { transform: scale(1.05); }
-
-.border-bottom-hover {
-    border-bottom: 2px solid transparent;
-    transition: all 0.3s ease;
-}
-.border-bottom-hover:hover {
-    border-bottom: 2px solid #EA580C;
-    color: #1e3a8a;
-}
-
-/* =========================================
-   6. Typing Animation
-   ========================================= */
-.typing-title {
-    display: block;
-}
-
-.typing-subtitle {
-    display: block;
-    margin-top: 1rem;
-}
-
-/* =========================================
-   8. Circular Testimonial
-   ========================================= */
-
-.testimonial-img-container img {
-    width: 100px;
-    height: 100px;
-    object-fit: cover;
-}
-
-.testimonial-item {
-    animation: fadeIn 0.8s ease-in-out;
-}
-
-.nav-testi {
-    width: 45px;
-    height: 45px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: 0.3s;
-}
-
-.nav-testi:hover {
-    transform: scale(1.1);
-}
-
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(10px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-
-.bg-herz-dark {
-    background-color: #060507;
-}
-
-/* =========================================
-   9. Contact Section
-   ========================================= */
-.contact-icon {
-    width: 64px;
-    height: 64px;
-    border-radius: 14px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-
-/* =========================================
-   Slider Logo Klien (Infinite Marquee)
-   ========================================= */
-
-.logo-slider-track {
-    display: flex;
-    align-items: center;
-    width: max-content;
-    animation: slideContinuous 20s linear infinite;
-}
-
-.logo-slider-track:hover {
-    animation-play-state: paused;
-}
-
-.client-slide-box {
-    width: 200px;
-    flex-shrink: 0;
-    filter: grayscale(100%);
-    transition: filter 0.3s ease, transform 0.3s ease;
-    cursor: pointer;
-}
-
-.client-slide-box:hover {
-    filter: grayscale(0%);
-    transform: scale(1.1);
-}
-
-.client-logo {
-    height: 60px;
-    max-width: 120px;
-    object-fit: contain;
-}
-
-@keyframes slideContinuous {
-    0% {
-        transform: translateX(0);
-    }
-    100% {
-        transform: translateX(-50%);
-    }
-}
-
-/* =========================================
-   Services Page Styles
-   ========================================= */
-
-/* Hero Section untuk Services */
 .services-hero {
-    background: #f8fafc;
+    background: var(--herz-light);
     padding: 120px 0 60px;
     min-height: 50vh;
     display: flex;
@@ -746,13 +1638,13 @@ section {
 }
 
 .services-hero h1 {
-    font-family: 'Rubik', sans-serif;
+    font-family: 'Oswald', sans-serif;
     font-weight: 800;
     letter-spacing: -1px;
 }
 
 .services-hero .lead {
-    color: #64748b;
+    color: var(--herz-slate);
 }
 
 .hero-badge {
@@ -763,7 +1655,7 @@ section {
 }
 
 .hero-badge span {
-    background: #e2e8f0;
+    background: #E2E8F0;
     padding: 8px 20px;
     border-radius: 40px;
     font-size: 0.85rem;
@@ -771,25 +1663,9 @@ section {
     color: #475569;
 }
 
-/* Service Cards */
-.service-card {
-    background: white;
-    border-radius: 24px;
-    transition: all 0.3s ease;
-    overflow: hidden;
-    height: 100%;
-    border: 1px solid #eef2f8;
-}
-
-.service-card:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 20px 40px rgba(0,0,0,0.1);
-    border-color: #EA580C;
-}
-
 .service-card-header {
     padding: 28px 28px 20px;
-    border-bottom: 2px solid #f0f4fa;
+    border-bottom: 2px solid #F0F4FA;
     display: flex;
     align-items: center;
     gap: 16px;
@@ -798,21 +1674,21 @@ section {
 .service-icon {
     width: 60px;
     height: 60px;
-    background: linear-gradient(135deg, #dbeafe 0%, #eff6ff 100%);
+    background: linear-gradient(135deg, #DBEAFE 0%, #EFF6FF 100%);
     border-radius: 18px;
     display: flex;
     align-items: center;
     justify-content: center;
     font-size: 28px;
-    color: #1e3a8a;
+    color: var(--herz-navy);
 }
 
 .service-card-header h3 {
-    font-family: 'Rubik', sans-serif;
+    font-family: 'Oswald', sans-serif;
     font-weight: 700;
     font-size: 1.5rem;
     margin: 0;
-    color: #0f2b4d;
+    color: #0F2B4D;
 }
 
 .service-card-body {
@@ -835,7 +1711,7 @@ section {
 }
 
 .service-list li i {
-    color: #EA580C;
+    color: var(--herz-orange);
     font-size: 1.1rem;
     margin-top: 2px;
     min-width: 20px;
@@ -849,19 +1725,19 @@ section {
 }
 
 .tech-stack span {
-    background: #f1f5f9;
+    background: #F1F5F9;
     padding: 5px 14px;
     border-radius: 30px;
     font-size: 0.7rem;
     font-weight: 600;
-    color: #1e3a8a;
+    color: var(--herz-navy);
 }
 
 .service-link {
     display: inline-flex;
     align-items: center;
     gap: 8px;
-    color: #EA580C;
+    color: var(--herz-orange);
     text-decoration: none;
     font-weight: 600;
     transition: gap 0.3s ease;
@@ -869,12 +1745,11 @@ section {
 
 .service-link:hover {
     gap: 12px;
-    color: #1e3a8a;
+    color: var(--herz-navy);
 }
 
-/* CTA Section */
 .cta-section {
-    background: linear-gradient(135deg, #1e3a8a 0%, #0f2b4d 100%);
+    background: var(--gradient-blue);
     border-radius: 28px;
     padding: 48px 40px;
     margin: 48px 0;
@@ -882,15 +1757,14 @@ section {
 }
 
 .cta-section h3 {
-    font-family: 'Rubik', sans-serif;
+    font-family: 'Oswald', sans-serif;
     font-weight: 700;
     margin-bottom: 16px;
 }
 
-/* Clients Section */
 .clients-section {
     padding: 40px 0;
-    border-top: 1px solid #e2e8f0;
+    border-top: 1px solid #E2E8F0;
     margin-top: 40px;
 }
 
@@ -909,72 +1783,94 @@ section {
     letter-spacing: 0.5px;
 }
 
-/* Button Styles */
-.btn-herz-blue {
-    background-color: #1e3a8a;
-    color: white;
-    transition: all 0.3s ease;
-}
-
-.btn-herz-blue:hover {
-    background-color: #172554;
-    color: white;
-    transform: translateY(-2px);
-}
-
-.btn-herz-orange {
-    background-color: #EA580C;
-    border-color: #EA580C;
-    color: white;
-    transition: all 0.3s ease;
-}
-
-.btn-herz-orange:hover {
-    background-color: #d14d0a;
-    color: white;
-    transform: translateY(-2px);
-}
-
-.btn-outline-herz-blue {
-    border: 2px solid #1e3a8a;
-    color: #1e3a8a;
-    background: transparent;
-    transition: all 0.3s ease;
-}
-
-.btn-outline-herz-blue:hover {
-    background: #1e3a8a;
-    color: white;
-    transform: translateY(-2px);
-}
-
-/* Responsive */
+/* =========================================
+   22. Responsive Adjustments
+   ========================================= */
 @media (max-width: 768px) {
+    .brand-logo {
+        height: 50px;
+    }
+    
+    .hero-slider {
+        min-height: 80vh;
+        text-align: center;
+    }
+    
+    .hero-slider .d-flex {
+        justify-content: center;
+    }
+    
+    .hero-subtitle {
+        border-left: none;
+        border-bottom: 3px solid var(--herz-orange);
+        padding-left: 0;
+        padding-bottom: 0.5rem;
+        display: inline-block;
+    }
+    
+    .hero-slider::after {
+        height: 60px;
+    }
+    
+    .display-3 {
+        font-size: 2.5rem;
+    }
+    
+    .full-width-blue-section {
+        min-height: 350px;
+        padding: 60px 20px;
+    }
+    
     .services-hero {
         padding: 120px 0 60px;
     }
+    
     .services-hero h1 {
         font-size: 2rem;
     }
+    
     .service-card-header h3 {
         font-size: 1.25rem;
     }
+    
     .service-icon {
         width: 50px;
         height: 50px;
         font-size: 24px;
     }
+    
     .cta-section {
         padding: 32px 24px;
     }
+    
     .cta-section h3 {
         font-size: 1.3rem;
     }
+    
     .client-logos {
         gap: 24px;
     }
+    
     .client-logos span {
         font-size: 0.8rem;
+    }
+    
+    .stat-box {
+        padding: 24px 16px;
+    }
+    
+    .stat-number {
+        font-size: 2.5rem;
+    }
+    
+    .feature-card {
+        padding: 24px 20px;
+    }
+    
+    .feature-icon {
+        width: 56px;
+        height: 56px;
+        font-size: 24px;
     }
 }
 
@@ -982,7 +1878,18 @@ section {
     .service-card-header {
         padding: 20px;
     }
+    
     .service-card-body {
         padding: 20px;
+    }
+    
+    .display-3 {
+        font-size: 2rem;
+    }
+    
+    .btn-herz-blue,
+    .btn-herz-orange {
+        padding: 12px 24px;
+        font-size: 0.9rem;
     }
 }
