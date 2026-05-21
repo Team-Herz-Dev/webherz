@@ -53,42 +53,24 @@
     };
 
     // =========================================
-    // 3. Typing Animation with Intersection Observer
+    // 3. Fade-in Animation (replaces typing)
     // =========================================
 
-    const initTypingAnimation = () => {
-        const typingElements = document.querySelectorAll('.typing-title, .typing-subtitle');
+    const initFadeInAnimation = () => {
+        const fadeElements = document.querySelectorAll('.fade-in-text');
 
-        if (typingElements.length === 0) return;
+        if (fadeElements.length === 0) return;
 
-        const typingObserver = new IntersectionObserver((entries) => {
+        const observer = new IntersectionObserver((entries) => {
             entries.forEach((entry) => {
-                if (entry.isIntersecting && !entry.target.classList.contains('typed')) {
-                    const element = entry.target;
-                    const text = element.getAttribute('data-text');
-                    const speed = element.classList.contains('typing-title') ? 100 : 50;
-
-                    if (!text) return;
-
-                    element.classList.add('typed');
-                    element.textContent = '';
-
-                    let charIndex = 0;
-                    const typeWriter = () => {
-                        if (charIndex < text.length) {
-                            element.textContent += text.charAt(charIndex);
-                            charIndex++;
-                            setTimeout(typeWriter, speed);
-                        }
-                    };
-
-                    typeWriter();
-                    typingObserver.unobserve(element);
+                if (entry.isIntersecting && !entry.target.classList.contains('is-visible')) {
+                    entry.target.classList.add('is-visible');
+                    observer.unobserve(entry.target);
                 }
             });
-        }, { threshold: 0.5 });
+        }, { threshold: 0.3 });
 
-        typingElements.forEach((el) => typingObserver.observe(el));
+        fadeElements.forEach((el) => observer.observe(el));
     };
 
     // =========================================
@@ -138,7 +120,7 @@
     const init = () => {
         initHeroSlider();
         initScrollAnimations();
-        initTypingAnimation();
+        initFadeInAnimation();
         initMasonryCards();
         initScrollProgress();
     };

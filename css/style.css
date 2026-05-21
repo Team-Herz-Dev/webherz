@@ -9,6 +9,38 @@ body {
 }
 
 /* =========================================
+   Glassmorphism Panel - Behind Text Only
+   ========================================= */
+.glass-panel {
+    background: rgba(255, 255, 255, 0.12);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    border-radius: 20px;
+    padding: 2.5rem;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+}
+
+.glass-panel-dark {
+    background: rgba(30, 58, 138, 0.65);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 20px;
+    padding: 2.5rem;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+}
+
+@media (max-width: 768px) {
+    .glass-panel,
+    .glass-panel-dark {
+        padding: 1.5rem;
+        border-radius: 14px;
+        background: rgba(255, 255, 255, 0.2);
+    }
+}
+
+/* =========================================
    About Section Glassmorphism
    ========================================= */
 .glass-section {
@@ -317,6 +349,8 @@ body {
   margin-left: calc(-50vw + 50%);
   margin-right: calc(-50vw + 50%);
   background-color: #1e3a8a;
+  background-size: cover;
+  background-position: center;
   
   /* TAMBAHAN BIAR PANJANG KE BAWAH */
   min-height: 600px; /* Atur angka ini sesuai selera lu */
@@ -340,7 +374,10 @@ body {
     margin-left: calc(-50vw + 50%);
     margin-right: calc(-50vw + 50%);
     background-color: #1e3a8a;
+    background-size: cover;
+    background-position: center;
     padding: 80px 20px;
+    min-height: 600px;
 }
 
 .masonry-grid-container {
@@ -626,6 +663,30 @@ section {
 .border-bottom-hover:hover {
     border-bottom: 2px solid #EA580C;
     color: #1e3a8a;
+}
+
+/* =========================================
+   Fade-in + Slide Up Animation
+   ========================================= */
+.fade-in-text {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1),
+                transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.fade-in-text.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Staggered delays for multiple fade-in elements */
+.fade-in-text:nth-child(2) {
+    transition-delay: 0.2s;
+}
+
+.fade-in-text:nth-child(3) {
+    transition-delay: 0.4s;
 }
 
 /* =========================================
