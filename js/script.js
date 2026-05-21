@@ -114,6 +114,99 @@
     };
 
     // =========================================
+    // 7. Certificate Carousel
+    // =========================================
+
+    const initCertificateCarousel = () => {
+        const track = document.getElementById('certTrack');
+        const prevBtn = document.getElementById('certPrev');
+        const nextBtn = document.getElementById('certNext');
+        const dotsContainer = document.getElementById('certDots');
+        const dots = dotsContainer ? dotsContainer.querySelectorAll('.dot') : [];
+        
+        if (!track || !prevBtn || !nextBtn) return;
+
+        const cards = track.querySelectorAll('.certificate-card');
+        if (cards.length === 0) return;
+
+        let currentIndex = 0;
+        let cardsPerView = getCardsPerView();
+        const maxIndex = Math.max(0, cards.length - cardsPerView);
+
+        function getCardsPerView() {
+            const width = window.innerWidth;
+            if (width <= 767) return 1;
+            if (width <= 991) return 2;
+            return 3;
+        }
+
+        function updateCarousel() {
+            const cardWidth = cards[0].offsetWidth;
+            const gap = 24;
+            const offset = currentIndex * (cardWidth + gap);
+            track.style.transform = `translateX(-${offset}px)`;
+            
+            // Update dots
+            dots.forEach((dot, index) => {
+                dot.classList.toggle('active', index === currentIndex);
+            });
+            
+            // Update buttons
+            prevBtn.disabled = currentIndex === 0;
+            nextBtn.disabled = currentIndex >= maxIndex;
+        }
+
+        function goToSlide(index) {
+            currentIndex = Math.max(0, Math.min(index, maxIndex));
+            updateCarousel();
+        }
+
+        // Event listeners
+        prevBtn.addEventListener('click', () => goToSlide(currentIndex - 1));
+        nextBtn.addEventListener('click', () => goToSlide(currentIndex + 1));
+
+        dots.forEach((dot) => {
+            dot.addEventListener('click', () => {
+                goToSlide(parseInt(dot.dataset.index));
+            });
+        });
+
+        // Touch/swipe support
+        let touchStartX = 0;
+        let touchEndX = 0;
+
+        track.addEventListener('touchstart', (e) => {
+            touchStartX = e.changedTouches[0].screenX;
+        }, { passive: true });
+
+        track.addEventListener('touchend', (e) => {
+            touchEndX = e.changedTouches[0].screenX;
+            const diff = touchStartX - touchEndX;
+            
+            if (Math.abs(diff) > 50) {
+                if (diff > 0) {
+                    goToSlide(currentIndex + 1);
+                } else {
+                    goToSlide(currentIndex - 1);
+                }
+            }
+        }, { passive: true });
+
+        // Update on resize
+        window.addEventListener('resize', () => {
+            const newCardsPerView = getCardsPerView();
+            if (newCardsPerView !== cardsPerView) {
+                cardsPerView = newCardsPerView;
+                currentIndex = Math.min(currentIndex, Math.max(0, cards.length - cardsPerView));
+            }
+            updateCarousel();
+        });
+
+        // Initial state
+        updateCarousel();
+    };
+
+    // =========================================
     // Initialize All Modules
     // =========================================
 
@@ -123,6 +216,7 @@
         initFadeInAnimation();
         initMasonryCards();
         initScrollProgress();
+        initCertificateCarousel();
     };
 
     if (document.readyState === 'loading') {
