@@ -146,12 +146,10 @@
             const offset = currentIndex * (cardWidth + gap);
             track.style.transform = `translateX(-${offset}px)`;
             
-            // Update dots
             dots.forEach((dot, index) => {
                 dot.classList.toggle('active', index === currentIndex);
             });
             
-            // Update buttons
             prevBtn.disabled = currentIndex === 0;
             nextBtn.disabled = currentIndex >= maxIndex;
         }
@@ -161,7 +159,6 @@
             updateCarousel();
         }
 
-        // Event listeners
         prevBtn.addEventListener('click', () => goToSlide(currentIndex - 1));
         nextBtn.addEventListener('click', () => goToSlide(currentIndex + 1));
 
@@ -171,7 +168,6 @@
             });
         });
 
-        // Touch/swipe support
         let touchStartX = 0;
         let touchEndX = 0;
 
@@ -192,7 +188,6 @@
             }
         }, { passive: true });
 
-        // Update on resize
         window.addEventListener('resize', () => {
             const newCardsPerView = getCardsPerView();
             if (newCardsPerView !== cardsPerView) {
@@ -202,7 +197,6 @@
             updateCarousel();
         });
 
-        // Initial state
         updateCarousel();
     };
 

@@ -254,8 +254,12 @@ body {
    2. Components
    ========================================= */
 /* REVISI 2026-05-07: Perbesar logo agar lebih jelas */
-.brand-logo { height: 80px; transition: transform 0.3s ease; }
+.brand-logo { height: 75px; transition: transform 0.3s ease; }
 .brand-logo:hover { transform: scale(1.05); }
+
+@media (max-width: 768px) {
+    .brand-logo { height: 60px; }
+}
 
 .border-bottom-herz-orange { border-bottom: 3px solid #EA580C; }
 
@@ -513,23 +517,95 @@ body {
     }
 }
 /* =========================================
-   3. Services & Cards
+   3. Services & Cards - Redesigned
    ========================================= */
-.service-card { transition: all 0.3s ease; cursor: pointer; }
-.service-card:hover { transform: translateY(-5px); box-shadow: 0 1rem 3rem rgba(0,0,0,0.1) !important; }
-.border-top-orange { border-top: 4px solid #EA580C !important; }
+.service-card {
+    background: white;
+    border-radius: 20px;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: pointer;
+    overflow: hidden;
+    border: 1px solid #e2e8f0;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
 
+.service-card:hover {
+    transform: translateY(-12px);
+    box-shadow: 0 20px 40px rgba(30, 58, 138, 0.15) !important;
+    border-color: #EA580C;
+}
+
+.service-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, #1e3a8a 0%, #EA580C 100%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.service-card:hover::before {
+    opacity: 1;
+}
+
+.service-card h4 {
+    font-size: 1.15rem;
+    line-height: 1.4;
+    color: #1e3a8a;
+    transition: color 0.3s ease;
+}
+
+.service-card:hover h4 {
+    color: #EA580C;
+}
+
+.service-card .text-muted {
+    transition: color 0.3s ease;
+}
+
+.service-card:hover .text-muted {
+    color: #64748b !important;
+}
+
+/* Icon Box Redesigned */
 .icon-box, .icon-box-orange {
-    width: 48px;
-    height: 48px;
+    width: 56px;
+    height: 56px;
     display: flex;
     align-items: center;
     justify-content: center;
+    font-size: 24px;
     font-weight: bold;
-    border-radius: 4px;
+    border-radius: 14px;
+    transition: all 0.3s ease;
 }
-.icon-box { background: #dbeafe; color: #1e3a8a; }
-.icon-box-orange { background: #ffedd5; color: #EA580C; }
+
+.icon-box {
+    background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%);
+    color: #1e3a8a;
+}
+
+.icon-box-orange {
+    background: linear-gradient(135deg, #ffedd5 0%, #fed7aa 100%);
+    color: #EA580C;
+}
+
+.service-card:hover .icon-box {
+    background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+    color: white;
+    transform: scale(1.1) rotate(-5deg);
+}
+
+.service-card:hover .icon-box-orange {
+    background: linear-gradient(135deg, #EA580C 0%, #f97316 100%);
+    color: white;
+    transform: scale(1.1) rotate(-5deg);
+}
+
+.border-top-orange { border-top: none !important; }
 
 /* =========================================
    4. Scroll-Driven Animations
@@ -579,34 +655,40 @@ section {
 }
 
 /* =========================================
-   5. Fixed Navbar
+   5. Navbar - Glassmorphism
    ========================================= */
 
 .navbar {
-    position: fixed !important;
-    top: 0;
-    left: 0;
-    right: 0;
+    position: relative;
     z-index: 1030;
-    transition: background-color 0.3s ease,
-                box-shadow 0.3s ease;
-    /* REVISI 2026-05-07: Beri background semi-transparan agar logo & menu kontras */
-    background-color: rgba(255, 255, 255, 0.95) !important;
-    border-bottom: 1px solid rgba(0,0,0,0.05) !important;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.05) !important;
+    background: rgba(255, 255, 255, 0.75) !important;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.08) !important;
+    padding: 0.75rem 0 !important;
 }
 
-/* REVISI 2026-05-07: Pastikan link navbar terbaca jelas */
 .nav-link {
-    color: #1e3a8a !important; /* Biru Herz */
+    color: #1e3a8a !important;
+    font-size: 0.9rem;
+    padding: 0.5rem 0.75rem !important;
 }
 .nav-link:hover {
-    color: #EA580C !important; /* Orange Herz */
+    color: #EA580C !important;
 }
 
-.navbar.scrolled {
-    background-color: rgba(255, 255, 255, 0.98) !important;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+.navbar .btn-herz-blue {
+    background-color: #1e3a8a;
+    color: white;
+    border: none;
+    padding: 0.4rem 1rem !important;
+    font-size: 0.85rem;
+    transition: all 0.3s ease;
+}
+
+.navbar .btn-herz-blue:hover {
+    background-color: #172554;
+    color: white;
 }
 
 /* =========================================
