@@ -1,229 +1,157 @@
 /**
- * Scroll-Driven Animations Module
- * Clean, modular, and production-ready implementation
+ * PT Herz Consultant Indonesia - Main Script
+ * Handles general functionality and Bootstrap interactions
  */
 
 (function() {
     'use strict';
 
     // =========================================
-    // 1. Hero Slider - Auto Background Image Changer
+    // 1. Current Year in Footer
     // =========================================
+    const setCurrentYear = () => {
+        const yearElement = document.getElementById('current-year');
+        if (yearElement) {
+            yearElement.textContent = new Date().getFullYear();
+        }
+    };
 
-    const initHeroSlider = () => {
-        const slides = document.querySelectorAll('.hero-slide');
+    // =========================================
+    // 2. Bootstrap Navbar Collapse on Link Click (Mobile)
+    // =========================================
+    const initNavbarCollapse = () => {
+        const navLinks = document.querySelectorAll('.navbar-nav-modern .nav-link-modern');
+        const navbarCollapse = document.querySelector('.navbar-collapse-modern');
 
-        if (slides.length === 0) return;
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                if (navbarCollapse.classList.contains('show')) {
+                    const bsCollapse = bootstrap.Collapse.getInstance(navbarCollapse);
+                    if (bsCollapse) {
+                        bsCollapse.hide();
+                    }
+                }
+            });
+        });
+    };
 
-        let currentSlide = 0;
-        const slideInterval = 5000; // 5 seconds per slide
+    // =========================================
+    // 3. Smooth Scroll for Anchor Links (Fallback)
+    // =========================================
+    const initFallbackScroll = () => {
+        // This is handled by animations.js, but as a fallback
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
 
-        const nextSlide = () => {
-            slides[currentSlide].classList.remove('active');
-            currentSlide = (currentSlide + 1) % slides.length;
-            slides[currentSlide].classList.add('active');
+                const target = document.querySelector(targetId);
+                if (target) {
+                    e.preventDefault();
+                    const offset = 80;
+                    const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - offset;
+
+                    window.scrollTo({
+                        top: targetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    };
+
+    // =========================================
+    // 4. Active Nav Link on Scroll
+    // =========================================
+    const initActiveNavOnScroll = () => {
+        const sections = document.querySelectorAll('section[id]');
+        const navLinks = document.querySelectorAll('.navbar-nav-modern .nav-link-modern');
+
+        const setActiveLink = () => {
+            let current = '';
+
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop - 100;
+                const sectionHeight = section.offsetHeight;
+
+                if (window.pageYOffset >= sectionTop && window.pageYOffset < sectionTop + sectionHeight) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${current}`) {
+                    link.classList.add('active');
+                }
+            });
         };
 
-        // Start auto-slide
-        setInterval(nextSlide, slideInterval);
+        window.addEventListener('scroll', setActiveLink, { passive: true });
+        setActiveLink();
     };
 
     // =========================================
-    // 2. Intersection Observer for Fade-In & Reveal Animations
+    // 5. Lazy Load Images
     // =========================================
-
-    const initScrollAnimations = () => {
-        const animationElements = document.querySelectorAll('.animate-on-scroll, .reveal-left');
-
-        if (animationElements.length === 0) return;
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach((entry) => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('is-visible');
-                    observer.unobserve(entry.target);
-                }
+    const initLazyLoad = () => {
+        if ('loading' in HTMLImageElement.prototype) {
+            // Native lazy loading supported
+            document.querySelectorAll('img[loading="lazy"]').forEach(img => {
+                img.src = img.dataset.src || img.src;
             });
-        }, {
-            threshold: 0.15,
-            rootMargin: '0px 0px -50px 0px'
-        });
+        } else {
+            // Fallback for browsers without native support
+            const lazyImages = document.querySelectorAll('img[loading="lazy"]');
 
-        animationElements.forEach((el) => observer.observe(el));
-    };
-
-    // =========================================
-    // 3. Fade-in Animation (replaces typing)
-    // =========================================
-
-    const initFadeInAnimation = () => {
-        const fadeElements = document.querySelectorAll('.fade-in-text');
-
-        if (fadeElements.length === 0) return;
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach((entry) => {
-                if (entry.isIntersecting && !entry.target.classList.contains('is-visible')) {
-                    entry.target.classList.add('is-visible');
-                    observer.unobserve(entry.target);
-                }
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const img = entry.target;
+                        img.src = img.dataset.src || img.src;
+                        observer.unobserve(img);
+                    }
+                });
             });
-        }, { threshold: 0.3 });
 
-        fadeElements.forEach((el) => observer.observe(el));
-    };
-
-    // =========================================
-    // 4. Masonry Grid Cards Animation
-    // =========================================
-
-    const initMasonryCards = () => {
-        const masonryCards = document.querySelectorAll('.masonry-card');
-
-        if (masonryCards.length === 0) return;
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('is-visible');
-                    observer.unobserve(entry.target);
-                }
-            });
-        }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
-
-        masonryCards.forEach(el => observer.observe(el));
-    };
-
-    // =========================================
-    // 6. Scroll Progress Indicator
-    // =========================================
-
-    const initScrollProgress = () => {
-        const progressBar = document.querySelector('.scroll-progress-bar');
-
-        if (!progressBar) return;
-
-        const updateProgress = () => {
-            const scrollTop = window.pageYOffset;
-            const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-            const scrollPercent = (scrollTop / docHeight) * 100;
-            progressBar.style.width = `${scrollPercent}%`;
-        };
-
-        window.addEventListener('scroll', updateProgress, { passive: true });
-    };
-
-    // =========================================
-    // 7. Certificate Carousel
-    // =========================================
-
-    const initCertificateCarousel = () => {
-        const track = document.getElementById('certTrack');
-        const prevBtn = document.getElementById('certPrev');
-        const nextBtn = document.getElementById('certNext');
-        const dotsContainer = document.getElementById('certDots');
-        const dots = dotsContainer ? dotsContainer.querySelectorAll('.dot') : [];
-        
-        if (!track || !prevBtn || !nextBtn) return;
-
-        const cards = track.querySelectorAll('.certificate-card');
-        if (cards.length === 0) return;
-
-        let currentIndex = 0;
-        let cardsPerView = getCardsPerView();
-        const maxIndex = Math.max(0, cards.length - cardsPerView);
-
-        function getCardsPerView() {
-            const width = window.innerWidth;
-            if (width <= 767) return 1;
-            if (width <= 991) return 2;
-            return 3;
+            lazyImages.forEach(img => observer.observe(img));
         }
-
-        function updateCarousel() {
-            const cardWidth = cards[0].offsetWidth;
-            const gap = 24;
-            const offset = currentIndex * (cardWidth + gap);
-            track.style.transform = `translateX(-${offset}px)`;
-            
-            // Update dots
-            dots.forEach((dot, index) => {
-                dot.classList.toggle('active', index === currentIndex);
-            });
-            
-            // Update buttons
-            prevBtn.disabled = currentIndex === 0;
-            nextBtn.disabled = currentIndex >= maxIndex;
-        }
-
-        function goToSlide(index) {
-            currentIndex = Math.max(0, Math.min(index, maxIndex));
-            updateCarousel();
-        }
-
-        // Event listeners
-        prevBtn.addEventListener('click', () => goToSlide(currentIndex - 1));
-        nextBtn.addEventListener('click', () => goToSlide(currentIndex + 1));
-
-        dots.forEach((dot) => {
-            dot.addEventListener('click', () => {
-                goToSlide(parseInt(dot.dataset.index));
-            });
-        });
-
-        // Touch/swipe support
-        let touchStartX = 0;
-        let touchEndX = 0;
-
-        track.addEventListener('touchstart', (e) => {
-            touchStartX = e.changedTouches[0].screenX;
-        }, { passive: true });
-
-        track.addEventListener('touchend', (e) => {
-            touchEndX = e.changedTouches[0].screenX;
-            const diff = touchStartX - touchEndX;
-            
-            if (Math.abs(diff) > 50) {
-                if (diff > 0) {
-                    goToSlide(currentIndex + 1);
-                } else {
-                    goToSlide(currentIndex - 1);
-                }
-            }
-        }, { passive: true });
-
-        // Update on resize
-        window.addEventListener('resize', () => {
-            const newCardsPerView = getCardsPerView();
-            if (newCardsPerView !== cardsPerView) {
-                cardsPerView = newCardsPerView;
-                currentIndex = Math.min(currentIndex, Math.max(0, cards.length - cardsPerView));
-            }
-            updateCarousel();
-        });
-
-        // Initial state
-        updateCarousel();
     };
 
     // =========================================
-    // Initialize All Modules
+    // 6. Handle External Links
     // =========================================
+    const handleExternalLinks = () => {
+        document.querySelectorAll('a[target="_blank"]').forEach(link => {
+            link.setAttribute('rel', 'noopener noreferrer');
+        });
+    };
 
+    // =========================================
+    // 7. Console Log Branding
+    // =========================================
+    const consoleBranding = () => {
+        console.log('%c PT Herz Consultant Indonesia ', 'background: #FF6B35; color: white; font-size: 16px; padding: 10px 20px; border-radius: 4px;');
+        console.log('%c Environmental Intelligence for a Sustainable Future ', 'color: #0A1628; font-size: 12px;');
+        console.log('%c Website: https://herzindonesia.com ', 'color: #64748B; font-size: 11px;');
+    };
+
+    // =========================================
+    // Initialize
+    // =========================================
     const init = () => {
-        initHeroSlider();
-        initScrollAnimations();
-        initFadeInAnimation();
-        initMasonryCards();
-        initScrollProgress();
-        initCertificateCarousel();
+        setCurrentYear();
+        initNavbarCollapse();
+        initActiveNavOnScroll();
+        initLazyLoad();
+        handleExternalLinks();
+        consoleBranding();
     };
 
+    // Initialize when DOM is ready
     if (document.readyState === 'loading') {
         document.addEventListener('DOMContentLoaded', init);
     } else {
         init();
     }
 })();
-
-

@@ -6,36 +6,86 @@
     <title>Services | PT Herz Consultant Indonesia</title>
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&family=Rubik:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700;800;900&family=Source+Sans+Pro:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet"> 
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/animations.css">
 </head>
 <body>
 
-    <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top border-bottom shadow-sm py-3">
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
+    <!-- CURSOR TRAILER -->
+    <div class="cursor-trailer"></div>
+    <div class="cursor-dot"></div>
+
+    <!-- PAGE TRANSITION OVERLAY -->
+    <div class="page-transition">
+        <div class="transition-bar"></div>
+    </div>
+
+    <!-- FLOATING PARTICLES BACKGROUND -->
+    <div class="particles-container" id="particles"></div>
+
+    <!-- NAVBAR - Modern Glass Morphism -->
+    <nav class="navbar navbar-expand-lg navbar-modern fixed-top" id="mainNav">
         <div class="container">
-            <a class="navbar-brand" href="index.html">
-                <img src="assets/logos/logo-herz.png" alt="Logo PT Herz" class="brand-logo">
+            <a class="navbar-brand-modern" href="index.html">
+                <div class="brand-icon">
+                    <span>H</span>
+                </div>
+                <span class="brand-text">HERZ<span class="brand-accent">.</span></span>
             </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                <span class="navbar-toggler-icon"></span>
+            <button class="navbar-toggler-modern" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
             </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto align-items-center">
-                    <li class="nav-item"><a class="nav-link fw-semibold px-3" href="index.html">Home</a></li>
-                    <li class="nav-item"><a class="nav-link fw-semibold px-3" href="about.html">About</a></li>
-                    <li class="nav-item"><a class="nav-link fw-semibold px-3 active text-herz-blue" href="services.html">Services</a></li>
-                    <li class="nav-item"><a class="nav-link fw-semibold px-3" href="portfolio.html">Portfolio</a></li>
-                    <li class="nav-item"><a class="nav-link fw-semibold px-3" href="sertificate.html">Sertificate</a></li>
-                    <li class="nav-item"><a class="nav-link fw-semibold px-3" href="contact.html">Contact</a></li>
-                    <li class="nav-item ms-lg-3">
-                        <a href="mailto:info@herzindonesia.com" class="btn btn-herz-blue fw-bold px-4">Get in Touch</a>
+            <div class="collapse navbar-collapse-modern" id="navbarNav">
+                <ul class="navbar-nav-modern ms-auto align-items-center">
+                    <li class="nav-item-modern">
+                        <a class="nav-link-modern" href="index.html">
+                            <span class="nav-text">Home</span>
+                            <span class="nav-line"></span>
+                        </a>
+                    </li>
+                    <li class="nav-item-modern">
+                        <a class="nav-link-modern" href="about.html">
+                            <span class="nav-text">About</span>
+                            <span class="nav-line"></span>
+                        </a>
+                    </li>
+                    <li class="nav-item-modern">
+                        <a class="nav-link-modern active" href="services.html">
+                            <span class="nav-text">Services</span>
+                            <span class="nav-line"></span>
+                        </a>
+                    </li>
+                    <li class="nav-item-modern">
+                        <a class="nav-link-modern" href="portfolio.html">
+                            <span class="nav-text">Portfolio</span>
+                            <span class="nav-line"></span>
+                        </a>
+                    </li>
+                    <li class="nav-item-modern">
+                        <a class="nav-link-modern" href="contact.html">
+                            <span class="nav-text">Contact</span>
+                            <span class="nav-line"></span>
+                        </a>
+                    </li>
+                    <li class="nav-item-cta ms-lg-4">
+                        <a href="mailto:info@herzindonesia.com" class="btn-cta-modern fw-bold">
+                            <span>Get in Touch</span>
+                            <i class='bx bx-arrow-right'></i>
+                        </a>
                     </li>
                 </ul>
             </div>
         </div>
     </nav>
+
+    <!-- Page Header Spacer -->
+    <div style="height: 80px;"></div>
 
     <!-- Hero Section -->
     <section class="services-hero">
@@ -64,12 +114,11 @@
        <!-- Enviro Cards Grid -->
 <div class="row g-4">
     <!-- Card 1: Environmental Due Diligence & PROPER -->
-    <!-- REVISI 2026-05-07: Update content based on Company Profile -->
    <!-- Card 1 -->
     <div class="col-lg-6 animate-on-scroll">
         <div class="service-card">
             <div class="service-card-header">
-                <div class="service-icon"><i class="fas fa-earth"></i></div>
+                <div class="service-icon"><i class='bx bx-globe'></i></div>
                 <h3>Environmental Due Diligence & PROPER<br>
                     <span style="font-size: 0.75em; white-space: nowrap;">(Audit Kepatuhan Lingkungan)</span><br>
                     <span style="font-size: 0.75em; white-space: nowrap;">(Permen LHK No. 7/2025)</span>
@@ -77,9 +126,9 @@
             </div>
             <div class="service-card-body">
                 <ul class="service-list">
-                    <li><i class="fas fa-check-circle"></i> Pendampingan Program Penilaian Peringkat Kinerja Perusahaan (PROPER)</li>
-                    <li><i class="fas fa-check-circle"></i> Identifikasi Risiko & Kewajiban Lingkungan (Due Diligence)</li>
-                    <li><i class="fas fa-check-circle"></i> Evaluasi Teknis dan Audit Dokumen (LH)</li>
+                    <li><i class='bx bx-check-circle'></i> Pendampingan Program Penilaian Peringkat Kinerja Perusahaan (PROPER)</li>
+                    <li><i class='bx bx-check-circle'></i> Identifikasi Risiko & Kewajiban Lingkungan (Due Diligence)</li>
+                    <li><i class='bx bx-check-circle'></i> Evaluasi Teknis dan Audit Dokumen (LH)</li>
                 </ul>
                 <div class="tech-stack">
                     <span>Compliance Audit</span>
@@ -87,7 +136,7 @@
                     <span>Risk Assessment</span>
                     <span>Regulatory Support</span>
                  </div>
-                <a href="mailto:info@herzindonesia.com" class="service-link">Hubungi Kami <i class="fas fa-arrow-right"></i></a>
+                <a href="mailto:info@herzindonesia.com" class="service-link">Hubungi Kami <i class='bx bx-right-arrow-alt'></i></a>
             </div>
         </div>
     </div>
@@ -96,16 +145,16 @@
     <div class="col-lg-6 animate-on-scroll">
         <div class="service-card">
             <div class="service-card-header">
-                <div class="service-icon"><i class="fas fa-chalkboard-user"></i></div>
+                <div class="service-icon"><i class='bx bx-chalkboard'></i></div>
                 <h3>Audit & Optimalisasi CEMS<br>
                     <span style="font-size: 0.75em; white-space: nowrap;">(Maintenance & Spareparts CEMS)</span>
                 </h3>
             </div>
             <div class="service-card-body">
                 <ul class="service-list">
-                    <li><i class="fas fa-check-circle"></i> Uji Kinerja Umum & Audit Sistem Integrasi & Re-Integrasi Data ke KLHK</li>
-                    <li><i class="fas fa-check-circle"></i> Integrasi & Re-Integrasi Data ke KLHK</li>
-                    <li><i class="fas fa-check-circle"></i> Implementasi Program QA/QC CEMS</li>
+                    <li><i class='bx bx-check-circle'></i> Uji Kinerja Umum & Audit Sistem Integrasi & Re-Integrasi Data ke KLHK</li>
+                    <li><i class='bx bx-check-circle'></i> Integrasi & Re-Integrasi Data ke KLHK</li>
+                    <li><i class='bx bx-check-circle'></i> Implementasi Program QA/QC CEMS</li>
                 </ul>
                 <div class="tech-stack">
                     <span>Audit System</span>
@@ -113,7 +162,7 @@
                     <span>QA/QC Program</span>
                     <span>Maintenance</span>
                 </div>
-                <a href="mailto:info@herzindonesia.com" class="service-link">Hubungi Kami <i class="fas fa-arrow-right"></i></a>
+                <a href="mailto:info@herzindonesia.com" class="service-link">Hubungi Kami <i class='bx bx-right-arrow-alt'></i></a>
             </div>
         </div>
     </div>
@@ -122,17 +171,17 @@
     <div class="col-lg-6 animate-on-scroll">
         <div class="service-card">
             <div class="service-card-header">
-                <div class="service-icon"><i class="fas fa-industry"></i></div>
+                <div class="service-icon"><i class='bx bx-factory'></i></div>
                 <h3>Kajian & Pemodelan Cerobong<br>
                     <span style="font-size: 0.75em; white-space: nowrap;">(Cyclonic Test & Uji Emisi Sumber Tidak Bergerak)</span>
                 </h3>
             </div>
             <div class="service-card-body">
                 <ul class="service-list">
-                    <li><i class="fas fa-check-circle"></i> Modelling Computational Fluid Dynamic (CFD)</li>
-                    <li><i class="fas fa-check-circle"></i> Performance Test Air Pollution Control (APC)</li>
-                    <li><i class="fas fa-check-circle"></i> Analisis Particulate Size (PM 10 & PM 2.5)</li>
-                    <li><i class="fas fa-check-circle"></i> Penyusunan Drawing Engineering Design</li>
+                    <li><i class='bx bx-check-circle'></i> Modelling Computational Fluid Dynamic (CFD)</li>
+                    <li><i class='bx bx-check-circle'></i> Performance Test Air Pollution Control (APC)</li>
+                    <li><i class='bx bx-check-circle'></i> Analisis Particulate Size (PM 10 & PM 2.5)</li>
+                    <li><i class='bx bx-check-circle'></i> Penyusunan Drawing Engineering Design</li>
                 </ul>
                 <div class="tech-stack">
                     <span>CFD Analysis</span>
@@ -140,7 +189,7 @@
                     <span>Particulate Matter</span>
                     <span>APC Test</span>
                  </div>
-                <a href="mailto:info@herzindonesia.com" class="service-link">Hubungi Kami <i class="fas fa-arrow-right"></i></a>
+                <a href="mailto:info@herzindonesia.com" class="service-link">Hubungi Kami <i class='bx bx-right-arrow-alt'></i></a>
             </div>
         </div>
     </div>
@@ -149,16 +198,16 @@
     <div class="col-lg-6 animate-on-scroll">
         <div class="service-card">
             <div class="service-card-header">
-                <div class="service-icon"><i class="fas fa-tools"></i></div>
+                <div class="service-icon"><i class='bx bx-wrench'></i></div>
                 <h3>Kustomisasi & Perbaikan Instrument<br>
                     <span style="font-size: 0.75em; white-space: nowrap;">(Modifikasi & Kustomisasi Instrumen Monitoring Lingkungan)</span>
                 </h3>
             </div>
             <div class="service-card-body">
                 <ul class="service-list">
-                    <li><i class="fas fa-check-circle"></i> Perbaikan (Repair) Alat Ukur Spesialis</li>
-                    <li><i class="fas fa-check-circle"></i> Kalibrasi dan Penyesuaian Berdasarkan Standar US EPA</li>
-                    <li><i class="fas fa-check-circle"></i> Optimasi Instrumen Sesuai Standar SNI (Standar Nasional Indonesia)</li>
+                    <li><i class='bx bx-check-circle'></i> Perbaikan (Repair) Alat Ukur Spesialis</li>
+                    <li><i class='bx bx-check-circle'></i> Kalibrasi dan Penyesuaian Berdasarkan Standar US EPA</li>
+                    <li><i class='bx bx-check-circle'></i> Optimasi Instrumen Sesuai Standar SNI (Standar Nasional Indonesia)</li>
                 </ul>
                 <div class="tech-stack">
                     <span>Customized Instruments</span>
@@ -166,7 +215,7 @@
                     <span>SNI Compliant</span>
                     <span>Technical Repair</span>
                 </div>
-                <a href="mailto:info@herzindonesia.com" class="service-link">Hubungi Kami <i class="fas fa-arrow-right"></i></a>
+                <a href="mailto:info@herzindonesia.com" class="service-link">Hubungi Kami <i class='bx bx-right-arrow-alt'></i></a>
             </div>
         </div>
     </div>
@@ -174,16 +223,16 @@
     <div class="col-lg-6 animate-on-scroll">
         <div class="service-card">
             <div class="service-card-header">
-                <div class="service-icon"><i class="fas fa-smog"></i></div>
+                <div class="service-icon"><i class='bx bx-cloud'></i></div>
                 <h3>Pengadaan Instrumen Emisi <br>
                     <span style="font-size: 0.75em; white-space: nowrap;">(Penyediaan Alat Monitoring Emisi Sumber Tidak Bergerak)</span>
                 </h3>
             </div>
             <div class="service-card-body">
                 <ul class="service-list">
-                    <li><i class="fas fa-check-circle"></i> Instalasi & Setting Perangkat Pengukuran Kualitas Udara</li>
-                    <li><i class="fas fa-check-circle"></i>Uji Fungsi dan Kalibrasi Instrumen Baru</li>
-                    <li><i class="fas fa-check-circle"></i> Pelatihan (Training) (Operasional Alat untuk User)</li>
+                    <li><i class='bx bx-check-circle'></i> Instalasi & Setting Perangkat Pengukuran Kualitas Udara</li>
+                    <li><i class='bx bx-check-circle'></i>Uji Fungsi dan Kalibrasi Instrumen Baru</li>
+                    <li><i class='bx bx-check-circle'></i> Pelatihan (Training) (Operasional Alat untuk User)</li>
                 </ul>
                 <div class="tech-stack">
                     <span>Emission Monitoring</span>
@@ -191,25 +240,24 @@
                     <span>User Training</span>
                     <span>Installation</span>
                  </div>
-                <a href="mailto:info@herzindonesia.com" class="service-link">Hubungi Kami <i class="fas fa-arrow-right"></i></a>
+                <a href="mailto:info@herzindonesia.com" class="service-link">Hubungi Kami <i class='bx bx-right-arrow-alt'></i></a>
             </div>
         </div>
     </div>
 
     <!-- Card 6: Training & Bimbingan Teknis -->
-    <!-- REVISI 2026-05-07: Update content based on Company Profile -->
     <div class="col-lg-6 animate-on-scroll">
         <div class="service-card">
             <div class="service-card-header">
-                <div class="service-icon"><i class="fas fa-graduation-cap"></i></div>
+                <div class="service-icon"><i class='bx bx-graduation'></i></div>
                 <h3>Training & Bimbingan Teknis</h3>
             </div>
             <div class="service-card-body">
                 <ul class="service-list">
-                    <li><i class="fas fa-check-circle"></i> Penyelenggaraan Training Operasional Instrumen Lingkungan</li>
-                    <li><i class="fas fa-check-circle"></i> Bimbingan Teknis Sertifikasi dan Kepatuhan Regulasi</li>
-                    <li><i class="fas fa-check-circle"></i> Workshop Penggunaan Alat Monitoring Emisi secara Hands-on</li>
-                    <li><i class="fas fa-check-circle"></i> Edukasi Pemeliharaan dan Troubleshooting Perangkat</li>
+                    <li><i class='bx bx-check-circle'></i> Penyelenggaraan Training Operasional Instrumen Lingkungan</li>
+                    <li><i class='bx bx-check-circle'></i> Bimbingan Teknis Sertifikasi dan Kepatuhan Regulasi</li>
+                    <li><i class='bx bx-check-circle'></i> Workshop Penggunaan Alat Monitoring Emisi secara Hands-on</li>
+                    <li><i class='bx bx-check-circle'></i> Edukasi Pemeliharaan dan Troubleshooting Perangkat</li>
                 </ul>
                 <div class="tech-stack">
                     <span>Technical Guidance</span>
@@ -217,22 +265,19 @@
                     <span>On-site Training</span>
                     <span>Skill Development</span>
                 </div>
-                <a href="mailto:info@herzindonesia.com" class="service-link">Hubungi Kami <i class="fas fa-arrow-right"></i></a>
+                <a href="mailto:info@herzindonesia.com" class="service-link">Hubungi Kami <i class='bx bx-right-arrow-alt'></i></a>
             </div>
         </div>
     </div>
 
 </div> 
 
-        
-        
-        
         <!-- CTA Section -->
         <div class="cta-section animate-on-scroll">
             <h3 class="text-white mb-3">Siap Memulai Proyek Anda?</h3>
             <p class="text-white-50 mb-4">Hubungi tim ahli kami untuk konsultasi gratis dan penawaran terbaik</p>
             <a href="contact.html" class="btn btn-herz-orange btn-lg px-5">
-                <i class="fas fa-envelope me-2"></i>Kontak Kami Sekarang
+                <i class='bx bxs-envelope me-2'></i>Kontak Kami Sekarang
             </a>
         </div>
         
@@ -252,79 +297,78 @@
         </div>
     </main>
 
-    <footer id="contact" class="bg-herz-blue text-white py-5 mt-5">
+    <!-- SECTION 7: FOOTER - Modern Minimal -->
+    <footer id="contact" class="footer-modern">
+        <div class="footer-decoration">
+            <div class="fd-line fd-line-1"></div>
+            <div class="fd-line fd-line-2"></div>
+        </div>
         <div class="container">
-            <div class="row g-4">
-                <div class="col-md-4">
-                    <div class="h3 fw-bold mb-3">HERZ<span class="text-herz-orange">.</span></div>
-                    <p class="text-light-blue small">Environmental Intelligence for a Sustainable Future.</p>
+            <div class="footer-main">
+                <div class="footer-brand-col">
+                    <a href="index.html" class="footer-logo">
+                        <div class="fl-icon">H</div>
+                        <span class="fl-text">HERZ<span class="fl-accent">.</span></span>
+                    </a>
+                    <p class="footer-tagline">Environmental Intelligence for a Sustainable Future.</p>
+                    <div class="footer-social">
+                        <a href="https://wa.me/628131415825" class="fs-link" target="_blank" aria-label="WhatsApp">
+                            <i class='bx bxl-whatsapp'></i>
+                        </a>
+                        <a href="mailto:info@herzindonesia.com" class="fs-link" aria-label="Email">
+                            <i class='bx bxs-envelope'></i>
+                        </a>
+                        <a href="#" class="fs-link" aria-label="Instagram">
+                            <i class='bx bxl-instagram'></i>
+                        </a>
+                        <a href="https://www.linkedin.com/company/pt-herz-konsultan-indonesia/" class="fs-link" target="_blank" aria-label="LinkedIn">
+                            <i class='bx bxl-linkedin'></i>
+                        </a>
+                    </div>
                 </div>
-                <div class="col-md-4">
-                    <h6 class="text-uppercase fw-bold mb-3">Kantor Pusat</h6>
-                    <p class="text-light-blue small">
+
+                <div class="footer-nav-col">
+                    <h6 class="footer-nav-title">Navigasi</h6>
+                    <ul class="footer-nav-list">
+                        <li><a href="index.html" class="fn-link">Home</a></li>
+                        <li><a href="about.html" class="fn-link">About</a></li>
+                        <li><a href="services.html" class="fn-link">Services</a></li>
+                        <li><a href="portfolio.html" class="fn-link">Portfolio</a></li>
+                        <li><a href="contact.html" class="fn-link">Contact</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-contact-col">
+                    <h6 class="footer-nav-title">Kantor Pusat</h6>
+                    <address class="footer-address">
                         Jl. Babakan Sari VI No. 5 RT. 04/RW. 07<br>
                         Bantarjati, Kec. Bogor Utara,<br>
                         Kota Bogor, Jawa Barat 16153.
-                    </p>
-
-                </div>
-                <div class="col-md-4">
-                    <h6 class="text-uppercase fw-bold mb-3">Hubungi Kami</h6>
-                    <ul class="list-unstyled text-light-blue small">
-                       <div class="d-flex gap-3 flex-wrap">
-                             <!-- REVISI 2026-05-07: Update WhatsApp -->
-                             <a href="https://wa.me/628131415825" class="social-icon" target="_blank">
-                                 <i class='fab fa-whatsapp'></i>
-                             </a>
-                         
-                             <!-- REVISI 2026-05-07: Update Email -->
-                             <a href="mailto:info@herzindonesia.com" class="social-icon">
-                                 <i class='fas fa-envelope'></i>
-                             </a>
-                         
-                             <a href="#" class="social-icon">
-                                 <i class='fab fa-instagram'></i>
-                             </a>
-                         
-                             <!-- REVISI 2026-05-07: Update LinkedIn -->
-                             <a href="https://www.linkedin.com/company/pt-herz-konsultan-indonesia/" class="social-icon" target="_blank">
-                                 <i class='fab fa-linkedin-in'></i>
-                             </a>
-
-                        </div>
-                    </ul>
+                    </address>
+                    <div class="footer-contact-info">
+                        <a href="tel:08131415825" class="fci-item">
+                            <i class='bx bxs-phone'></i>
+                            <span>0813 1415 825</span>
+                        </a>
+                        <a href="mailto:info@herzindonesia.com" class="fci-item">
+                            <i class='bx bxs-envelope'></i>
+                            <span>info@herzindonesia.com</span>
+                        </a>
+                    </div>
                 </div>
             </div>
-            <hr class="mt-4 opacity-25">
-            <div class="text-center small opacity-50">
-                &copy; 2026 PT Herz Consultant Indonesia. All rights reserved.
+
+            <div class="footer-bottom">
+                <div class="fb-line"></div>
+                <p class="fb-copyright">&copy; <span id="current-year">2026</span> PT Herz Consultant Indonesia. All rights reserved.</p>
             </div>
         </div>
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
     <script src="js/script.js"></script>
-    <script>
-        // Scroll Animation Observer
-        const animateElements = document.querySelectorAll('.animate-on-scroll');
-        
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-        
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('is-visible');
-                    observer.unobserve(entry.target);
-                }
-            });
-        }, observerOptions);
-        
-        animateElements.forEach(el => observer.observe(el));
-    </script>
+    <script src="js/animations.js"></script>
 </body>
 </html>
-
-
