@@ -33,7 +33,7 @@
     // =========================================
 
     const initScrollAnimations = () => {
-        const animationElements = document.querySelectorAll('.animate-on-scroll, .reveal-left');
+        const animationElements = document.querySelectorAll('.animate-on-scroll, .reveal-left, .fade-up-stagger, .reveal-right');
 
         if (animationElements.length === 0) return;
 
@@ -92,6 +92,49 @@
         }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
 
         masonryCards.forEach(el => observer.observe(el));
+    };
+
+    // =========================================
+    // 5. Animated Counters
+    // =========================================
+
+    const initAnimatedCounters = () => {
+        const counters = document.querySelectorAll('.counter');
+        const speed = 200; // Semakin kecil semakin cepat
+
+        if (counters.length === 0) return;
+
+        const animateCounters = () => {
+            counters.forEach(counter => {
+                const updateCount = () => {
+                    const target = +counter.getAttribute('data-target');
+                    const count = +counter.innerText;
+                    const inc = target / speed;
+
+                    if (count < target) {
+                        counter.innerText = Math.ceil(count + inc);
+                        setTimeout(updateCount, 20);
+                    } else {
+                        counter.innerText = target;
+                    }
+                };
+                updateCount();
+            });
+        };
+
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    animateCounters();
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.5 });
+
+        const statSection = document.querySelector('.stat-divider');
+        if (statSection) {
+            observer.observe(statSection);
+        }
     };
 
     // =========================================
@@ -209,6 +252,7 @@
         initScrollAnimations();
         initFadeInAnimation();
         initMasonryCards();
+        initAnimatedCounters();
         initScrollProgress();
         initCertificateCarousel();
     };

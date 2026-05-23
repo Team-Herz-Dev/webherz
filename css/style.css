@@ -429,10 +429,14 @@ body {
 /* Card base styles */
 .masonry-card {
     position: relative;
-    background: #ffffff;
-    border-radius: 16px;
+    background: rgba(255, 255, 255, 0.12);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    border-radius: 20px;
+    padding: 16px;
     overflow: hidden;
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     opacity: 0;
     transform: translateY(40px);
@@ -472,6 +476,7 @@ body {
     height: 100%;
     object-fit: cover;
     display: block;
+    border-radius: 12px;
     transition: transform 0.4s ease;
 }
 
@@ -482,12 +487,13 @@ body {
 /* Card content overlay */
 .masonry-card-body {
     position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
+    bottom: 16px;
+    left: 16px;
+    right: 16px;
     padding: 20px;
     background: linear-gradient(to top, rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.4), transparent);
     color: #ffffff;
+    border-radius: 0 0 12px 12px;
 }
 
 .masonry-card-title {
@@ -622,6 +628,127 @@ body {
 .animate-on-scroll.is-visible {
     opacity: 1;
     transform: translateY(0);
+}
+
+/* =========================================
+   Contact Modal Grid Cards
+   ========================================= */
+.contact-grid-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px 10px;
+    background: #f8fafc;
+    border-radius: 16px;
+    border: 1px solid #e2e8f0;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    color: #475569;
+    font-size: 0.8rem;
+}
+
+.contact-grid-card:hover {
+    background: #ffffff;
+    border-color: #1e3a8a;
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(30, 58, 138, 0.1);
+    color: #1e3a8a;
+}
+
+.contact-grid-card .icon-wrapper {
+    width: 54px;
+    height: 54px;
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 32px;
+    margin-bottom: 12px;
+    transition: all 0.3s ease;
+}
+
+.contact-grid-card .icon-wrapper.whatsapp { background: #dcfce7; color: #16a34a; }
+.contact-grid-card:hover .icon-wrapper.whatsapp { background: #16a34a; color: #ffffff; }
+
+.contact-grid-card .icon-wrapper.email { background: #e0e7ff; color: #2563eb; }
+.contact-grid-card:hover .icon-wrapper.email { background: #2563eb; color: #ffffff; }
+
+.contact-grid-card .icon-wrapper.linkedin { background: #e0f2fe; color: #0284c7; }
+.contact-grid-card:hover .icon-wrapper.linkedin { background: #0284c7; color: #ffffff; }
+
+/* About Card Overlay Layout */
+.about-card-overlap {
+    background: #ffffff;
+    z-index: 2;
+    position: relative;
+}
+
+.about-img-under {
+    z-index: 1;
+    position: relative;
+}
+
+@media (min-width: 992px) {
+    .about-card-overlap {
+        margin-right: -100px; /* Pull card right over the image */
+    }
+    .about-img-under {
+        height: 550px;
+        object-fit: cover;
+    }
+}
+
+@media (max-width: 991px) {
+    .about-img-under {
+        margin-top: -50px; /* On small screens, image sits slightly under the card */
+        height: 350px;
+        object-fit: cover;
+    }
+}
+
+/* Staggered Fade Up */
+.fade-up-stagger {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.fade-up-stagger.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Staggering delays for list items */
+.stagger-1 { transition-delay: 0.1s; }
+.stagger-2 { transition-delay: 0.3s; }
+.stagger-3 { transition-delay: 0.5s; }
+.stagger-4 { transition-delay: 0.7s; }
+.stagger-5 { transition-delay: 0.9s; }
+
+/* Reveal from Right */
+.reveal-right {
+    opacity: 0;
+    transform: translateX(50px);
+    transition: opacity 1s cubic-bezier(0.16, 1, 0.3, 1), transform 1s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.reveal-right.is-visible {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+/* =========================================
+   Stat Divider Section
+   ========================================= */
+.stat-divider {
+    background-color: #f8fafc;
+    position: relative;
+    z-index: 10;
+}
+.stat-item {
+    padding: 1rem;
+    transition: transform 0.3s ease;
+}
+.stat-item:hover {
+    transform: translateY(-5px);
 }
 
 /* WAJIB: Biar gak ada scrollbar horizontal liar */
