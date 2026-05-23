@@ -29,7 +29,9 @@
                     <li class="nav-item"><a class="nav-link fw-semibold px-3" href="sertificate.html">Sertificate</a></li>
                     <li class="nav-item"><a class="nav-link fw-semibold px-3" href="contact.html">Contact</a></li>
                     <li class="nav-item ms-lg-3">
-                        <a href="mailto:info@herzindonesia.com" class="btn btn-herz-blue fw-bold px-4">Get in Touch</a>
+                        <button type="button" class="btn btn-herz-blue fw-bold px-4" data-bs-toggle="modal" data-bs-target="#contactOptionsModal">
+                            Get in Touch
+                        </button>
                     </li>
                 </ul>
             </div>
@@ -153,7 +155,13 @@
                 <button class="dot" data-index="5" aria-label="Go to slide 6"></button>
                 <button class="dot" data-index="6" aria-label="Go to slide 7"></button>
             </div>
+
+
+            
         </div>
+
+
+        
     </section>
 
     <section class="competency-list-section py-5 bg-light">
@@ -254,8 +262,56 @@
                     </div>
                 </div>
             </div>
+
+            
         </div>
+
+
+        <div class="contact-cards-wrap px-4 pb-4 px-md-5 pb-md-5">
+                <div class="row g-4 justify-content-center">
+                    <div class="col-12 col-lg-9 col-xl-8 animate-on-scroll" style="transition-delay: 150ms;">
+                        <div class="contact-card h-100 p-4 p-md-5 bg-white border shadow-sm">
+                            <div class="contact-icon bg-warning-subtle text-herz-orange mb-4 mx-auto" aria-hidden="true">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                                    <circle cx="8.5" cy="7" r="4"/>
+                                    <path d="M20 8v6"/>
+                                    <path d="M23 11h-6"/>
+                                </svg>
+                            </div>
+                            <h2 class="h2 fw-bold text-dark mb-3">Talk to our Sales Team</h2>
+                            <p class="text-muted mb-4">
+                                Konsultasikan kebutuhan layanan dan penawaran terbaik sesuai skala operasional bisnis Anda.
+                            </p>
+                            <a href="mailto:info@herzindonesia.com?subject=Permintaan%20Penawaran%20Layanan%20Herz"
+                               class="btn btn-herz-blue fw-semibold px-4 py-2 w-100">
+                                Contact Sales
+                            </a>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
     </section>
+
+    <div class="modal fade" id="contactOptionsModal" tabindex="-1" aria-labelledby="contactOptionsModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content contact-modal border-0 shadow">
+                <div class="modal-header border-0 pb-0">
+                    <h5 class="modal-title fw-bold text-herz-blue" id="contactOptionsModalLabel">Get in Touch</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body pt-3">
+                    <p class="text-muted mb-3">Pilih channel komunikasi yang paling nyaman.</p>
+                    <div class="d-grid gap-2">
+                        <a href="https://wa.me/628131415825" target="_blank" class="btn btn-success fw-semibold py-2">WhatsApp</a>
+                        <a href="mailto:info@herzindonesia.com" class="btn btn-herz-blue fw-semibold py-2">Email</a>
+                        <a href="https://www.linkedin.com/company/pt-herz-konsultan-indonesia/" target="_blank" class="btn btn-outline-herz-blue fw-semibold py-2">LinkedIn</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <footer id="contact" class="bg-herz-blue text-white py-5 mt-5">
         <div class="container">
