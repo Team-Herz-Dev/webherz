@@ -254,7 +254,7 @@ body {
    2. Components
    ========================================= */
 /* REVISI 2026-05-07: Perbesar logo agar lebih jelas */
-.brand-logo { height: 75px; transition: transform 0.3s ease; }
+.brand-logo { width: 100px; height: 100px; transition: transform 0.3s ease; }
 .brand-logo:hover { transform: scale(1.05); }
 
 @media (max-width: 768px) {
