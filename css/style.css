@@ -276,6 +276,24 @@ body {
     overflow: hidden;
 }
 
+.hero-panel {
+    max-width: 100%;
+}
+
+.hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: stretch;
+}
+
+.hero-action-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    min-height: 72px;
+}
+
 .hero-slides {
     position: absolute;
     top: 0;
@@ -314,6 +332,94 @@ body {
     border-left: 4px solid #EA580C;
     padding-left: 1rem;
     color: #1e3a8a;
+}
+
+@media (max-width: 991px) {
+    .hero-slider {
+        min-height: auto;
+        padding: 120px 0 48px;
+    }
+
+    .hero-title {
+        font-size: clamp(2.4rem, 7vw, 3.75rem);
+        line-height: 1.12;
+    }
+
+    .hero-description {
+        margin-bottom: 2rem !important;
+    }
+}
+
+@media (max-width: 768px) {
+    .hero-slider {
+        padding: 104px 0 40px;
+    }
+
+    .hero-panel {
+        padding: 1.5rem 1.25rem;
+    }
+
+    .hero-subtitle {
+        font-size: 0.95rem;
+    }
+
+    .hero-title {
+        font-size: clamp(2rem, 9vw, 2.8rem);
+        margin-bottom: 1.25rem !important;
+    }
+
+    .hero-description {
+        font-size: 1.05rem;
+        line-height: 1.7;
+    }
+
+    .hero-actions {
+        gap: 0.75rem !important;
+    }
+
+    .hero-action-btn {
+        flex: 1 1 calc(50% - 0.75rem);
+        width: 100%;
+        min-height: 64px;
+        padding: 0.95rem 1rem !important;
+        font-size: 0.95rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .hero-slider {
+        padding: 96px 0 32px;
+    }
+
+    .hero-panel {
+        padding: 1.25rem 1rem;
+        border-radius: 18px;
+    }
+
+    .hero-subtitle {
+        margin-bottom: 1rem !important;
+        font-size: 0.82rem;
+        letter-spacing: 0.04em;
+    }
+
+    .hero-title {
+        font-size: clamp(1.85rem, 10vw, 2.35rem);
+        line-height: 1.15;
+    }
+
+    .hero-description {
+        font-size: 1rem;
+        margin-bottom: 1.5rem !important;
+    }
+
+    .hero-actions {
+        flex-direction: column;
+    }
+
+    .hero-action-btn {
+        flex: 1 1 100%;
+        min-height: 56px;
+    }
 }
 
 .about-img {
